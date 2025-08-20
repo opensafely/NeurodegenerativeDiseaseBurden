@@ -1,0 +1,2 @@
+CREATE DATABASE Test_OPENCoronaExport;
+GO

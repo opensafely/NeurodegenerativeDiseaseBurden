@@ -1,0 +1,411 @@
+code,term
+10273003,Acute infarction of papillary muscle
+103011000119106,Coronary arteriosclerosis in patient with history of previous myocardial infarction
+105501005,Dependence on enabling machine or device
+1077002,Septal infarction by electrocardiogram
+1089431000000107,Postoperative nontransmural myocardial infarction
+1089441000000103,Postoperative transmural myocardial infarction
+1089451000000100,Acute nontransmural myocardial infarction
+1089471000000109,Acute transmural myocardial infarction
+10971000087107,Myocardial ischemia during surgery
+11018701000119109,Coronary arteriosclerosis after percutaneous coronary angioplasty
+11101003,Percutaneous transluminal coronary angioplasty
+1163420005,Pericardial effusion following myocardial infarction
+1163440003,Postoperative acute myocardial infarction
+117051000119103,Chronic total occlusion of coronary artery
+1204151009,Acute inferior non-ST segment elevation myocardial infarction of right ventricle
+1204152002,Acute inferior non-ST segment elevation myocardial infarction
+1204154001,Acute anterior non-ST segment elevation myocardial infarction with right ventricular involvement
+1204155000,Acute anterior non-ST segment elevation myocardial infarction
+1204222000,Acute non-ST segment elevation myocardial infarction of right ventricle
+1208867006,Ventricular thrombus following acute myocardial infarction
+1208872002,Subsequent anterior non-ST segment elevation myocardial infarction
+1208873007,Subsequent inferior non-ST segment elevation myocardial infarction
+1222625002,Hypercyanotic spell due to congenital heart disease
+12238111000119106,Acute ST segment elevation myocardial infarction of inferolateral wall
+12238151000119107,Acute ST segment elevation myocardial infarction of inferoposterior wall
+123641001,Left coronary artery occlusion
+123642008,Right coronary artery occlusion
+1254657004,Stenosis of proximal portion of right coronary artery
+1254658009,Stenosis of mid portion of right coronary artery
+1254659001,Stenosis of distal portion of right coronary artery
+1254660006,Stenosis of marginal branch of right coronary artery
+1254661005,Stenosis of posterior lateral branch of right coronary artery
+1254662003,Stenosis of posterior descending branch of right coronary artery
+1254663008,Stenosis of distal portion of anterior descending branch of left coronary artery
+1254666000,Stenosis of ostium of right coronary artery
+1255256006,Stenosis of proximal portion of circumflex branch of left coronary artery
+1255257002,Stenosis of mid portion of circumflex branch of left coronary artery
+1255258007,Stenosis of distal portion of circumflex branch of left coronary artery
+1255265004,Stenosis of proximal portion of anterior descending branch of left coronary artery
+1255266003,Stenosis of mid portion of anterior descending branch of left coronary artery
+1255569006,Stenosis of ostium of left main coronary artery
+1255621004,Stenosis of distal segment of left coronary artery main stem
+1255622006,Stenosis of mid segment of left coronary artery main stem
+1255623001,Stenosis of ostium of anterior descending branch of left coronary artery
+1255624007,Stenosis of ostium of circumflex branch of left coronary artery
+1269257006,Arteriosclerosis of nonautologous biological coronary artery bypass graft
+129574000,Postoperative myocardial infarction
+130541000119100,History of placement of stent in coronary artery bypass graft
+139011000119104,Coronary arteriosclerosis following coronary artery bypass graft
+14201006,Coronary angioplasty by open chest approach
+15712841000119100,Acute ST segment elevation myocardial infarction of posterolateral wall
+15712881000119105,Acute ST segment elevation myocardial infarction of anterolateral wall
+15712921000119103,Acute ST segment elevation myocardial infarction of lateral wall
+15712961000119108,Acute ST segment elevation myocardial infarction of anteroseptal wall
+15713001000119100,Acute ST segment elevation myocardial infarction of atrium
+15713041000119103,Acute ST segment elevation myocardial infarction of posterior wall
+15713081000119108,Acute ST segment elevation myocardial infarction due to left coronary artery occlusion
+15713121000119105,Acute ST segment elevation myocardial infarction due to right coronary artery occlusion
+15713161000119100,Acute ST segment elevation myocardial infarction of septum
+15713201000119105,Acute ST segment elevation myocardial infarction of posterobasal wall
+15960061000119102,Unstable angina co-occurrent and due to coronary arteriosclerosis
+15960141000119102,Angina co-occurrent and due to coronary arteriosclerosis
+15960341000119104,Unstable angina due to arteriosclerosis of coronary artery bypass graft of transplanted heart
+15960381000119109,Angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft
+15960461000119105,Unstable angina due to arteriosclerosis of autologous arterial coronary artery bypass graft
+15960541000119107,Unstable angina due to arteriosclerosis of autologous vein coronary artery bypass graft
+15960581000119102,Angina co-occurrent and due to arteriosclerosis of autologous vein coronary artery bypass graft
+15960661000119107,Unstable angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft
+15960741000119103,Preinfarction syndrome due to arteriosclerosis of nonautologous biological coronary artery bypass graft
+15960981000119105,Mural thrombus of left ventricle following acute myocardial infarction
+15990001,Acute myocardial infarction of posterolateral wall
+161502000,History of myocardial infarct at age less than sixty
+161503005,History of myocardial infarct at age greater than sixty
+161504004,History of angina pectoris
+1641000119107,Coronary arteriosclerosis in native artery
+16415081000119104,Supraventricular tachycardia following acute myocardial infarction
+16837681000119104,Myocardial infarction due to demand ischemia
+16891151000119103,Coronary artery disease due to type 2 diabetes mellitus
+16891191000119108,Coronary artery disease due to type 1 diabetes mellitus
+175021005,Allograft bypass of coronary artery
+175029007,Prosthetic bypass of coronary artery
+175036008,Revision of bypass for coronary artery
+175037004,Revision of bypass for one coronary artery
+175038009,Revision of bypass for two coronary arteries
+175039001,Revision of bypass for three coronary arteries
+175040004,Revision of bypass for four or more coronary arteries
+175042007,Revision of implantation of thoracic artery into heart
+175045009,Connection of mammary artery to coronary artery
+175047001,Double implantation of mammary arteries into coronary arteries
+175048006,Single anastomosis of mammary artery to left anterior descending coronary artery
+175050003,Single implantation of mammary artery into coronary artery
+175063009,Exploration of coronary artery
+175066001,Percutaneous transluminal balloon angioplasty of bypass graft of coronary artery using fluoroscopic guidance with contrast
+175071008,Percutaneous transluminal coronary thrombolysis using streptokinase
+175076003,Diagnostic transluminal operations on coronary artery
+175085003,Replacement of coronary arteries using multiple methods
+17531000119105,Acute myocardial infarction due to left coronary artery occlusion
+1755008,Old myocardial infarction
+175764006,Percutaneous transluminal rotablation angioplasty of artery using imaging guidance with contrast
+175882004,Intraoperative transluminal angioplasty
+19057007,Status anginosus
+194802003,True posterior myocardial infarction
+194809007,Acute atrial infarction
+194821006,Coronary thrombosis not resulting in myocardial infarction
+194823009,Acute coronary insufficiency
+194828000,Angina
+194842008,Single coronary vessel disease
+194843003,Double coronary vessel disease
+194845005,Acquired atrioventricular fistula of heart
+194849004,Generalized ischemic myocardial dysfunction
+194856005,Subsequent myocardial infarction
+194857001,Subsequent myocardial infarction of anterior wall
+194858006,Subsequent myocardial infarction of inferior wall
+194861007,Certain current complications following acute myocardial infarction
+194862000,Hemopericardium due to and following acute myocardial infarction
+194863005,Atrial septal defect due to and following acute myocardial infarction
+194865003,Rupture of cardiac wall without hemopericardium as current complication following acute myocardial infarction
+194866002,Rupture of chordae tendinae due to and following acute myocardial infarction
+194867006,Rupture of papillary muscle as current complication following acute myocardial infarction
+194868001,"Thrombosis of atrium, auricular appendage, and ventricle due to and following acute myocardial infarction"
+203741000000101,Insertion of drug-eluting coronary artery stent
+20738002,Endarterectomy of coronary artery
+21470009,Syncope anginosa
+22298006,Myocardial infarction
+225566008,Ischemic chest pain
+232717009,Coronary artery bypass grafting
+232719007,Coronary artery bypass graft x 1
+232720001,Coronary artery bypass grafts x 2
+232721002,Coronary artery bypass grafts x 3
+232722009,Coronary artery bypass grafts x 4
+232726007,Percutaneous endarterectomy of coronary artery
+232731009,Percutaneous thrombolysis of coronary artery
+23311000119105,Acute myocardial infarction due to right coronary artery occlusion
+233817007,Triple vessel disease of the heart
+233819005,Stable angina
+233821000,New onset angina
+233823002,Silent myocardial ischemia
+233825009,Acute Q wave infarction - anteroseptal
+233826005,Acute non-Q wave infarction - anteroseptal
+233827001,Acute Q wave infarction - anterolateral
+233828006,Acute non-Q wave infarction - anterolateral
+233829003,Acute Q wave infarction - inferior
+233830008,Acute non-Q wave infarction - inferior
+233831007,Acute Q wave infarction - inferolateral
+233832000,Acute non-Q wave infarction - inferolateral
+233833005,Acute Q wave infarction - lateral
+233834004,Acute non-Q wave infarction - lateral
+233835003,Acute widespread myocardial infarction
+233836002,Acute Q wave infarction - widespread
+233837006,Acute non-Q wave infarction - widespread
+233838001,Acute posterior myocardial infarction
+233839009,Old anterior myocardial infarction
+233840006,Old inferior myocardial infarction
+233841005,Old lateral myocardial infarction
+233842003,Old posterior myocardial infarction
+233843008,Silent myocardial infarction
+233844002,Accelerated coronary artery disease in transplanted heart
+233845001,Cardiac syndrome X
+233846000,Post-infarction ventricular septal defect
+233847009,Cardiac rupture due to and following acute myocardial infarction
+233885007,Post-infarction pericarditis
+233970002,Coronary artery stenosis
+251024009,Coronary graft stenosis
+25106000,Impending infarction
+265481001,Double anastomosis of mammary arteries to coronary arteries
+275215001,Left internal mammary artery single anastomosis
+275216000,Right internal mammary artery single anastomosis
+275252001,Left internal mammary artery sequential anastomosis
+275253006,Right internal mammary artery sequential anastomosis
+275511009,Mural cardiac aneurysm
+281091000,Ischemic myocardial dysfunction
+281092007,Stunned myocardium
+281093002,Hibernating myocardium
+282006,Acute myocardial infarction of basal-lateral wall
+285141000119106,Arteriosclerosis of autologous arterial coronary artery bypass graft
+285151000119108,Arteriosclerosis of autologous coronary artery bypass graft
+285721000119104,History of acute ST segment elevation myocardial infarction
+285951000119105,Mechanical breakdown of coronary artery bypass graft
+285981000119103,Acute ST segment elevation myocardial infarction involving left anterior descending coronary artery
+285991000119100,Acute ST segment elevation myocardial infarction involving left main coronary artery
+29843007,Coronary atherectomy by laser
+300995000,Exercise-induced angina
+30277009,Rupture of ventricle due to acute myocardial infarction
+304914007,Acute Q wave myocardial infarction
+307140009,Acute non-Q wave infarction
+308065005,History of myocardial infarction in last year
+308066006,History of angina in last year
+311792005,Postoperative transmural myocardial infarction of anterior wall
+311793000,Postoperative transmural myocardial infarction of inferior wall
+311796008,Postoperative subendocardial myocardial infarction
+312610006,Prosthetic graft patch angioplasty
+312611005,Percutaneous transluminal angioplasty of vascular graft using fluoroscopic guidance with contrast
+314116003,Post infarct angina
+31413008,Operative procedure on coronary artery
+314207007,Non-Q wave myocardial infarction
+315025001,Refractory angina
+315026000,Transient myocardial ischemia
+315287002,Diabetes mellitus insulin-glucose infusion in acute myocardial infarction
+315348000,Asymptomatic coronary heart disease
+32574007,"Past myocardial infarction diagnosed on electrocardiogram AND/OR other special investigation, but currently presenting no symptoms"
+35401000087106,Old infarct of myocardium of apex of heart
+35411000087108,Old infarct of myocardium of anterolateral region
+35421000087100,Old infarct of myocardium of inferolateral region
+35431000087103,Old infarct of high lateral wall of myocardium
+35441000087109,Old infarct of myocardium of posterolateral region
+35451000087107,Old infarct of myocardium of ventricular septum
+3546002,Aortocoronary artery bypass graft with saphenous vein graft
+35461000087105,Ischemia of anterior myocardium
+35471000087101,Ischemia of apical anterior segment of left cardiac ventricle
+35481000087104,Ischemia of myocardium of ventricular septum
+35491000087102,Ischemia of lateral myocardium
+35501000087105,Ischemia of myocardium of anterolateral region
+35511000087107,Ischemia of myocardium of anteroseptal region
+35521000087104,Ischemia of myocardium of apex of heart
+35541000087108,Ischemia of myocardium of inferior surface of left ventricle
+35551000087106,Ischemia of myocardium of inferolateral region
+35561000087109,Ischemia of myocardium of inferolateral region of myocardium with extension to posterior myocardium
+35571000087100,Ischemia of myocardium of posterolateral region
+35581000087103,Ischemia of posterior myocardium
+35928006,Nocturnal angina
+36969009,Placement of stent in coronary artery
+371068009,Myocardial infarction with complication
+371803003,Multi vessel coronary artery disease
+371804009,Left main coronary artery disease
+371805005,Significant coronary bypass graft disease
+371806006,Progressive angina
+371807002,Atypical angina
+371808007,Recurrent angina status post percutaneous transluminal coronary angioplasty
+371809004,Recurrent angina following placement of coronary artery stent
+371810009,Recurrent angina status post coronary artery bypass graft
+371811008,Recurrent angina status post rotational atherectomy
+371812001,Recurrent angina status post directional coronary atherectomy
+384678000,Transposition of coronary artery
+387785661000119105,History of myocardial infarction due to atherothrombotic coronary artery disease
+394659003,Acute coronary syndrome
+394710008,First myocardial infarction
+397193006,Percutaneous transluminal coronary angioplasty by rotablation using imaging guidance with contrast
+398274000,Coronary artery thrombosis
+399211009,History of myocardial infarction
+399261000,History of coronary artery bypass grafting
+401303003,Acute ST segment elevation myocardial infarction
+401314000,Acute non-ST segment elevation myocardial infarction
+408546009,Coronary artery bypass graft occlusion
+41334000,"Angina, class II"
+413439005,Acute ischemic heart disease
+413444003,Acute myocardial ischemia
+413838009,Chronic ischemic heart disease
+413844008,Chronic myocardial ischemia
+414024009,Disorder of coronary artery
+414545008,Ischemic heart disease
+414795007,Myocardial ischemia
+418044006,Myocardial infarction in recovery phase
+420006002,Obliterative coronary artery disease
+42531007,Microinfarct of heart
+426856002,Ischemic congestive cardiomyopathy
+427919004,Coronary arteriosclerosis caused by radiation
+428196007,Mixed myocardial ischemia and infarction
+428375006,History of placement of stent for coronary artery disease
+42866003,Congenital coronary artery sclerosis
+428752002,Recent myocardial infarction
+429245005,Recurrent coronary arteriosclerosis after percutaneous transluminal coronary angioplasty
+429391004,New myocardial infarction compared to prior study
+429559004,Typical angina
+429639007,Percutaneous transluminal balloon angioplasty with insertion of stent into coronary artery using fluoroscopic guidance with contrast
+429673002,Arteriosclerosis of coronary artery bypass graft
+441574008,Atherosclerosis of artery
+442224005,Arteriosclerosis of autologous vein coronary artery bypass graft
+442240008,Arteriosclerosis of nonautologous coronary artery bypass graft
+442421004,Arteriosclerosis of arterial coronary artery bypass graft
+443502000,Atherosclerosis of coronary artery
+444855007,Arteriosclerosis of coronary artery bypass graft of transplanted heart
+444856008,Arteriosclerosis of internal mammary artery coronary artery bypass graft
+44761000087104,Occlusion of distal portion of circumflex branch of left coronary artery
+44771000087108,Occlusion of mid portion of circumflex branch of left coronary artery
+44781000087105,Occlusion of obtuse marginal branch of circumflex branch of left coronary artery
+44791000087107,Occlusion of posterior lateral branch of circumflex branch of left coronary artery
+44801000087106,Occlusion of proximal portion of circumflex branch of left coronary artery
+44811000087108,Acute ST segment elevation myocardial infarction due to occlusion of distal portion of circumflex branch of left coronary artery
+44821000087100,Acute ST segment elevation myocardial infarction due to occlusion of mid portion of circumflex branch of left coronary artery
+44831000087103,Acute ST segment elevation myocardial infarction due to occlusion of obtuse marginal branch of circumflex branch of left coronary artery
+44841000087109,Acute ST segment elevation myocardial infarction due to occlusion of posterior lateral branch of circumflex branch of left coronary artery
+44851000087107,Acute ST segment elevation myocardial infarction due to occlusion of proximal portion of circumflex branch of left coronary artery
+4557003,Preinfarction syndrome
+461000119108,History of myocardial infarction in last eight weeks
+46109009,Subendocardial ischemia
+472100003,Ischemic dilated cardiomyopathy due to coronary artery disease
+50570003,Aneurysm of coronary vessels
+52035003,Acute anteroapical myocardial infarction
+53741008,Coronary arteriosclerosis
+54329005,Acute myocardial infarction of anterior wall
+57054005,Acute myocardial infarction
+58612006,Acute myocardial infarction of lateral wall
+59021001,Angina decubitus
+59063002,Acute myocardial infarction of apical-lateral wall
+61236006,Aortocoronary artery bypass graft repeated
+61490001,"Angina, class I"
+62695002,Acute anteroseptal myocardial infarction
+63739005,Coronary occlusion
+64627002,Acute myocardial infarction of high lateral wall
+65340007,Aneurysm of heart
+65547006,Acute myocardial infarction of inferolateral wall
+66189004,Postmyocardial infarction syndrome
+67682002,Coronary artery atheroma
+68466008,"Removal of coronary artery obstruction by percutaneous transluminal balloon, single vessel"
+697976003,Microvascular ischemia of myocardium
+698377004,Coronary angioplasty planned
+698378009,Coronary artery bypass graft operation planned
+698593009,History of non-ST segment elevation myocardial infarction
+70211005,Acute myocardial infarction of anterolateral wall
+703164000,Acute ST segment elevation myocardial infarction of anterior wall
+703165004,Acute ST segment elevation myocardial infarction of anterior wall involving right ventricle
+703209002,Subsequent ST segment elevation myocardial infarction of inferior wall
+703210007,Subsequent ST segment elevation myocardial infarction of anterior wall
+703211006,Subsequent ST segment elevation myocardial infarction
+703212004,Acute myocardial infarction during procedure
+703213009,Acute ST segment elevation myocardial infarction of inferior wall
+703214003,Silent coronary vasospastic disease
+703251009,Acute myocardial infarction of inferior wall involving right ventricle
+703252002,Acute myocardial infarction of anterior wall involving right ventricle
+703253007,Acute ST segment elevation myocardial infarction of inferior wall involving right ventricle
+703326006,Mitral valve regurgitation due to and following acute myocardial infarction
+703328007,Mitral valve regurgitation due to acute myocardial infarction without papillary muscle and chordal rupture
+703330009,Mitral valve regurgitation due to acute myocardial infarction with papillary muscle and chordal rupture
+703360004,Subsequent non-ST segment elevation myocardial infarction
+70422006,Acute subendocardial infarction
+707813002,Percutaneous transluminal balloon dilation of cardiac conduit
+707828002,Percutaneous transluminal cutting balloon angioplasty of coronary artery using fluoroscopic guidance with contrast
+70998009,Acute myocardial infarction of basal inferior segment of left ventricle
+71023004,Pericarditis due to acute myocardial infarction
+712866001,Resting ischemia co-occurrent and due to ischemic heart disease
+713405002,Subacute ischemic heart disease
+719678003,Non-obstructive atherosclerosis of coronary artery
+723858002,Ventricular aneurysm due to and following acute myocardial infarction
+723859005,Pulmonary embolism due to and following acute myocardial infarction
+723860000,Arrhythmia due to and following acute myocardial infarction
+723861001,Cardiogenic shock unrelated to mechanical complications as current complication following acute myocardial infarction
+723862008,Atherosclerosis of non-autologous coronary artery bypass graft
+724431008,Atherosclerosis of autologous coronary artery bypass graft
+726499301000119105,Myocardial infarction due to atherothrombotic coronary artery disease
+736962007,Bypass of four or more coronary arteries with prosthesis
+736963002,Bypass of one coronary artery with prosthesis
+736964008,Bypass of three coronary arteries with prosthesis
+736965009,Bypass of two coronary arteries with prosthesis
+736966005,Aortocoronary artery bypass of four or more coronary arteries with saphenous vein graft
+736967001,Aortocoronary artery bypass of one coronary artery with saphenous vein graft
+736968006,Aortocoronary artery bypass of three coronary arteries with saphenous vein graft
+736969003,Aortocoronary artery bypass of two coronary arteries with saphenous vein graft
+736970002,Allograft bypass of four or more coronary arteries
+736971003,Allograft bypass of one coronary artery
+736972005,Allograft bypass of three coronary arteries
+736973000,Allograft bypass of two coronary arteries
+736978009,Mural thrombus of right ventricle following acute myocardial infarction
+73795002,Acute myocardial infarction of inferior wall
+76593002,Acute myocardial infarction of inferoposterior wall
+776219771000119107,History of myocardial infarction due to demand ischemia
+78741000119103,Acute coronary artery occlusion not resulting in myocardial infarction
+79009004,Acute myocardial infarction of septum
+791000119109,Angina due to type 2 diabetes mellitus
+792842004,Coronary arteriosclerosis in artery of transplanted heart
+810681000000101,Coronary microvascular disease
+82522008,Ischemic contracture of left ventricle syndrome
+827163002,Early postmyocardial infarction pericarditis
+827164008,Delayed postmyocardial infarction pericarditis
+831761000000103,Coronary microvascular disease
+836293000,Acute myocardial infarction of right ventricle
+836294006,Acute myocardial infarction of apex of heart
+836295007,Acute myocardial infarction of inferolateral wall with posterior extension
+840309000,Acute ST segment elevation myocardial infarction due to occlusion of proximal portion of anterior descending branch of left coronary artery
+840310005,Occlusion of proximal portion of anterior descending branch of left coronary artery
+840312002,Acute ST segment elevation myocardial infarction due to occlusion of mid portion of anterior descending branch of left coronary artery
+840313007,Occlusion of mid portion of anterior descending branch of left coronary artery
+840315000,Occlusion of distal portion of anterior descending branch of left coronary artery
+840316004,Acute ST segment elevation myocardial infarction due to occlusion of distal portion of anterior descending branch of left coronary artery
+840608004,Occlusion of anterior descending branch of left coronary artery
+840609007,Acute ST segment elevation myocardial infarction due to occlusion of anterior descending branch of left coronary artery
+840679006,Occlusion of septal branch of anterior descending branch of left coronary artery
+840680009,Acute ST segment elevation myocardial infarction due to occlusion of septal branch of anterior descending branch of left coronary artery
+846667001,Occlusion of diagonal branch of anterior descending branch of left coronary artery
+846668006,Acute ST segment elevation myocardial infarction due to occlusion of diagonal branch of anterior descending branch of left coronary artery
+846683001,Acute ST segment elevation myocardial infarction due to occlusion of intermediate artery
+846684007,Occlusion of intermediate artery
+85053006,"Percutaneous transluminal angioplasty of coronary artery, multiple vessels using fluoroscopic guidance with contrast"
+85284003,"Angina, class III"
+868214006,Acute ST segment elevation myocardial infarction due to occlusion of proximal portion of right coronary artery
+868215007,Occlusion of proximal portion of right coronary artery
+868216008,Occlusion of distal portion of right coronary artery
+868217004,Acute ST segment elevation myocardial infarction due to occlusion of distal portion of right coronary artery
+868219001,Occlusion of mid portion of right coronary artery
+868220007,Acute ST segment elevation myocardial infarction due to occlusion of mid portion of right coronary artery
+868221006,Occlusion of marginal branch of right coronary artery
+868222004,Occlusion of posterior descending branch of right coronary artery
+868223009,Occlusion of posterior lateral branch of right coronary artery
+868224003,Acute ST segment elevation myocardial infarction due to occlusion of marginal branch of right coronary artery
+868225002,Acute ST segment elevation myocardial infarction due to occlusion of posterior descending branch of right coronary artery
+868226001,Acute ST segment elevation myocardial infarction due to occlusion of posterior lateral branch of right coronary artery
+876856005,Stenosis of right coronary artery
+876857001,Stenosis of left coronary artery main stem
+876858006,Stenosis of circumflex branch of left coronary artery
+876859003,Stenosis of anterior descending branch of left coronary artery
+879955009,Myocardial infarction with non-obstructive coronary artery
+89323001,"Angina, class IV"
+896689003,Acute myocardial infarction due to occlusion of circumflex branch of left coronary artery
+896690007,Occlusion of circumflex branch of left coronary artery
+896691006,Acute ST segment elevation myocardial infarction due to occlusion of circumflex branch of left coronary artery
+896696001,Acute ST segment elevation myocardial infarction of apex of heart
+896697005,Acute ST segment elevation myocardial infarction of right ventricle
+90539001,Ventricular aneurysm
+91335003,Mural thrombus of heart
+92517006,Calcific coronary arteriosclerosis
+936451000000108,Percutaneous transluminal balloon angioplasty and insertion of drug eluting stent into coronary artery

@@ -1,0 +1,322 @@
+code,term
+10091002,High output heart failure
+1010444007,Legal abortion complicated by cardiac failure
+1010447000,Illegal abortion complicated by cardiac failure
+101281000119107,Congestive heart failure due to cardiomyopathy
+10335000,Chronic right-sided heart failure
+10519008,Acute pulmonary edema caused by fumes AND/OR vapors
+10633002,Acute congestive heart failure
+1064941000000106,Heart failure with reduced ejection fraction
+10674871000119105,Pulmonary edema caused by chemical fumes
+11016261000119104,Nutritional therapy for congestive heart failure done
+111282000,Acute respiratory insufficiency
+111283005,Chronic left-sided heart failure
+11468004,Postoperative pulmonary edema
+120639003,Hantavirus pulmonary syndrome
+120851000119104,Systolic heart failure stage D
+120861000119102,Systolic heart failure stage C
+120871000119108,Systolic heart failure stage B
+120881000119106,Diastolic heart failure stage D
+120891000119109,Diastolic heart failure stage C
+120901000119108,Diastolic heart failure stage B
+12095001,Legal abortion with cardiac arrest AND/OR failure
+123620007,Hantanvirus pulmonary syndrome
+128404006,Right heart failure
+134378009,Congestive heart failure monitoring
+134440006,Referral to heart failure clinic
+13839000,Bernheim's syndrome
+151157005,Cardiac failure therapy
+153931000119109,Acute combined systolic and diastolic heart failure
+153941000119100,Chronic combined systolic and diastolic heart failure
+153951000119103,Acute on chronic combined systolic and diastolic heart failure
+15629541000119106,Congestive heart failure stage C due to ischemic cardiomyopathy
+15629591000119103,Congestive heart failure stage B due to ischemic cardiomyopathy
+15629641000119107,Systolic heart failure stage B due to ischemic cardiomyopathy
+15629741000119102,Systolic heart failure stage C due to ischemic cardiomyopathy
+15781000119107,Hypertensive heart AND chronic kidney disease with congestive heart failure
+15964661000119102,Acute cor pulmonale due to septic pulmonary embolism
+15964701000119109,Acute cor pulmonale co-occurrent and due to saddle embolus of pulmonary artery
+161505003,History of heart failure
+16838951000119100,Acute on chronic right-sided congestive heart failure
+175112006,Transluminal heart assist operations
+175115008,Transluminal maintenance of heart assist system
+175117000,Transluminal removal of heart assist system
+182826002,Cardiac failure therapy
+188151000000107,Admit heart failure emergency
+188171000000103,Referral to heart failure nurse
+188661000000101,Seen in heart failure clinic
+191651000000108,Admit heart failure emergency
+191671000000104,Referral to heart failure nurse
+192161000000108,Seen in heart failure clinic
+19242006,Pulmonary edema
+194767001,Benign hypertensive heart disease with congestive cardiac failure
+194779001,Hypertensive heart and renal disease with (congestive) heart failure
+194781004,Hypertensive heart and renal disease with both (congestive) heart failure and renal failure
+194884000,Acute pulmonary heart disease NOS
+194887007,Other chronic pulmonary heart disease
+194889005,Other chronic pulmonary heart disease NOS
+195111005,Decompensated cardiac failure
+195112003,Compensated cardiac failure
+195114002,Acute left ventricular failure
+195548008,[X]Pulmonary heart disease and diseases of pulmonary circulation
+196151000,Pulmonary insufficiency following shock
+196152007,Pulmonary insufficiency following surgery
+196153002,Pulmonary insufficiency following trauma
+198868006,Cardiac failure following abortive pregnancy
+202131000000103,Heart failure information given to patient
+202141000000107,Referral to heart failure exercise programme
+202231000000106,Heart failure review completed
+202251000000104,Heart failure care plan discussed with patient
+203791000000106,Referred to heart failure education group
+20606002,Acute bovine pulmonary emphysema AND edema
+206586007,Congenital cardiac failure
+207553000,[D]Cardiorespiratory failure
+207891000000108,Heart failure information given to patient
+207901000000109,Heart failure information given to patient
+207911000000106,Referral to heart failure exercise programme
+207921000000100,Referral to heart failure exercise programme
+208051000000107,Heart failure review completed
+208061000000105,Heart failure review completed
+208091000000104,Heart failure care plan discussed with patient
+208101000000107,Heart failure care plan discussed with patient
+211441000000105,Referred to heart failure education group
+211451000000108,Referred to heart failure education group
+229491000000106,Open implantation of ventricular assist device
+229511000000103,Open heart assist operations
+232957001,Cardiac support procedure
+232961007,Intraventricular pump support operation
+232962000,Transluminal insertion of intraventricular pump
+232963005,Transluminal maintenance of intraventricular pump
+232965003,Implantation of cardiac ventricular assist device
+232966002,Implantation of right cardiac ventricular assist device
+232967006,Implantation of left cardiac ventricular assist device
+232968001,Implantation of cardiac biventricular assist device
+232969009,Cardiac support using extracorporeal membrane oxygenation circuitry
+23341000119109,Congestive heart failure with right heart failure
+233705000,Neurogenic pulmonary edema
+233706004,Drug-induced acute pulmonary edema
+233707008,High altitude pulmonary edema
+233708003,Post-upper airway obstruction pulmonary edema
+233709006,Toxic pulmonary edema
+233710001,Chemical-induced pulmonary edema
+233711002,Oxygen-induced pulmonary edema
+233712009,Fluid overload pulmonary edema
+233924009,Heart failure as a complication of care
+235581000000105,Open heart assist operations NOS
+238401000000107,Other specified open heart assist operations
+240629003,Malarial shock lung
+241974001,Altitude edema
+247361000000100,Heart failure 6 month review
+248381000000108,Heart failure monitoring telephone invitation
+248501000000107,Heart failure monitoring verbal invitation
+248511000000109,Heart failure monitoring first letter
+248521000000103,Heart failure monitoring second letter
+248531000000101,Heart failure monitoring third letter
+250411000000105,Heart failure 6 month review 
+251651000000102,Heart failure monitoring telephone invite 
+251661000000104,Heart failure monitoring verbal invite 
+251671000000106,Heart failure monitoring first letter 
+251681000000108,Heart failure monitoring second letter 
+251691000000105,Heart failure monitoring third letter 
+253041000000107,Heart failure 6 month review 
+25544003,Low output heart failure
+259981000000101,Open heart assist operations 
+259991000000104,Open implantation of ventricular assist device 
+260021000000104,Open heart assist operations NOS 
+266233000,Chronic pulmonary heart disease NOS
+274096000,Pulmonary heart disease
+274631000000105,Heart failure monitoring telephone invite 
+274641000000101,Heart failure monitoring verbal invite 
+274651000000103,Heart failure monitoring first letter 
+274661000000100,Heart failure monitoring second letter 
+274671000000107,Heart failure monitoring third letter 
+275514001,Impaired left ventricular function
+276514007,Neonatal cardiac failure
+276637009,Hemorrhagic pulmonary edema
+277638005,Sepsis-associated left ventricular failure
+277639002,Sepsis-associated right ventricular failure
+286952009,Pulmonary heart disease NOS
+286953004,Other pulmonary heart disease
+308118002,Cardiac failure therapy
+309634009,History of heart failure in last year
+314206003,Refractory heart failure
+325431000000103,Congestive heart failure due to valvular disease
+33622007,Round heart disease
+33644002,Postvalvulotomy syndrome
+338101000000107,Congestive heart failure due to valvular disease
+359617009,Acute right-sided heart failure
+359620001,Acute right heart failure
+360371003,Acute cardiac pulmonary edema
+364006,Acute left-sided heart failure
+366784002,Congestive heart failure monitoring
+366862009,Congestive heart failure monitoring
+367363000,Right ventricular failure
+36890002,Temporary cardioassist with artificial heart
+371862006,Depression of left ventricular systolic function
+389838008,Heart failure annual review
+389937002,Heart failure follow-up
+39028003,Implantation of heart auxiliary ventricle
+390570006,Heart failure annual review
+390671000,Heart failure follow-up
+390771000000106,[X]Pulmonary heart disease and diseases of pulmonary circulation
+390884006,Heart failure follow-up
+390885007,Heart failure annual review
+392748002,Heart failure confirmed
+393703008,Heart failure confirmed
+395105005,Heart failure confirmed
+403298007,Red half-moon nail in congestive heart failure
+405276000,Negative pressure pulmonary edema
+40541001,Acute pulmonary edema
+407606009,New York Heart Association classification - class II
+407607000,New York Heart Association classification - class III
+407608005,New York Heart Association classification - class IV
+410431009,Cardiorespiratory failure
+416683003,Emergency hospital admission for heart failure
+416717003,Seen in heart failure clinic
+417146007,Referral to heart failure nurse
+417996009,Systolic heart failure
+418304008,Diastolic heart failure
+419038004,Enhanced external counterpulsation
+420913000,New York Heart Association Classification - Class III
+421518007,New York Heart Classification finding
+421704003,New York Heart Association Classification - Class II
+422293003,New York Heart Association Classification - Class IV
+42343007,Congestive heart failure
+424404003,Decompensated chronic heart failure
+425991000000100,[X]Other specified pulmonary heart diseases
+426012001,Right heart failure due to pulmonary hypertension
+426263006,Congestive heart failure due to left ventricular systolic dysfunction
+426568003,Open implantation of cardiac ventricular assist device
+426611007,Congestive heart failure due to valvular disease
+43736008,Rheumatic left ventricular failure
+44088000,Low cardiac output syndrome
+441481004,Chronic systolic heart failure
+441530006,Chronic diastolic heart failure
+44313006,Right heart failure secondary to left heart failure
+443253003,Acute on chronic systolic heart failure
+443254009,Acute systolic heart failure
+443343001,Acute diastolic heart failure
+443344007,Acute on chronic diastolic heart failure
+445236007,Cardiorenal syndrome
+446221000,Heart failure with normal ejection fraction
+45650007,Kyphoscoliotic heart disease
+46113002,Hypertensive heart failure
+462172006,Fetal heart failure
+462174007,Fetal heart failure with myocardial hypertrophy
+462175008,Fetal heart failure with redistribution of cardiac output
+46847001,Chronic pulmonary edema
+471880001,Heart failure due to end stage congenital heart disease
+473226007,Heart failure medication review
+48447003,Chronic heart failure
+49584005,Acute cor pulmonale
+501871000000106,[D]Cardiorespiratory failure
+5053004,Cardiac insufficiency due to prosthesis
+5148006,Hypertensive heart disease with congestive heart failure
+519531000000108,Cardiorenal syndrome
+5375005,Chronic left-sided congestive heart failure
+54529009,Illegal abortion with cardiac arrest AND/OR failure
+55565007,Cardiac failure after obstetrical surgery AND/OR other procedure including delivery
+56379006,Abortion with cardiac arrest AND/OR failure
+56675007,Acute heart failure
+586171000000108,Transluminal insertion of heart assist system NEC
+586181000000105,Other specified transluminal heart assist operation
+588651000000108,Transluminal heart assist operation NOS
+601601000000109,Acute pulmonary edema unspecified
+608451000000100,Other chronic pulmonary heart disease NOS
+60856006,Cardiac insufficiency following cardiac surgery
+609460008,Induced termination of pregnancy complicated by cardiac arrest and/or failure
+609507007,Induced termination of pregnancy complicated by cardiac failure
+609555007,Diastolic heart failure stage A
+609556008,Systolic heart failure stage A
+639251000000101,Other heart aid NOS
+639401000000103,Other chronic pulmonary heart disease
+64253000,Implantation of heart assist system
+653021000000102,Acute pulmonary heart disease NOS
+66989003,Chronic right-sided congestive heart failure
+67189007,Acute pulmonary heart disease
+673641000000101,Other pulmonary heart disease
+67431000119105,Congestive heart failure stage D
+67441000119101,Congestive heart failure stage C
+674814021000119106,Acute respiratory distress syndrome due to disease caused by severe acute respiratory syndrome coronavirus 2
+67782005,Acute respiratory distress syndrome
+684231000000104,Chronic pulmonary heart disease NOS
+689201000000109,Pulmonary heart disease NOS
+698296002,Acute exacerbation of chronic congestive heart failure
+698594003,Symptomatic congestive heart failure
+698638005,Pregnancy induced hypertension with pulmonary edema
+698640000,Hypertension in the puerperium with pulmonary edema
+700151002,Temporary implantation of left cardiac ventricular assist device
+700458001,Pulmonary edema due to hypoproteinemia
+703272007,Heart failure with reduced ejection fraction
+703273002,Heart failure with reduced ejection fraction due to coronary artery disease
+703274008,Heart failure with reduced ejection fraction due to myocarditis
+703275009,Heart failure with reduced ejection fraction due to cardiomyopathy
+703276005,Heart failure with reduced ejection fraction due to heart valve disease
+704095000,Referral to heart failure exercise program
+704242009,Fetal heart failure due to extracardiac disease
+711461000000104,Heart failure monitoring invitation
+716621000000101,Heart failure monitoring third letter
+716971000000109,Heart failure monitoring first letter
+717191000000108,Heart failure monitoring second letter
+717501000000108,Heart failure monitoring verbal invitation
+717531000000102,Heart failure monitoring telephone invitation
+717840005,Congestive heart failure stage B
+718287008,Provision of written information about heart failure
+71892000,Cardiac asthma
+722095005,Acute kidney injury due to circulatory failure
+722919003,Neonatal cardiac failure due to decreased left ventricular output
+724550005,Neonatal cardiac failure due to pulmonary overperfusion
+72481000119103,Congestive heart failure as early postoperative complication
+74960003,Acute left-sided congestive heart failure
+749821000000101,Heart failure with normal ejection fraction
+757101000000106,Heart failure with normal ejection fraction
+760361000000100,Fast track heart failure referral for transthoracic two dimensional echocardiogram
+77737007,Benign hypertensive heart disease with congestive heart failure
+780771000000106,Fast track heart failure referral for transthoracic two dimensional echocardiogram
+781051000000108,Has heart failure management plan
+781061000000106,Has heart failure management plan 
+78862003,Ayerza's syndrome
+788950000,Heart failure with mid range ejection fraction
+79955004,Chronic cor pulmonale
+80479009,Acute right-sided congestive heart failure
+810971000000105,Heart failure self-management plan review
+812001000000102,Heart failure self-management plan agreed
+812011000000100,Heart failure self-management plan agreed 
+812311000000102,Hantavirus pulmonary syndrome
+813991000000101,Education about deteriorating heart failure
+814001000000106,Education about deteriorating heart failure 
+82523003,Congestive rheumatic heart failure
+83105008,Malignant hypertensive heart disease with congestive heart failure
+832141000000109,Heart failure self-management plan review
+832441000000100,Hantavirus pulmonary syndrome
+83291003,Cor pulmonale
+834611000000108,Chemical-induced pulmonary oedema
+834741000000101,Right ventricular failure
+835981000000108,Rehabilitation for heart failure
+840521002,Acute pulmonary edema caused by fume
+840522009,Acute pulmonary edema caused by vapor
+84114007,Heart failure
+848551000000100,Referral to multidisciplinary heart failure team
+850021000000103,Provision of written information about heart failure
+851071000000108,Heart failure initial assessment
+851521000000102,Heart failure clinical pathway
+851531000000100,Heart failure clinical pathway 
+85232009,Left heart failure
+871617000,Low output heart failure due to and following Fontan operation
+871681000000102,Heart failure monitoring
+872361000000105,Discussion about heart failure care plan
+873881000000100,Referral to rapid access heart failure clinic
+873891000000103,Referral to rapid access heart failure clinic 
+87837008,Chronic pulmonary heart disease
+883031000000100,Temporary implantation of left ventricular assist device
+88805009,Chronic congestive heart failure
+89687005,Postimmersion-submersion syndrome
+89819002,Cardiac insufficiency during AND/OR resulting from a procedure
+898208007,Heart failure due to thyrotoxicosis
+90727007,Pleural effusion due to congestive heart failure
+915571000000102,On optimal heart failure therapy
+915581000000100,On optimal heart failure therapy 
+92506005,Biventricular congestive heart failure
+95437004,Non-cardiogenic pulmonary edema
+961881000000101,Provision of information about heart failure
+96311000119109,Exacerbation of congestive heart failure

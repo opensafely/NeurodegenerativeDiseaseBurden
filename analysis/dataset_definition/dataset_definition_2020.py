@@ -1,5 +1,5 @@
 from ehrql import create_dataset
-from ehrql.tables.tpp import patients, practice_registrations,clinical_events,addresses
+from ehrql.tables.tpp import patients, ons_deaths,practice_registrations,clinical_events,addresses
 from codelists import *
 
 dataset = create_dataset()
@@ -33,7 +33,7 @@ qa_2 = clinical_events.where(
 )
 
 dataset.define_population((patients.date_of_birth.year < 2020)
-                          &~(ons_deaths.date.year < 2020) 
+                          &((ons_deaths.date.year >= 2020)|(ons_deaths.date.is_null()))
                           &(prac_reg.practice_nuts1_region_name.is_not_null())
                           &(patient_address.imd_decile.is_not_null()) 
                           &~((qa_1.exists_for_patient())&(patients.sex=='male'))

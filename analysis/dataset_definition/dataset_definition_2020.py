@@ -87,13 +87,16 @@ multimorbid_weights = {
     "pain":0.92   
 
 }
+
+multi_cols = []
 for name, codelist in multimorbid_codelists.items():
     score = (clinical_events.where(clinical_events.snomedct_code.is_in(codelist))
                                     .where(clinical_events.date.is_before(index_date))
                                     .exists_for_patient().as_int()*multimorbid_weights[name]    
                       )
     dataset.add_column(f"multimorbid_{name}", score)
+    multi_cols += [f"multimorbid_{name}"]
     
     
-dataset.cambridge_index = dataset.
+dataset.cambridge_index = dataset[multi_cols].sum(axis=1)
 

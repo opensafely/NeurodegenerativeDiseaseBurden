@@ -131,6 +131,18 @@
       "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_hearing-loss/6c165b67/",
       "downloaded_at": "2025-10-21 13:54:59.122887Z",
       "sha": "abf5149c13d36cb977d9a338e5d3da9a32275b87"
+    },
+    "nhsd-primary-care-domain-refsets-chronconstip_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/chronconstip_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/chronconstip_cod/20250912/",
+      "downloaded_at": "2026-01-12 11:02:31.267343Z",
+      "sha": "e07c8a1a336921575cc4d1497c8fb4aa488c175b"
+    },
+    "opensafely-symptoms-pain.csv": {
+      "id": "opensafely/symptoms-pain/71385a33",
+      "url": "https://www.opencodelists.org/codelist/opensafely/symptoms-pain/71385a33/",
+      "downloaded_at": "2026-01-12 11:02:31.326880Z",
+      "sha": "f10644780459fc727569c6217778f122f7d4a0dc"
     }
   }
 }

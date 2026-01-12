@@ -92,12 +92,12 @@ hypertension_codelist = codelist_from_csv(
 )
 
 constipation_codelist = codelist_from_csv(
-    "codelists/",
+    "codelists/nhsd-primary-care-domain-refsets-chronconstip_cod.csv", 
     column="code"
 )
 
 pain_codelist = codelist_from_csv(
-    "codelists/",
+    "codelists/opensafely-symptoms-pain.csv",
     column="code"
 )
 

@@ -1,9 +1,12 @@
+from datetime import datetime
 from ehrql import create_dataset
 from ehrql.tables.tpp import patients, ons_deaths,practice_registrations,clinical_events,addresses
 from codelists import *
 
 dataset = create_dataset()
 index_date = "2020-01-01"
+index_date_dt = datetime.strptime(index_date, "%Y-%m-%d")
+index_year = index_date_dt.year
 
 dataset.sex = patients.sex
 dataset.date_of_birth = patients.date_of_birth
@@ -32,8 +35,8 @@ qa_2 = clinical_events.where(
         clinical_events.snomedct_code.is_in(prostate_snomed)
 )
 
-dataset.define_population((patients.date_of_birth.year < 2020)
-                          &((ons_deaths.date.year >= 2020)|(ons_deaths.date.is_null()))
+dataset.define_population((patients.date_of_birth.year < index_year)
+                          &((ons_deaths.date.year >= index_year)|(ons_deaths.date.is_null()))
                           &(prac_reg.practice_nuts1_region_name.is_not_null())
                           &(patient_address.imd_decile.is_not_null()) 
                           &~((qa_1.exists_for_patient())&(patients.sex=='male'))

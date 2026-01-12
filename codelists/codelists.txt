@@ -20,3 +20,5 @@ bristol/multimorbidity_coronary-heart-disease/6b200f80
 bristol/multimorbidity_stroketransient-ischemic-attack/39012916
 bristol/multimorbidity_connective-tissue-disorder/52109c4b
 bristol/multimorbidity_hearing-loss/6c165b67
+nhsd-primary-care-domain-refsets/chronconstip_cod/20250912
+opensafely/symptoms-pain/71385a33/

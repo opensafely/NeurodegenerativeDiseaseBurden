@@ -4,6 +4,9 @@ from ehrql.tables.tpp import patients, ons_deaths,practice_registrations,clinica
 from codelists import *
 
 dataset = create_dataset()
+
+dataset.configure_dummy_data(population_size=10000)
+
 index_date = "2020-01-01"
 index_date_dt = datetime.strptime(index_date, "%Y-%m-%d")
 index_year = index_date_dt.year

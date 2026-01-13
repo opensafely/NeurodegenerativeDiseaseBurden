@@ -143,6 +143,144 @@
       "url": "https://www.opencodelists.org/codelist/opensafely/symptoms-pain/71385a33/",
       "downloaded_at": "2026-01-12 11:02:31.326880Z",
       "sha": "f10644780459fc727569c6217778f122f7d4a0dc"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-corticobasal-degeneration-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-corticobasal-degeneration-snomed/460dfd08",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-corticobasal-degeneration-snomed/460dfd08/",
+      "downloaded_at": "2026-01-13 15:55:14.721071Z",
+      "sha": "b1e3d81ac3f51d79a5715d42103541fb890e1b85"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-dementia-due-to-huntingtons-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-dementia-due-to-huntingtons-snomed/782ce372",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-dementia-due-to-huntingtons-snomed/782ce372/",
+      "downloaded_at": "2026-01-13 15:56:14.355745Z",
+      "sha": "3f1691e8af13fa704623789dee04b9539920905e"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-other-specified-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-other-specified-snomed/5c6ab047",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-other-specified-snomed/5c6ab047/",
+      "downloaded_at": "2026-01-13 15:57:56.051847Z",
+      "sha": "781f08a77d52c3be3461bfe0827748e28f01c62b"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-other-specified-dementia-icd10.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-other-specified-dementia-icd10/435b3d12",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-other-specified-dementia-icd10/435b3d12/",
+      "downloaded_at": "2026-01-13 16:05:08.037076Z",
+      "sha": "e3f207f7fa57df342c6ff98313454cc733072be3"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-posterior-cortical-atrophy-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-posterior-cortical-atrophy-snomed/113c56a8",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-posterior-cortical-atrophy-snomed/113c56a8/",
+      "downloaded_at": "2026-01-13 16:06:35.728368Z",
+      "sha": "5ce058cd2671088c35c522590a0c684c7d3feb18"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-unspecified-dementia-icd10.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-unspecified-dementia-icd10/0bd6d6bc",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-unspecified-dementia-icd10/0bd6d6bc/",
+      "downloaded_at": "2026-01-13 16:08:52.358176Z",
+      "sha": "7581bffadea3a22574ecc42aff2ea4fd8bbaa252"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-unspecified-dementia-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-unspecified-dementia-snomed/279909e7",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-unspecified-dementia-snomed/279909e7/",
+      "downloaded_at": "2026-01-13 16:10:20.458547Z",
+      "sha": "1817423a8fcb8cdbeecc6bfb3d6f1864874cd5d6"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-alzheimers-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-alzheimers-disease-snomed/24e649f1",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-alzheimers-disease-snomed/24e649f1/",
+      "downloaded_at": "2026-01-13 16:11:11.554171Z",
+      "sha": "f5f6796a4c8bd9a81cc6e516f0314a7f8b311eaf"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-alzheimers-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-alzheimers-disease/17261fd1",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-alzheimers-disease/17261fd1/",
+      "downloaded_at": "2026-01-13 16:14:19.966171Z",
+      "sha": "1fb3254a36aba8d6355f78baac8c3c032fb01c3c"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease-snomed/21f11fa9",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease-snomed/21f11fa9/",
+      "downloaded_at": "2026-01-13 16:16:16.987031Z",
+      "sha": "dedcff2234a4bad0c0708ae51d8116efaf1661a9"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease/65073966",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease/65073966/",
+      "downloaded_at": "2026-01-13 16:17:25.892907Z",
+      "sha": "5e991c78b084f7941ffd6c13442600e21d947bba"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-parkinsons-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-parkinsons-disease-snomed/062eec7e",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-parkinsons-disease-snomed/062eec7e/",
+      "downloaded_at": "2026-01-13 16:18:06.805870Z",
+      "sha": "407be726693830f373de43893fa7381b9284c4f1"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-parkinsons-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-parkinsons-disease/19d8dfc7",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-parkinsons-disease/19d8dfc7/",
+      "downloaded_at": "2026-01-13 16:18:56.569073Z",
+      "sha": "263907b036ac0913dec68a650aa68f15b2ea662b"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-diffuse-lewy-body-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-diffuse-lewy-body-disease-snomed/3b0092de",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-diffuse-lewy-body-disease-snomed/3b0092de/",
+      "downloaded_at": "2026-01-13 16:19:41.191376Z",
+      "sha": "fda143a00b7d1f185badbafcd8b525b25752ecf5"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-frontotemporal-dementia.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-frontotemporal-dementia/4bf7c631",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-frontotemporal-dementia/4bf7c631/",
+      "downloaded_at": "2026-01-13 16:24:58.207676Z",
+      "sha": "d51d976dc8708d1c01f6c74dda5448d23ac15804"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-frontotemporal-dementia-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-frontotemporal-dementia-snomed/2cfe89d3",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-frontotemporal-dementia-snomed/2cfe89d3/",
+      "downloaded_at": "2026-01-13 16:33:54.275588Z",
+      "sha": "cc31130519fdf049ca0738be6c1e4e008a16e0cc"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-motor-neuron-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-motor-neuron-disease-snomed/13ef169e",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-motor-neuron-disease-snomed/13ef169e/",
+      "downloaded_at": "2026-01-13 16:35:49.034123Z",
+      "sha": "ca4b3de096524ef09d82b25c33098de4689b7e55"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-motor-neuron-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-motor-neuron-disease/32e852fc",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-motor-neuron-disease/32e852fc/",
+      "downloaded_at": "2026-01-13 16:38:37.867395Z",
+      "sha": "d141fdf3c3363bed0a6d43535811ba63601b1d6a"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-multiple-system-atrophy-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-multiple-system-atrophy-snomed/10ddb15f",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-multiple-system-atrophy-snomed/10ddb15f/",
+      "downloaded_at": "2026-01-13 16:40:08.100554Z",
+      "sha": "34c4985b8e6dfe496c3fa9db5b757a901597dcd7"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy-snomed/29ed2494",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy-snomed/29ed2494/",
+      "downloaded_at": "2026-01-13 16:43:15.737239Z",
+      "sha": "8527ecc0e9324fc423ce09cc6e7e1f6b48f6e9ee"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy/00c96c92",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy/00c96c92/",
+      "downloaded_at": "2026-01-13 16:44:26.171185Z",
+      "sha": "f1cd3380ace6d69b6ebd21d010f9d63c51443d4b"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-vascular-dementia-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-vascular-dementia-snomed/1f3e5fb3",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-vascular-dementia-snomed/1f3e5fb3/",
+      "downloaded_at": "2026-01-13 16:44:59.466022Z",
+      "sha": "4f17f510400e1d47688a31c0f71f9a876c5b0f56"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-vascular-dementia.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-vascular-dementia/67b9f95c",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-vascular-dementia/67b9f95c/",
+      "downloaded_at": "2026-01-13 16:45:57.572208Z",
+      "sha": "2033dc257bc862deb7bf6dbaf63f0cbbce26e423"
     }
   }
 }

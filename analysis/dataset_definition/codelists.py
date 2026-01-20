@@ -226,7 +226,7 @@ multiatrophy_snomed = codelist_from_csv(
 )
 
 multiatrophy_icd = codelist_from_csv(
-    "codelists/local_codelists/neuro_codelist_msa_icd.csv",
+    "codelists/local/neuro_codelist_msa_icd.csv",
     column="code"
 )
 

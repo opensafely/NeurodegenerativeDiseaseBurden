@@ -45,3 +45,4 @@ bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy-snom
 bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy/00c96c92/
 bristol/burden-of-neurodegenerative-diseases-vascular-dementia-snomed/1f3e5fb3/
 bristol/burden-of-neurodegenerative-diseases-vascular-dementia/67b9f95c/
+bristol/burden-of-neurodegenerative-diseases-huntington-disease/762e0511/

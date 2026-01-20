@@ -1,5 +1,11 @@
 {
   "files": {
+    "bristol-burden-of-neurodegenerative-diseases-huntington-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-huntington-disease/762e0511",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-huntington-disease/762e0511/",
+      "downloaded_at": "2026-01-19 14:14:45.250360Z",
+      "sha": "96987e57a5813399b57b73c76ac675eee5894ab5"
+    },
     "nhsd-primary-care-domain-refsets-c19preg_cod.csv": {
       "id": "nhsd-primary-care-domain-refsets/c19preg_cod/20250627",
       "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/c19preg_cod/20250627/",

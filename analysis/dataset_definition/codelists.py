@@ -210,23 +210,33 @@ vascular_icd = codelist_from_csv(
     column="code"
 )
 
-corticobasal_snomed = codelist_from_csv(
-    "codelists/bristol-burden-of-neurodegenerative-diseases-corticobasal-degeneration-snomed.csv",
-    column="code"
-)
-
 huntingtons_snomed = codelist_from_csv(
     "codelists/bristol-burden-of-neurodegenerative-diseases-dementia-due-to-huntingtons-snomed.csv",
     column="code"
 )
 
-postcortical_snomed = codelist_from_csv(
-    "codelists/bristol-burden-of-neurodegenerative-diseases-posterior-cortical-atrophy-snomed.csv",
+huntingtons_icd = codelist_from_csv(
+    "codelists/bristol-burden-of-neurodegenerative-diseases-huntington-disease.csv",
     column="code"
 )
 
 multiatrophy_snomed = codelist_from_csv(
     "codelists/bristol-burden-of-neurodegenerative-diseases-multiple-system-atrophy-snomed.csv",
+    column="code"
+)
+
+multiatrophy_icd = codelist_from_csv(
+    "codelists/local_codelists/neuro_codelist_msa_icd.csv",
+    column="code"
+)
+
+corticobasal_snomed = codelist_from_csv(
+    "codelists/bristol-burden-of-neurodegenerative-diseases-corticobasal-degeneration-snomed.csv",
+    column="code"
+)
+
+postcortical_snomed = codelist_from_csv(
+    "codelists/bristol-burden-of-neurodegenerative-diseases-posterior-cortical-atrophy-snomed.csv",
     column="code"
 )
 

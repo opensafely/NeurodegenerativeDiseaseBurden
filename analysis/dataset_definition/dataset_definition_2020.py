@@ -8,8 +8,7 @@ dataset = create_dataset()
 dataset.configure_dummy_data(population_size=10000)
 
 index_date = "2020-01-01"
-# index_date_dt = datetime.strptime(index_date, "%Y-%m-%d")
-# index_year = index_date_dt.year
+
 dataset.define_population(patients.exists_for_patient())
 
 #Core
@@ -109,65 +108,5 @@ for name, olist in olists.items():
                          
                          
 
-# multimorbid_weights = {
-#     "alcohol": 0.65,
-#     "anxiety": 0.5,
-#     "af":1.34, 
-#     "cancer":1.53 , 
-#     "ckd":0.53, 
-#     "tissue":0.43, 
-#     "copd":1.46, 
-#     "chd":0.49, 
-#     "dementia":2.5, 
-#     "diabetes":0.75, 
-#     "epilepsy":0.92, 
-#     "hearloss":0.09, 
-#     "hf":1.18, 
-#     "bowel":0.21, 
-#     "psychosis":0.64, 
-#     "stroke":0.8, 
-#     "athma":0.19, 
-#     "hypertension":0.08, 
-#     "constipation":1.12, 
-#     "pain":0.92   
 
-# }
-
-# cms = clinical_events.exists_for_patient().as_int().as_float() * 0  
-
-# for codelist, weight in [  
-#    (alcohol_codelist, 0.65),  
-#    (anxiety_codelist, 0.05),  
-#    (af_codelist, 1.34),  
-#    (cancer_codelist, 1.53),  
-#    (ckd_codelist, 0.53),  
-#    (tissue_codelist, 0.43),  
-#    (copd_codelist, 1.46),  
-#    (chd_codelist, 0.49),  
-#    (dementia_codelist, 2.50),  
-#    (diabetes_codelist, 0.75),  
-#    (epilepsy_codelist, 0.92),  
-#    (hearloss_codelist, 0.09),  
-#    (hf_codelist, 1.18),  
-#    (bowel_codelist, 0.21),  
-#    (psychosis_codelist, 0.64),  
-#    (stroke_codelist, 0.80),  
-#    (athma_codelist, 0.19),  
-#    (hypertension_codelist, 0.08),  
-#    (constipation_codelist, 1.12),  
-#    (pain_codelist, 0.92),  
-# ]:  
-#     cms += (  
-#         clinical_events.where(  
-#             clinical_events.snomedct_code.is_in(codelist)  
-#         ).where(  
-#             clinical_events.date.is_before(index_date)  
-#         ).exists_for_patient().as_int().as_float()  
-#         * weight  
-#     )  
-
-# dataset.cms = cms  
-    
-    
-# dataset.cambridge_index = dataset[multi_cols].sum(axis=1)
 

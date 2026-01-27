@@ -1,8 +1,8 @@
-from ehrql import create_dataset
+from ehrql import create_dataset, case, when, minimum_of
 from ehrql.tables.tpp import (patients, ons_deaths, practice_registrations, clinical_events,
                               addresses, apcs)
 from codelists import *
-from variable_helper_functions import get_latest_ethnicity
+from variable_helper_functions import get_latest_ethnicity, check_date_validity
 
 dataset = create_dataset()
 
@@ -35,8 +35,10 @@ dataset.cov_cat_ethnicity = get_latest_ethnicity(index_date,
 #Quality assurance
 dataset.qa_bin_pregnancy = clinical_events.where(
         clinical_events.snomedct_code.is_in(pregnancy_snomed)).exists_for_patient()
-dataset.qa_bin_prostatecancer = clinical_events.where(
-        clinical_events.snomedct_code.is_in(prostate_snomed)).exists_for_patient()
+dataset.qa_bin_prostatecancer = ((clinical_events.where(
+        clinical_events.snomedct_code.is_in(prostate_snomed)).exists_for_patient()) | 
+        (apcs.where(apcs.all_diagnoses.contains_any_of(prostate_icd)).exists_for_patient())
+        )
 
 #Multimorbidity
 mlists = {
@@ -62,13 +64,13 @@ mlists = {
     "osteoarthritis":pain_codelist   
 }
 
-multi_cols = []
 for name, mlist in mlists.items():
-    mdate = (clinical_events.where(clinical_events.snomedct_code.is_in(mlist))
+    mdate = check_date_validity(clinical_events.where(clinical_events.snomedct_code.is_in(mlist))
                             .where(clinical_events.date.is_before(index_date))
-            ).date.maximum_for_patient()
-    dataset.add_column(f"cms_date_{name}", mdate)
-    multi_cols += [f"cms_date_{name}"]
+                            .date
+            )
+    dataset.add_column(f"cms_date_{name}", mdate.maximum_for_patient())
+    
 
 #Outcomes
 olists = {
@@ -90,23 +92,19 @@ olists = {
 
 for name, olist in olists.items():
     if len(olist)==2:
-        dataset.add_column(f'out_date_{name}_tpp',clinical_events.where(clinical_events.snomedct_code.is_in(olist[0]))
-                                                            .date.minimum_for_patient()
+        odate_tpp = check_date_validity(clinical_events.where(clinical_events.snomedct_code.is_in(olist[0])).date)
+        dataset.add_column(f'out_date_{name}_tpp',odate_tpp.minimum_for_patient()
                             )
-        dataset.add_column(f'out_date_{name}_sus',apcs.where(apcs.all_diagnoses.contains_any_of(olist[1]))
-                                               .admission_date.minimum_for_patient()
+        odate_sus = check_date_validity(apcs.where(apcs.all_diagnoses.contains_any_of(olist[1])).admission_date)
+        dataset.add_column(f'out_date_{name}_sus',odate_sus.minimum_for_patient()
                             )
-        dataset.add_column(f'out_date_{name}_death',ons_deaths.cause_of_death_is_in(olist[1])
+        dataset.add_column(f'out_date_{name}_death',case(when(ons_deaths.cause_of_death_is_in(olist[1])).then(ons_deaths.date))
                             )
-        
+        cols = [getattr(dataset,col) for col in [f'out_date_{name}_tpp',f'out_date_{name}_sus',f'out_date_{name}_death']]
+        dataset.add_column(f'out_date_{name}',minimum_of(*cols))
     else:
-        dataset.add_column(f'out_date_{name}_tpp',clinical_events.where(clinical_events.snomedct_code.is_in(olist[0]))
-                                                            .date.minimum_for_patient()
+        odate_tpp = check_date_validity(clinical_events.where(clinical_events.snomedct_code.is_in(olist[0])).date)
+        dataset.add_column(f'out_date_{name}_tpp',odate_tpp.minimum_for_patient()
                             )
+        dataset.add_column(f'out_date_{name}',getattr(dataset,f'out_date_{name}_tpp'))
     
-
-                         
-                         
-
-
-

@@ -5,6 +5,11 @@ prostate_snomed = codelist_from_csv(
     column="code"
 )
 
+prostate_icd = codelist_from_csv(
+    "codelists/user-RochelleKnight-prostate_cancer_icd10.csv",
+    column="code"
+)
+
 pregnancy_snomed = codelist_from_csv(
     "codelists/nhsd-primary-care-domain-refsets-c19preg_cod.csv",
     column="code"

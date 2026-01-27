@@ -1,5 +1,5 @@
 from ehrql import case, when
-from ehrql.tables.tpp import clinical_events, ethnicity_from_sus 
+from ehrql.tables.tpp import clinical_events, ethnicity_from_sus, patients, ons_deaths 
 
 
 def get_latest_ethnicity(
@@ -101,3 +101,13 @@ def get_latest_ethnicity(
         )
 
         return ethnicity_combined
+
+def check_date_validity(date_to_check):
+    date_corrected = case(when((date_to_check.is_not_null()) & (patients.date_of_birth.is_not_null()) & (
+                               date_to_check < patients.date_of_birth)).then(None),
+                        when((date_to_check.is_not_null()) & 
+                             (ons_deaths.date.is_not_null()) & 
+                             (date_to_check > ons_deaths.date)).then(None),
+                        otherwise=date_to_check
+    )
+    return date_corrected

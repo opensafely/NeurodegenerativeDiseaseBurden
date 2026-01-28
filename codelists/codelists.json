@@ -1,172 +1,292 @@
 {
   "files": {
-    "opensafely-asplenia.csv": {
-      "id": "opensafely/asplenia/2020-06-02",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/asplenia/2020-06-02/",
-      "downloaded_at": "2021-01-18 11:45:37.520385Z",
-      "sha": "7599ea87a8f3d9d92389a728966d3077b00ac828"
+    "bristol-burden-of-neurodegenerative-diseases-huntington-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-huntington-disease/762e0511",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-huntington-disease/762e0511/",
+      "downloaded_at": "2026-01-19 14:14:45.250360Z",
+      "sha": "96987e57a5813399b57b73c76ac675eee5894ab5"
     },
-    "opensafely-bone-marrow-transplant.csv": {
-      "id": "opensafely/bone-marrow-transplant/2020-04-15",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/bone-marrow-transplant/2020-04-15/",
-      "downloaded_at": "2021-01-18 11:45:37.647525Z",
-      "sha": "3898cc82227c9268fd7e159c2531dfeb01c6f523"
+    "nhsd-primary-care-domain-refsets-c19preg_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/c19preg_cod/20250627",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/c19preg_cod/20250627/",
+      "downloaded_at": "2025-10-21 13:38:03.045809Z",
+      "sha": "0e4a459ab70ba09b262c9efdedb851ea4e736323"
     },
-    "opensafely-cancer-excluding-lung-and-haematological.csv": {
-      "id": "opensafely/cancer-excluding-lung-and-haematological/2020-04-15",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/cancer-excluding-lung-and-haematological/2020-04-15/",
-      "downloaded_at": "2021-01-18 11:45:38.032417Z",
-      "sha": "8fa1164b587028c4bd5903289e0948642d399e56"
+    "user-RochelleKnight-prostate_cancer_snomed.csv": {
+      "id": "user/RochelleKnight/prostate_cancer_snomed/0437497e",
+      "url": "https://www.opencodelists.org/codelist/user/RochelleKnight/prostate_cancer_snomed/0437497e/",
+      "downloaded_at": "2025-10-21 13:41:07.192225Z",
+      "sha": "7249bb62e32d2d60600b0d1e32562f23bd92c6aa"
     },
-    "opensafely-chronic-cardiac-disease.csv": {
-      "id": "opensafely/chronic-cardiac-disease/2020-04-08",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/chronic-cardiac-disease/2020-04-08/",
-      "downloaded_at": "2021-01-18 11:45:38.423566Z",
-      "sha": "2267f6fada9c77a2bbf62ce7a1c07ddf48348d61"
+    "user-RochelleKnight-prostate_cancer_icd10.csv": {
+      "id": "user/RochelleKnight/prostate_cancer_icd10/6b27d648",
+      "url": "https://www.opencodelists.org/codelist/user/RochelleKnight/prostate_cancer_icd10/6b27d648/",
+      "downloaded_at": "2025-10-21 13:41:49.450361Z",
+      "sha": "fc1791f84b1195fc21df000d3300015b1ff7d1ec"
     },
-    "opensafely-chronic-liver-disease.csv": {
-      "id": "opensafely/chronic-liver-disease/2020-06-02",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/chronic-liver-disease/2020-06-02/",
-      "downloaded_at": "2021-01-18 11:45:38.659670Z",
-      "sha": "d31d212d23c5f0e15f63236d2106282fb070bd7c"
+    "opensafely-ethnicity-snomed-0removed.csv": {
+      "id": "opensafely/ethnicity-snomed-0removed/22911876",
+      "url": "https://www.opencodelists.org/codelist/opensafely/ethnicity-snomed-0removed/22911876/",
+      "downloaded_at": "2025-10-21 13:48:30.284851Z",
+      "sha": "d95a2f826299563aa57f6fa99009e6e13a65151b"
     },
-    "opensafely-chemotherapy-or-radiotherapy.csv": {
-      "id": "opensafely/chemotherapy-or-radiotherapy/2020-04-15",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/chemotherapy-or-radiotherapy/2020-04-15/",
-      "downloaded_at": "2021-01-18 11:45:39.601151Z",
-      "sha": "cd33b4059bb1f9afcf4d04ff46bf72f088548750"
+    "bristol-multimorbidity_alcoholproblems.csv": {
+      "id": "bristol/multimorbidity_alcoholproblems/625d5706",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_alcoholproblems/625d5706/",
+      "downloaded_at": "2025-10-21 13:48:57.970262Z",
+      "sha": "dc142c184e1552b8e336085e8f65640441aac2de"
     },
-    "opensafely-covid-identification.csv": {
-      "id": "opensafely/covid-identification/2020-06-03",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification/2020-06-03/",
-      "downloaded_at": "2021-01-20 14:02:25.131566Z",
-      "sha": "124db6929439379b7dacd55ba26ae4f2ed9370bc"
+    "bristol-multimorbidity_anxietydepression.csv": {
+      "id": "bristol/multimorbidity_anxietydepression/67c2d6f2",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_anxietydepression/67c2d6f2/",
+      "downloaded_at": "2025-10-21 13:49:13.764299Z",
+      "sha": "9e2884fcd885b4baef14e26a05987575abb246a5"
     },
-    "opensafely-covid-identification-in-primary-care-probable-covid-positive-test.csv": {
-      "id": "opensafely/covid-identification-in-primary-care-probable-covid-positive-test/2020-07-16",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification-in-primary-care-probable-covid-positive-test/2020-07-16/",
-      "downloaded_at": "2021-01-18 10:35:20.726943Z",
-      "sha": "563b536aaf850da011233653e91e10030a5bc15f"
+    "bristol-multimorbidity_atrial-fibrillation.csv": {
+      "id": "bristol/multimorbidity_atrial-fibrillation/0f16bd85",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_atrial-fibrillation/0f16bd85/",
+      "downloaded_at": "2025-10-21 13:49:33.535795Z",
+      "sha": "aa15fe7ae83b7f9e711c915b1fe11185453c34a3"
     },
-    "opensafely-covid-identification-in-primary-care-probable-covid-clinical-code.csv": {
-      "id": "opensafely/covid-identification-in-primary-care-probable-covid-clinical-code/2020-07-16",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification-in-primary-care-probable-covid-clinical-code/2020-07-16/",
-      "downloaded_at": "2021-01-18 10:35:20.930635Z",
-      "sha": "5de38f993b166d6ef97c6ea822635317a6c7ae85"
+    "bristol-multimorbidity_copd.csv": {
+      "id": "bristol/multimorbidity_copd/11c97d7b",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_copd/11c97d7b/",
+      "downloaded_at": "2025-10-21 13:49:55.791126Z",
+      "sha": "450b4a7b2bf1e0bbba7793887cbc24e336bc0a36"
     },
-    "opensafely-covid-identification-in-primary-care-probable-covid-sequelae.csv": {
-      "id": "opensafely/covid-identification-in-primary-care-probable-covid-sequelae/2020-07-16",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification-in-primary-care-probable-covid-sequelae/2020-07-16/",
-      "downloaded_at": "2021-01-18 10:35:21.137149Z",
-      "sha": "38dc0c0a34e2b8b376ba72819923f442c30b4946"
+    "bristol-multimorbidity_cancer.csv": {
+      "id": "bristol/multimorbidity_cancer/7e1f8a31",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_cancer/7e1f8a31/",
+      "downloaded_at": "2025-10-21 13:50:14.695828Z",
+      "sha": "c65da230bbe59d9447f3bc2454ee86657799b41d"
     },
-    "opensafely-current-copd.csv": {
-      "id": "opensafely/current-copd/2020-05-06",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/current-copd/2020-05-06/",
-      "downloaded_at": "2021-01-18 11:45:40.646763Z",
-      "sha": "bab838b50e256ceef8b9d2f6ca1132491e522bda"
+    "bristol-multimorbidity_chronic-kidney-disease.csv": {
+      "id": "bristol/multimorbidity_chronic-kidney-disease/651016fc",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_chronic-kidney-disease/651016fc/",
+      "downloaded_at": "2025-10-21 13:50:28.648906Z",
+      "sha": "6502b7582b2c614e64326970e1240c1016d2cd97"
     },
-    "opensafely-cystic-fibrosis.csv": {
-      "id": "opensafely/cystic-fibrosis/2020-07-20",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/cystic-fibrosis/2020-07-20/",
-      "downloaded_at": "2021-01-18 11:45:40.900057Z",
-      "sha": "31d7fecefd8c77801c73226d01fc6577b82a2cef"
+    "bristol-multimorbidity_dementia.csv": {
+      "id": "bristol/multimorbidity_dementia/43e863e5",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_dementia/43e863e5/",
+      "downloaded_at": "2025-10-21 13:50:42.091744Z",
+      "sha": "ed6a7c81742423f66d52561cd3417d1b200a10fb"
     },
-    "opensafely-dementia.csv": {
-      "id": "opensafely/dementia/2020-04-22",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/dementia/2020-04-22/",
-      "downloaded_at": "2021-01-18 11:45:41.061484Z",
-      "sha": "9d40ff3a5c2428af4651c765f2c418de3a3ad4b4"
+    "bristol-multimorbidity_diabetes.csv": {
+      "id": "bristol/multimorbidity_diabetes/2ad8f0b0",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_diabetes/2ad8f0b0/",
+      "downloaded_at": "2025-10-21 13:51:27.186145Z",
+      "sha": "b9eb6e79ba7d1ae8afa07091bc904f14ea3ab96d"
     },
-    "opensafely-dmards.csv": {
-      "id": "opensafely/dmards/2020-06-23",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/dmards/2020-06-23/",
-      "downloaded_at": "2021-01-18 11:45:41.629859Z",
-      "sha": "06aae624d5a02a69c9e9e518a6d64e0a8e74e66e"
+    "bristol-multimorbidity_epilepsy.csv": {
+      "id": "bristol/multimorbidity_epilepsy/78ba0a45",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_epilepsy/78ba0a45/",
+      "downloaded_at": "2025-10-21 13:51:43.037233Z",
+      "sha": "8b30fcbaf3706a0f6ce3a53edd60e4120256c296"
     },
-    "opensafely-dialysis.csv": {
-      "id": "opensafely/dialysis/2020-07-16",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/dialysis/2020-07-16/",
-      "downloaded_at": "2021-01-18 11:45:41.870503Z",
-      "sha": "9ef20ad32280d276774f5b99b12c6a46513fc478"
+    "bristol-multimorbidity_heart-failure.csv": {
+      "id": "bristol/multimorbidity_heart-failure/4c00a3c7",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_heart-failure/4c00a3c7/",
+      "downloaded_at": "2025-10-21 13:52:25.601690Z",
+      "sha": "05bed03484a500494aab80bed1e26823d906e36d"
     },
-    "opensafely-ethnicity.csv": {
-      "id": "opensafely/ethnicity/2020-04-27",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity/2020-04-27/",
-      "downloaded_at": "2021-01-18 10:35:21.368366Z",
-      "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
+    "bristol-multimorbidity_irritable-bowel-syndrome.csv": {
+      "id": "bristol/multimorbidity_irritable-bowel-syndrome/32f13092",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_irritable-bowel-syndrome/32f13092/",
+      "downloaded_at": "2025-10-21 13:52:40.223579Z",
+      "sha": "886cc1bcb9a9729937c6930a08df1437bb22180d"
     },
-    "opensafely-haematological-cancer.csv": {
-      "id": "opensafely/haematological-cancer/2020-04-15",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/haematological-cancer/2020-04-15/",
-      "downloaded_at": "2021-01-18 11:45:42.219203Z",
-      "sha": "59d65c613a7b984ba46eca8a74eedcc6320609fe"
+    "bristol-multimorbidity_psychosisbipolar-disorder.csv": {
+      "id": "bristol/multimorbidity_psychosisbipolar-disorder/19e1bd5d",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_psychosisbipolar-disorder/19e1bd5d/",
+      "downloaded_at": "2025-10-21 13:52:54.685541Z",
+      "sha": "c8f8204fe3e07dfbc48d4d21f022addca8e9ddb0"
     },
-    "opensafely-heart-failure.csv": {
-      "id": "opensafely/heart-failure/2020-05-05",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/heart-failure/2020-05-05/",
-      "downloaded_at": "2021-01-18 11:45:42.551315Z",
-      "sha": "6139df4911534868bc5ade1ada53395606651064"
+    "nhsd-primary-care-domain-refsets-hyp_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/hyp_cod/20250627",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/hyp_cod/20250627/",
+      "downloaded_at": "2025-10-21 13:53:10.038886Z",
+      "sha": "f94870510a3550ff79710b2d88b551812bb2fb3b"
     },
-    "opensafely-intellectual-disability-including-downs-syndrome.csv": {
-      "id": "opensafely/intellectual-disability-including-downs-syndrome/2020-08-27",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/intellectual-disability-including-downs-syndrome/2020-08-27/",
-      "downloaded_at": "2021-01-18 11:45:42.726462Z",
-      "sha": "5e629f711c97794523b5c9783775e5364b598ff8"
+    "nhsd-primary-care-domain-refsets-ast_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/ast_cod/20250627",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250627/",
+      "downloaded_at": "2025-10-21 13:53:45.679225Z",
+      "sha": "40b9e08f0468a0cb15af222d626da906d029911f"
     },
-    "opensafely-lung-cancer.csv": {
-      "id": "opensafely/lung-cancer/2020-04-15",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/lung-cancer/2020-04-15/",
-      "downloaded_at": "2021-01-18 11:45:42.888674Z",
-      "sha": "645584a20f81c4d76187a2c305c904e8b8c63dbb"
+    "bristol-multimorbidity_coronary-heart-disease.csv": {
+      "id": "bristol/multimorbidity_coronary-heart-disease/6b200f80",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_coronary-heart-disease/6b200f80/",
+      "downloaded_at": "2025-10-21 13:54:08.811464Z",
+      "sha": "c3577375defc551cee91886eabd6db5b70a53a38"
     },
-    "opensafely-other-heart-disease.csv": {
-      "id": "opensafely/other-heart-disease/2020-05-11",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/other-heart-disease/2020-05-11/",
-      "downloaded_at": "2021-01-18 11:45:43.049100Z",
-      "sha": "1649c5f85c6ad064d54132db15505cd0dcb31017"
+    "bristol-multimorbidity_stroketransient-ischemic-attack.csv": {
+      "id": "bristol/multimorbidity_stroketransient-ischemic-attack/39012916",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_stroketransient-ischemic-attack/39012916/",
+      "downloaded_at": "2025-10-21 13:54:24.268952Z",
+      "sha": "b62119e7502058e4eb4183d21cee753811096898"
     },
-    "opensafely-other-neurological-conditions.csv": {
-      "id": "opensafely/other-neurological-conditions/2020-06-02",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/other-neurological-conditions/2020-06-02/",
-      "downloaded_at": "2021-01-18 11:45:43.172037Z",
-      "sha": "855e7e09a0500401ae2429c6a401978e8c9075ec"
+    "bristol-multimorbidity_connective-tissue-disorder.csv": {
+      "id": "bristol/multimorbidity_connective-tissue-disorder/52109c4b",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_connective-tissue-disorder/52109c4b/",
+      "downloaded_at": "2025-10-21 13:54:41.174558Z",
+      "sha": "50397d659a80020e526f8b0305a1b7f2599116d5"
     },
-    "opensafely-other-respiratory-conditions.csv": {
-      "id": "opensafely/other-respiratory-conditions/2020-07-21",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/other-respiratory-conditions/2020-07-21/",
-      "downloaded_at": "2021-01-18 11:45:43.349560Z",
-      "sha": "76cfb92e19e1b2b69953186daddc704458a6a2ab"
+    "bristol-multimorbidity_hearing-loss.csv": {
+      "id": "bristol/multimorbidity_hearing-loss/6c165b67",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_hearing-loss/6c165b67/",
+      "downloaded_at": "2025-10-21 13:54:59.122887Z",
+      "sha": "abf5149c13d36cb977d9a338e5d3da9a32275b87"
     },
-    "opensafely-psychosis-schizophrenia-bipolar-affective-disease.csv": {
-      "id": "opensafely/psychosis-schizophrenia-bipolar-affective-disease/2020-07-09",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/psychosis-schizophrenia-bipolar-affective-disease/2020-07-09/",
-      "downloaded_at": "2021-01-18 11:45:43.477652Z",
-      "sha": "c7c23c83a155cab15a41b21e10e26f33ca17bc3f"
+    "nhsd-primary-care-domain-refsets-chronconstip_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/chronconstip_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/chronconstip_cod/20250912/",
+      "downloaded_at": "2026-01-12 11:02:31.267343Z",
+      "sha": "e07c8a1a336921575cc4d1497c8fb4aa488c175b"
     },
-    "opensafely-sickle-cell-disease.csv": {
-      "id": "opensafely/sickle-cell-disease/2020-04-14",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/sickle-cell-disease/2020-04-14/",
-      "downloaded_at": "2021-01-18 11:45:44.184962Z",
-      "sha": "c30644d91b2c23e805f1ad6b723c30d1f4cc2191"
+    "opensafely-symptoms-pain.csv": {
+      "id": "opensafely/symptoms-pain/71385a33",
+      "url": "https://www.opencodelists.org/codelist/opensafely/symptoms-pain/71385a33/",
+      "downloaded_at": "2026-01-12 11:02:31.326880Z",
+      "sha": "f10644780459fc727569c6217778f122f7d4a0dc"
     },
-    "opensafely-solid-organ-transplantation.csv": {
-      "id": "opensafely/solid-organ-transplantation/2020-04-10",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/solid-organ-transplantation/2020-04-10/",
-      "downloaded_at": "2021-01-18 11:45:44.452225Z",
-      "sha": "94178a9e19770b9c43c08fe42df6ab5ed0d9ec49"
+    "bristol-burden-of-neurodegenerative-diseases-corticobasal-degeneration-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-corticobasal-degeneration-snomed/460dfd08",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-corticobasal-degeneration-snomed/460dfd08/",
+      "downloaded_at": "2026-01-13 15:55:14.721071Z",
+      "sha": "b1e3d81ac3f51d79a5715d42103541fb890e1b85"
     },
-    "opensafely-permanent-immunosuppression.csv": {
-      "id": "opensafely/permanent-immunosuppression/2020-06-02",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/permanent-immunosuppression/2020-06-02/",
-      "downloaded_at": "2021-01-18 11:45:44.590591Z",
-      "sha": "15dd49a1cbc8b8e9f4a9e05bbcbeb45b4e03106e"
+    "bristol-burden-of-neurodegenerative-diseases-dementia-due-to-huntingtons-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-dementia-due-to-huntingtons-snomed/782ce372",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-dementia-due-to-huntingtons-snomed/782ce372/",
+      "downloaded_at": "2026-01-13 15:56:14.355745Z",
+      "sha": "3f1691e8af13fa704623789dee04b9539920905e"
     },
-    "opensafely-temporary-immunosuppression.csv": {
-      "id": "opensafely/temporary-immunosuppression/2020-04-24",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/temporary-immunosuppression/2020-04-24/",
-      "downloaded_at": "2021-01-18 11:45:44.702418Z",
-      "sha": "99f6c0787e17e16430549a4cfb5084612faba2ac"
+    "bristol-burden-of-neurodegenerative-diseases-other-specified-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-other-specified-snomed/5c6ab047",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-other-specified-snomed/5c6ab047/",
+      "downloaded_at": "2026-01-13 15:57:56.051847Z",
+      "sha": "781f08a77d52c3be3461bfe0827748e28f01c62b"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-other-specified-dementia-icd10.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-other-specified-dementia-icd10/435b3d12",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-other-specified-dementia-icd10/435b3d12/",
+      "downloaded_at": "2026-01-13 16:05:08.037076Z",
+      "sha": "e3f207f7fa57df342c6ff98313454cc733072be3"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-posterior-cortical-atrophy-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-posterior-cortical-atrophy-snomed/113c56a8",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-posterior-cortical-atrophy-snomed/113c56a8/",
+      "downloaded_at": "2026-01-13 16:06:35.728368Z",
+      "sha": "5ce058cd2671088c35c522590a0c684c7d3feb18"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-unspecified-dementia-icd10.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-unspecified-dementia-icd10/0bd6d6bc",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-unspecified-dementia-icd10/0bd6d6bc/",
+      "downloaded_at": "2026-01-13 16:08:52.358176Z",
+      "sha": "7581bffadea3a22574ecc42aff2ea4fd8bbaa252"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-unspecified-dementia-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-unspecified-dementia-snomed/279909e7",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-unspecified-dementia-snomed/279909e7/",
+      "downloaded_at": "2026-01-13 16:10:20.458547Z",
+      "sha": "1817423a8fcb8cdbeecc6bfb3d6f1864874cd5d6"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-alzheimers-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-alzheimers-disease-snomed/24e649f1",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-alzheimers-disease-snomed/24e649f1/",
+      "downloaded_at": "2026-01-13 16:11:11.554171Z",
+      "sha": "f5f6796a4c8bd9a81cc6e516f0314a7f8b311eaf"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-alzheimers-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-alzheimers-disease/17261fd1",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-alzheimers-disease/17261fd1/",
+      "downloaded_at": "2026-01-13 16:14:19.966171Z",
+      "sha": "1fb3254a36aba8d6355f78baac8c3c032fb01c3c"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease-snomed/21f11fa9",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease-snomed/21f11fa9/",
+      "downloaded_at": "2026-01-13 16:16:16.987031Z",
+      "sha": "dedcff2234a4bad0c0708ae51d8116efaf1661a9"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease/65073966",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-creutzfeldt-jakob-disease/65073966/",
+      "downloaded_at": "2026-01-13 16:17:25.892907Z",
+      "sha": "5e991c78b084f7941ffd6c13442600e21d947bba"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-parkinsons-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-parkinsons-disease-snomed/062eec7e",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-parkinsons-disease-snomed/062eec7e/",
+      "downloaded_at": "2026-01-13 16:18:06.805870Z",
+      "sha": "407be726693830f373de43893fa7381b9284c4f1"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-parkinsons-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-parkinsons-disease/19d8dfc7",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-parkinsons-disease/19d8dfc7/",
+      "downloaded_at": "2026-01-13 16:18:56.569073Z",
+      "sha": "263907b036ac0913dec68a650aa68f15b2ea662b"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-diffuse-lewy-body-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-diffuse-lewy-body-disease-snomed/3b0092de",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-diffuse-lewy-body-disease-snomed/3b0092de/",
+      "downloaded_at": "2026-01-13 16:19:41.191376Z",
+      "sha": "fda143a00b7d1f185badbafcd8b525b25752ecf5"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-frontotemporal-dementia.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-frontotemporal-dementia/4bf7c631",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-frontotemporal-dementia/4bf7c631/",
+      "downloaded_at": "2026-01-13 16:24:58.207676Z",
+      "sha": "d51d976dc8708d1c01f6c74dda5448d23ac15804"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-frontotemporal-dementia-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-frontotemporal-dementia-snomed/2cfe89d3",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-frontotemporal-dementia-snomed/2cfe89d3/",
+      "downloaded_at": "2026-01-13 16:33:54.275588Z",
+      "sha": "cc31130519fdf049ca0738be6c1e4e008a16e0cc"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-motor-neuron-disease-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-motor-neuron-disease-snomed/13ef169e",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-motor-neuron-disease-snomed/13ef169e/",
+      "downloaded_at": "2026-01-13 16:35:49.034123Z",
+      "sha": "ca4b3de096524ef09d82b25c33098de4689b7e55"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-motor-neuron-disease.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-motor-neuron-disease/32e852fc",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-motor-neuron-disease/32e852fc/",
+      "downloaded_at": "2026-01-13 16:38:37.867395Z",
+      "sha": "d141fdf3c3363bed0a6d43535811ba63601b1d6a"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-multiple-system-atrophy-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-multiple-system-atrophy-snomed/10ddb15f",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-multiple-system-atrophy-snomed/10ddb15f/",
+      "downloaded_at": "2026-01-13 16:40:08.100554Z",
+      "sha": "34c4985b8e6dfe496c3fa9db5b757a901597dcd7"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy-snomed/29ed2494",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy-snomed/29ed2494/",
+      "downloaded_at": "2026-01-13 16:43:15.737239Z",
+      "sha": "8527ecc0e9324fc423ce09cc6e7e1f6b48f6e9ee"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy/00c96c92",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-progressive-supranuclear-palsy/00c96c92/",
+      "downloaded_at": "2026-01-13 16:44:26.171185Z",
+      "sha": "f1cd3380ace6d69b6ebd21d010f9d63c51443d4b"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-vascular-dementia-snomed.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-vascular-dementia-snomed/1f3e5fb3",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-vascular-dementia-snomed/1f3e5fb3/",
+      "downloaded_at": "2026-01-13 16:44:59.466022Z",
+      "sha": "4f17f510400e1d47688a31c0f71f9a876c5b0f56"
+    },
+    "bristol-burden-of-neurodegenerative-diseases-vascular-dementia.csv": {
+      "id": "bristol/burden-of-neurodegenerative-diseases-vascular-dementia/67b9f95c",
+      "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-vascular-dementia/67b9f95c/",
+      "downloaded_at": "2026-01-13 16:45:57.572208Z",
+      "sha": "2033dc257bc862deb7bf6dbaf63f0cbbce26e423"
     }
   }
 }

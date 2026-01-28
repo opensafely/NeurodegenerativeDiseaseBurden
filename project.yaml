@@ -1,20 +1,9 @@
-version: '3.0'
-
-expectations:
-  population_size: 1000
+version: '4.0'
 
 actions:
 
-  generate_study_population:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition
+  generate_dataset:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_2020.py --output output/dataset.csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/input.csv
-
-  run_model:
-    run: stata-mp:latest analysis/model.do
-    needs: [generate_study_population]
-    outputs:
-      moderately_sensitive:
-        log: logs/model.log
-
+        dataset: output/dataset.csv.gz

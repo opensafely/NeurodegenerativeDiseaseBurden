@@ -74,7 +74,7 @@ for name, mlist in mlists.items():
 
 #Outcomes
 olists = {
-    "usd": [specified_dementia_snomed,specified_dementia_icd],
+    "osd": [specified_dementia_snomed,specified_dementia_icd],
     "ud": [unspecified_dementia_snomed,unspecified_dementia_icd],
     "ad":[alzheimers_snomed,alzheimers_icd], 
     "cjd":[cjd_snomed,cjd_icd] , 

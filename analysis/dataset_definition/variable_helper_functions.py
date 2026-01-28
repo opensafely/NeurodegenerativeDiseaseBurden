@@ -1,7 +1,6 @@
 from ehrql import case, when
 from ehrql.tables.tpp import clinical_events, ethnicity_from_sus, patients, ons_deaths 
 
-
 def get_latest_ethnicity(
         index_date, codelist, grouping=6
     ):

@@ -123,7 +123,7 @@ def generate_variables(dataset, start_date, end_date):
             prevalent.append(
                 clinical_events
                 .where(clinical_events.snomedct_code.is_in(codes["snomed"]))
-                .where(clinical_events.date.is_on_or_before(start_date))
+                .where(clinical_events.date.is_before(start_date))
                 .exists_for_patient()
                 .as_int()
             )
@@ -143,7 +143,7 @@ def generate_variables(dataset, start_date, end_date):
             prevalent.append(
                 apcs
                 .where(apcs.primary_diagnosis.is_in(codes["icd"]))
-                .where(apcs.admission_date.is_on_or_before(start_date))
+                .where(apcs.admission_date.is_before(start_date))
                 .exists_for_patient()
                 .as_int()
             )

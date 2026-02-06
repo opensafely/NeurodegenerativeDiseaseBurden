@@ -12,7 +12,8 @@ from variable_helper_functions import (
     get_latest_ethnicity,
     first_matching_tpp_between,
     first_matching_apc_between,
-    first_matching_death_between
+    first_matching_death_between,
+    check_date_validity
 )
 
 # Create dataset
@@ -125,9 +126,11 @@ for name, codes in olists.items():
         setattr(
             dataset,
             f"out_date_{name}_tpp",
-            first_matching_tpp_between(
-                codes["snomed"], start_date, end_date
-            ).date,
+            check_date_validity(
+                first_matching_tpp_between(
+                    codes["snomed"], start_date, end_date
+                ).date
+            ),
         )
         dates.append(getattr(dataset, f"out_date_{name}_tpp"))
         ## Identify prevalent cases
@@ -145,9 +148,11 @@ for name, codes in olists.items():
         setattr(
             dataset,
             f"out_date_{name}_sus",
-            first_matching_apc_between(
-                codes["icd"], start_date, end_date
-            ).admission_date,
+            check_date_validity(
+                first_matching_apc_between(
+                    codes["icd"], start_date, end_date
+                ).admission_date
+            ),
         )
         dates.append(getattr(dataset, f"out_date_{name}_sus"))
         ## Identify prevalent cases
@@ -164,7 +169,7 @@ for name, codes in olists.items():
         setattr(
             dataset,
             f"out_date_{name}_death",
-            first_matching_death_between(codes["icd"], start_date, end_date),
+            check_date_validity(first_matching_death_between(codes["icd"], start_date, end_date)),
         )
         dates.append(getattr(dataset, f"out_date_{name}_death"))
 

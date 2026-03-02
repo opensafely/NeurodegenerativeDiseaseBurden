@@ -30,27 +30,41 @@ end_date = get_parameter(name="end_date")
 dataset.define_population(patients.exists_for_patient())
 
 # Core
+
+## Date of birth
 dataset.var_date_birth = patients.date_of_birth
+
+## Date of death
 dataset.var_date_death = ons_deaths.date
 
+## ICB and registration details
 prac_reg = practice_registrations.for_patient_on(start_date)
 dataset.var_cat_icb = prac_reg.practice_stp
 dataset.var_bin_registered = prac_reg.exists_for_patient().as_int()
 dataset.var_date_deregistered = prac_reg.end_date
 
+# Covariates 
+
+## Age
 dataset.cov_num_age = patients.age_on(start_date)
+
+## Sex
 dataset.cov_cat_sex = patients.sex
+
+## Region
 dataset.cov_cat_region = prac_reg.practice_nuts1_region_name
 
+## IMD and MSOA
 patient_address = addresses.for_patient_on(start_date)
 dataset.cov_cat_imd = patient_address.imd_decile
 dataset.cov_cat_msoa = patient_address.msoa_code
 
+## Ethnicity
 dataset.cov_cat_ethnicity = get_latest_ethnicity(
     start_date, ethnicity_codelist, grouping=16
 )
 
-# Multimorbidity
+## Camrbidge Multimorbidity Score (CMS)
 mlists = {
     "alcohol": alcohol_codelist,
     "anxdepression": anxiety_codelist,
@@ -82,6 +96,7 @@ for name, mlist in mlists.items():
     dataset.add_column(f"cms_date_{name}", mdate.maximum_for_patient())
 
 # Outcomes
+
 olists = {
     "osd": {"snomed": specified_dementia_snomed, "icd": specified_dementia_icd},
     "ud": {"snomed": unspecified_dementia_snomed, "icd": unspecified_dementia_icd},
@@ -105,8 +120,8 @@ for name, codes in olists.items():
     prevalent = []
 
     if "snomed" in codes:
-        # Primary care
-        ## First record in year
+        ## Primary care
+        ### First record in year
         setattr(
             dataset,
             f"out_date_{name}_tpp",
@@ -117,7 +132,7 @@ for name, codes in olists.items():
             ),
         )
         dates.append(getattr(dataset, f"out_date_{name}_tpp"))
-        ## Identify prevalent cases
+        ### Identify prevalent cases
         prevalent.append(
             clinical_events
             .where(clinical_events.snomedct_code.is_in(codes["snomed"]))
@@ -127,8 +142,8 @@ for name, codes in olists.items():
         )
 
     if "icd" in codes:
-        # Secondary care
-        ## First record in year
+        ## Secondary care
+        ### First record in year
         setattr(
             dataset,
             f"out_date_{name}_sus",
@@ -139,7 +154,7 @@ for name, codes in olists.items():
             ),
         )
         dates.append(getattr(dataset, f"out_date_{name}_sus"))
-        ## Identify prevalent cases
+        ### Identify prevalent cases
         prevalent.append(
             apcs
             .where(apcs.primary_diagnosis.is_in(codes["icd"]))
@@ -148,8 +163,8 @@ for name, codes in olists.items():
             .as_int()
         )
         
-        # Death
-        ## First record in year
+        ## Death
+        ### First record in year
         setattr(
             dataset,
             f"out_date_{name}_death",

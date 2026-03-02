@@ -50,22 +50,6 @@ dataset.cov_cat_ethnicity = get_latest_ethnicity(
     start_date, ethnicity_codelist, grouping=16
 )
 
-# Quality assurance
-dataset.qa_bin_pregnancy = clinical_events.where(
-    clinical_events.snomedct_code.is_in(pregnancy_snomed)
-).exists_for_patient().as_int()
-dataset.qa_bin_prostatecancer = (
-    (
-        clinical_events.where(
-            clinical_events.snomedct_code.is_in(prostate_snomed)
-        ).exists_for_patient()
-    ) | (
-        apcs.where(
-            apcs.all_diagnoses.contains_any_of(prostate_icd)
-        ).exists_for_patient()
-    )
-).as_int()
-
 # Multimorbidity
 mlists = {
     "alcohol": alcohol_codelist,

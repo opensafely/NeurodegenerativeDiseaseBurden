@@ -106,7 +106,7 @@ def first_matching_tpp_between(codelist, start_date, end_date):
         clinical_events.where(clinical_events.snomedct_code.is_in(codelist))
         .where(clinical_events.date.is_on_or_between(start_date, end_date))
         .sort_by(clinical_events.date)
-        .first_for_patient()
+        .first_for_patient().date
     )
 
 def first_matching_apc_between(codelist, start_date, end_date, only_prim_diagnoses=False):
@@ -117,7 +117,7 @@ def first_matching_apc_between(codelist, start_date, end_date, only_prim_diagnos
         )
     else:
         query = query.where(apcs.all_diagnoses.contains_any_of(codelist))
-    return query.sort_by(apcs.admission_date).first_for_patient()
+    return query.sort_by(apcs.admission_date).first_for_patient().admission_date
 
 def first_matching_death_between(codelist, start_date, end_date):
     condition = (

@@ -183,15 +183,6 @@ def first_matching_apc_between(codelist, start_date, end_date, only_prim_diagnos
 
 # Function to obtain valid date of clinical event in death registry during time period
 
-# def first_matching_death_between(codelist, start_date, end_date):
-#     condition = (
-#         ons_deaths.cause_of_death_is_in(codelist)
-#         & ons_deaths.date.is_on_or_between(start_date, end_date)
-#     )
-#     return case(
-#         when(condition).then(ons_deaths.date)
-#     )
-
 def first_matching_death_between(codelist, start_date, end_date):
     raw_date = case(
         when(

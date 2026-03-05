@@ -7,6 +7,10 @@ library(glue)
 library(readr)
 library(dplyr)
 
+# Source functions ----
+
+source("analysis/fn-define_dates.R")
+
 # Specify defaults ----
 
 defaults_list <- list(
@@ -64,26 +68,26 @@ convert_comment_actions <- function(yaml.txt) {
 
 # Create function to generate study population ---------------------------------
 
-generate_dataset <- function(year) {
+generate_dataset <- function(start_date, end_date) {
   splice(
-    comment(glue("Generate dataset-{year}")),
+    comment(glue("Generate dataset-{start_date}_{end_date}")),
     action(
-      name = glue("generate_dataset-{year}"),
+      name = glue("generate_dataset-{start_date}_{end_date}"),
       run = glue(
-        "ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py --output output/dataset_definition/dataset-{year}.csv.gz -- --start_date {year}-01-01 --end_date {year}-12-31"
+        "ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py --output output/dataset_definition/dataset-{start_date}_{end_date}.csv.gz -- --start_date {start_date} --end_date {end_date}"
       ),
       highly_sensitive = list(
         dataset = glue(
-          "output/dataset_definition/dataset-{year}.csv.gz"
+          "output/dataset_definition/dataset-{start_date}_{end_date}.csv.gz"
         )
       )
     )
   )
 }
 
-# Define years ----
+# Define dates ----
 
-years <- seq(2020, 2023, 1)
+dates <- define_dates(start_year = 2020, end_year = 2023)
 
 # Make actions list ----
 
@@ -103,10 +107,11 @@ actions_list <- splice(
   splice(
     unlist(
       lapply(
-        years,
+        1:nrow(dates),
         function(x) {
           generate_dataset(
-            year = x
+            start_date = dates[x, ]$start_date,
+            end_date = dates[x, ]$end_date
           )
         }
       ),

@@ -9,6 +9,7 @@ from ehrql.tables.tpp import (
 )
 from codelists import *
 from variable_helper_functions import (
+    get_cms_on_date,
     get_latest_ethnicity,
     first_matching_tpp_between,
     first_matching_apc_between,
@@ -47,41 +48,8 @@ dataset.cov_cat_ethnicity = get_latest_ethnicity(
     start_date, ethnicity_codelist, grouping=16
 )
 
-## Camrbidge Multimorbidity Score (CMS)
-cms = clinical_events.exists_for_patient().as_int().as_float() * 0
-
-for codelist, weight in [
-   (alcohol_codelist, 0.65),
-   (anxiety_codelist, 0.05),
-   (af_codelist, 1.34),
-   (cancer_codelist, 1.53),
-   (ckd_codelist, 0.53),
-   (tissue_codelist, 0.43),
-   (copd_codelist, 1.46),
-   (chd_codelist, 0.49),
-   (dementia_codelist, 2.50),
-   (diabetes_codelist, 0.75),
-   (epilepsy_codelist, 0.92),
-   (hearloss_codelist, 0.09),
-   (hf_codelist, 1.18),
-   (bowel_codelist, 0.21),
-   (psychosis_codelist, 0.64),
-   (stroke_codelist, 0.80),
-   (athma_codelist, 0.19),
-   (hypertension_codelist, 0.08),
-   (constipation_codelist, 1.12),
-   (pain_codelist, 0.92),
-]:
-    cms += (
-        clinical_events.where(
-            clinical_events.snomedct_code.is_in(codelist)
-        ).where(
-            clinical_events.date.is_before(start_date)
-        ).exists_for_patient().as_int().as_float()
-        * weight
-    )
-
-dataset.cov_num_cms = cms
+## Cambridge Multimorbidity Score (CMS)
+dataset.cov_num_cms = get_cms_on_date(start_date)
 
 # Outcomes
 

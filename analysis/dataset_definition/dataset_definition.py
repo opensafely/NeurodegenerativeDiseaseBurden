@@ -3,9 +3,7 @@ from ehrql.tables.tpp import (
     patients,
     ons_deaths,
     practice_registrations,
-    clinical_events,
     addresses,
-    apcs,
 )
 from codelists import *
 from variable_helper_functions import (
@@ -13,7 +11,9 @@ from variable_helper_functions import (
     get_latest_ethnicity,
     first_matching_tpp_between,
     first_matching_apc_between,
-    first_matching_death_between
+    first_matching_death_between,
+    prevalent_tpp,
+    prevalent_apc,
 )
 
 # Create dataset
@@ -83,11 +83,7 @@ for name, codes in olists.items():
         )
         ### Identify prevalent cases
         prevalent.append(
-            clinical_events
-            .where(clinical_events.snomedct_code.is_in(codes["snomed"]))
-            .where(clinical_events.date.is_before(start_date))
-            .exists_for_patient()
-            .as_int()
+            prevalent_tpp(codes["snomed"], start_date)
         )
 
     if "icd" in codes:
@@ -98,11 +94,7 @@ for name, codes in olists.items():
         )
         ### Identify prevalent cases
         prevalent.append(
-            apcs
-            .where(apcs.all_diagnoses.contains_any_of(codes["icd"]))
-            .where(apcs.admission_date.is_before(start_date))
-            .exists_for_patient()
-            .as_int()
+            prevalent_apc(codes["icd"], start_date)
         )
         
         ## Death

@@ -199,6 +199,24 @@ def first_matching_tpp_between(codelist, start_date, end_date):
         .date
     )
 
+# Function to obtain indicator for prevalent clinical event in TPP
+
+def prevalent_tpp(codelist, date):
+    query = (
+        clinical_events
+        .where(clinical_events.snomedct_code.is_in(codelist))
+        .where(clinical_events.date.is_before(date))
+    )
+
+    valid_date = check_date_validity(clinical_events.date)
+
+    return (
+        query
+        .where(valid_date.is_not_null())
+        .exists_for_patient()
+        .as_int()
+    )
+
 # Function to obtain valid date of clinical event in SUS during time period
 
 def first_matching_apc_between(codelist, start_date, end_date, only_prim_diagnoses=False):
@@ -219,6 +237,25 @@ def first_matching_apc_between(codelist, start_date, end_date, only_prim_diagnos
         .sort_by(valid_date)
         .first_for_patient()
         .admission_date
+    )
+
+# Function to obtain indicator for prevalent clinical event in SUS
+
+def prevalent_apc(codelist, date):
+    query = apcs.where(
+        apcs.admission_date.is_on_or_before(date)
+    )
+
+    query = query.where(apcs.all_diagnoses.contains_any_of(codelist))
+
+    valid_date = check_date_validity(apcs.admission_date)
+
+    return (
+        query
+        .where(valid_date.is_not_null())
+        .sort_by(valid_date)
+        .exists_for_patient()
+        .as_int()
     )
 
 # Function to obtain valid date of clinical event in death registry during time period

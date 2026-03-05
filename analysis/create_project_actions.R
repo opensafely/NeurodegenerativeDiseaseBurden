@@ -68,17 +68,17 @@ convert_comment_actions <- function(yaml.txt) {
 
 # Create function to generate study population ---------------------------------
 
-generate_dataset <- function(start_date, end_date) {
+generate_dataset <- function(start_date, end_date, dataset_name) {
   splice(
-    comment(glue("Generate dataset-{start_date}_{end_date}")),
+    comment(glue("Generate dataset-{dataset_name}")),
     action(
-      name = glue("generate_dataset-{start_date}_{end_date}"),
+      name = glue("generate_dataset-{dataset_name}"),
       run = glue(
-        "ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py --output output/dataset_definition/dataset-{start_date}_{end_date}.csv.gz -- --start_date {start_date} --end_date {end_date}"
+        "ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py --output output/dataset_definition/dataset-{dataset_name}.csv.gz -- --start_date {start_date} --end_date {end_date}"
       ),
       highly_sensitive = list(
         dataset = glue(
-          "output/dataset_definition/dataset-{start_date}_{end_date}.csv.gz"
+          "output/dataset_definition/dataset-{dataset_name}.csv.gz"
         )
       )
     )
@@ -111,7 +111,8 @@ actions_list <- splice(
         function(x) {
           generate_dataset(
             start_date = dates[x, ]$start_date,
-            end_date = dates[x, ]$end_date
+            end_date = dates[x, ]$end_date,
+            dataset_name = dates[x, ]$dataset_name
           )
         }
       ),

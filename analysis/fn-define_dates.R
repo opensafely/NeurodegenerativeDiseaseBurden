@@ -23,9 +23,12 @@ define_dates <- function(start_year = 2020, end_year = 2023) {
     end_date = c(year_end, month_end)
   )
 
-  # Format as YYYYMMDD
-  dates$start_date <- format(dates$start_date, "%Y%m%d")
-  dates$end_date <- format(dates$end_date, "%Y%m%d")
+  # Add dataset name
+  dates$dataset_name <- paste0(
+    format(dates$start_date, "%Y%m%d"),
+    "_",
+    format(dates$end_date, "%Y%m%d")
+  )
 
   return(dates)
 }

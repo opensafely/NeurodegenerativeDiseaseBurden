@@ -131,7 +131,7 @@ for name, codes in olists.items():
         ### Identify prevalent cases
         prevalent.append(
             apcs
-            .where(apcs.primary_diagnosis.is_in(codes["icd"]))
+            .where(apcs.all_diagnoses.contains_any_of(codes["icd"]))
             .where(apcs.admission_date.is_before(start_date))
             .exists_for_patient()
             .as_int()

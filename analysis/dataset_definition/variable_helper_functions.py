@@ -41,10 +41,7 @@ def check_date_validity(
 
 # Function to obtain Cambridge multimorbidity score
 
-def get_cms_on_date(
-        date
-):
-    
+def get_cms_on_date(date):
     cms = clinical_events.exists_for_patient().as_int().as_float() * 0
 
     for codelist, weight in [
@@ -85,9 +82,7 @@ def get_cms_on_date(
 
 # Function to obtain last recorded ethnicity in TPP or SUS
 
-def get_latest_ethnicity(
-        index_date, codelist, grouping=6
-    ):
+def get_latest_ethnicity(index_date, codelist, grouping=6):   
         latest_ethnicity_from_codes_category_num = (
             clinical_events.where(clinical_events.snomedct_code.is_in(codelist))
             .where(clinical_events.date.is_on_or_before(index_date))

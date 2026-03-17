@@ -142,8 +142,9 @@ for name, codes in olists.items():
             f"pnumer_bin_{name}",
             case(
                 when((tmp_pnumer_bin_mid==1) & 
-                     (death_date>=mid_date | death_date.is_null()) & 
-                     (practice_registrations.exists_for_patient_on(mid_date))).then(1),
+                     ((death_date>=mid_date) | (death_date.is_null())) & 
+                     (practice_registrations.exists_for_patient_on(mid_date))
+                    ).then(1),
                 otherwise=0
                 )
             )

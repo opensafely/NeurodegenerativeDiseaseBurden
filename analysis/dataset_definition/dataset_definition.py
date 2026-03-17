@@ -15,6 +15,7 @@ from variable_helper_functions import (
     prevalent_tpp,
     prevalent_apc,
 )
+from datetime import date
 
 # Create dataset
 dataset = create_dataset()
@@ -22,12 +23,21 @@ dataset = create_dataset()
 # Configure dummy data
 dataset.configure_dummy_data(population_size=10000)
 
-# Specify start and end dates
+# Specify start, end and mid dates
 start_date = get_parameter(name="start_date")
 end_date = get_parameter(name="end_date")
 death_date = minimum_of(patients.date_of_death, ons_deaths.date)
 pat_end_date = minimum_of(end_date, death_date, practice_registrations.for_patient_on(start_date).end_date) 
 
+d1 = date.fromisoformat(start_date)
+d2 = date.fromisoformat(end_date)
+if d1.month != d2.month:
+    mid_date = f'{d1.year}-06-30'
+    mid_date_prev = f'{d1.year}-07-01'
+else:
+    mid_date = f'{d1.year}-{d1.month:02d}-15'
+    mid_date_prev = f'{d1.year}-{d1.month:02d}-16'
+    
 # Covariates 
 
 ## Age
@@ -74,7 +84,8 @@ olists = {
 for name, codes in olists.items():
 
     incident = []
-    prevalent = []
+    prevalent_start = []
+    prevalent_mid = []
 
     if "snomed" in codes:
         ## Primary care
@@ -83,8 +94,13 @@ for name, codes in olists.items():
             first_matching_tpp_between(codes["snomed"], start_date, end_date, death_date)
         )
         ### Identify prevalent cases
-        prevalent.append(
+
+        prevalent_start.append(
             prevalent_tpp(codes["snomed"], start_date, death_date)
+        )
+
+        prevalent_mid.append(
+            prevalent_tpp(codes["snomed"], mid_date_prev, death_date)
         )
 
     if "icd" in codes:
@@ -94,9 +110,14 @@ for name, codes in olists.items():
             first_matching_apc_between(codes["icd"], start_date, end_date, death_date, only_prim_diagnoses=False)
         )
         ### Identify prevalent cases
-        prevalent.append(
+
+        prevalent_start.append(
             prevalent_apc(codes["icd"], start_date, death_date)
         )
+
+        prevalent_mid.append(
+            prevalent_tpp(codes["icd"], mid_date_prev, death_date)
+        )         
         
         ## Death
         ### First record in year
@@ -104,18 +125,29 @@ for name, codes in olists.items():
             first_matching_death_between(codes["icd"], start_date, end_date, death_date)
         )
 
-    # Prevalance numerator
-    if len(prevalent) == 1:
-        tmp_pnumer_bin = prevalent[0]
-    elif len(prevalent) > 1:
-        tmp_pnumer_bin = maximum_of(*prevalent)
-
-    setattr(
-            dataset,
-            f"pnumer_bin_{name}",
-            tmp_pnumer_bin
-    )
+    # Prevalance at start date
+    if len(prevalent_start) == 1:
+        tmp_pnumer_bin_start = prevalent_start[0]
+    elif len(prevalent_start) > 1:
+        tmp_pnumer_bin_start = maximum_of(*prevalent_start)
     
+    # Prevalence at mid date
+    if len(prevalent_mid) == 1:
+        tmp_pnumer_bin_mid = prevalent_mid[0]
+    elif len(prevalent_mid) > 1:
+        tmp_pnumer_bin_mid = maximum_of(*prevalent_mid)
+
+    # Prevalence numerator
+    setattr(dataset,
+            f"pnumer_bin_{name}",
+            case(
+                when((tmp_pnumer_bin_mid==1) & 
+                     (death_date>=mid_date | death_date.is_null()) & 
+                     (practice_registrations.exists_for_patient_on(mid_date))).then(1),
+                otherwise=0
+                )
+            )
+       
     # Incidence numerator
     if len(incident) == 1:
         tmp_incident_date = incident[0]
@@ -126,7 +158,7 @@ for name, codes in olists.items():
         dataset,
         f"inumer_bin_{name}",
         case(
-            when(getattr(dataset, f"pnumer_bin_{name}") == 1).then(0),
+            when(tmp_pnumer_bin_start == 1).then(0),
             otherwise=tmp_incident_date.is_not_null().as_int(),
         )
     )
@@ -138,10 +170,37 @@ for name, codes in olists.items():
         f"idenom_num_{name}",
         maximum_of(0,(tmp_idenom_num - start_date).days)
     )
+
+    # Case fatality numerator
+    setattr(
+        dataset,
+        f"fnumer_bin_1y_{name}",
+        case(when((getattr(dataset,f"inumer_bin_{name}")==1) & 
+                  ((death_date - tmp_incident_date).years <=1) &
+                  (practice_registrations.exists_for_patient_on(death_date))
+                ).then(1),
+             otherwise=0
+            )
+        )
+    
+    setattr(
+        dataset,
+        f"fnumer_bin_5y_{name}",
+        case(when((getattr(dataset,f"inumer_bin_{name}")==1) & 
+                  ((death_date - tmp_incident_date).years <=5) &
+                  (practice_registrations.exists_for_patient_on(death_date))
+                ).then(1),
+             otherwise=0
+            )
+        )
             
-# Prevalence denominator
-dataset.pdenom_num = maximum_of(0,(pat_end_date - start_date).days)
+# Prevalence denominator - population at mid date
+dataset.pdenom_bin_mid = case(when(((death_date>=mid_date) | (death_date.is_null())) &
+                                   (practice_registrations.exists_for_patient_on(mid_date))
+                                  ).then(1), 
+                              otherwise=0           
+                            )
 
 # Define population
-population = patients.is_alive_on(start_date) & (practice_registrations.for_patient_on(start_date).exists_for_patient()) & (dataset.cov_num_age <= 110) & (dataset.cov_num_age >= 18)
+population = ((death_date>=start_date)|(death_date.is_null())) & (practice_registrations.exists_for_patient_on(start_date)) & (dataset.cov_num_age <= 110) & (dataset.cov_num_age >= 18)
 dataset.define_population(population)

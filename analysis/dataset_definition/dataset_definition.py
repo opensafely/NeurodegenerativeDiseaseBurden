@@ -116,7 +116,7 @@ for name, codes in olists.items():
         )
 
         prevalent_mid.append(
-            prevalent_tpp(codes["icd"], mid_date_prev, death_date)
+            prevalent_apc(codes["icd"], mid_date_prev, death_date)
         )         
         
         ## Death

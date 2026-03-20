@@ -46,7 +46,7 @@ def get_cms_on_date(date):
 
     for codelist, weight in [
     (alcohol_codelist, 0.65),
-    (anxiety_codelist, 0.05),
+    (anxiety_codelist, 0.50),
     (af_codelist, 1.34),
     (cancer_codelist, 1.53),
     (ckd_codelist, 0.53),

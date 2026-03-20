@@ -243,7 +243,7 @@ def first_matching_apc_between(codelist, start_date, end_date, only_prim_diagnos
 
 def prevalent_apc(codelist, date):
     query = apcs.where(
-        apcs.admission_date.is_on_or_before(date)
+        apcs.admission_date.is_before(date)
     )
 
     query = query.where(apcs.all_diagnoses.contains_any_of(codelist))
@@ -253,7 +253,6 @@ def prevalent_apc(codelist, date):
     return (
         query
         .where(valid_date.is_not_null())
-        .sort_by(valid_date)
         .exists_for_patient()
         .as_int()
     )

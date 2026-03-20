@@ -25,7 +25,8 @@ dataset.configure_dummy_data(population_size=10000)
 # Specify start and end dates
 start_date = get_parameter(name="start_date")
 end_date = get_parameter(name="end_date")
-pat_end_date = minimum_of(end_date, patients.date_of_death, ons_deaths.date, practice_registrations.for_patient_on(start_date).end_date) 
+death_date = minimum_of(patients.date_of_death, ons_deaths.date)
+pat_end_date = minimum_of(end_date, death_date, practice_registrations.for_patient_on(start_date).end_date) 
 
 # Covariates 
 
@@ -49,7 +50,7 @@ dataset.cov_cat_ethnicity = get_latest_ethnicity(
 )
 
 ## Cambridge Multimorbidity Score (CMS)
-dataset.cov_num_cms = get_cms_on_date(start_date)
+dataset.cov_num_cms = get_cms_on_date(start_date, death_date)
 
 # Outcomes
 
@@ -79,28 +80,28 @@ for name, codes in olists.items():
         ## Primary care
         ### First record in year
         incident.append(
-            first_matching_tpp_between(codes["snomed"], start_date, end_date)
+            first_matching_tpp_between(codes["snomed"], start_date, end_date, death_date)
         )
         ### Identify prevalent cases
         prevalent.append(
-            prevalent_tpp(codes["snomed"], start_date)
+            prevalent_tpp(codes["snomed"], start_date, death_date)
         )
 
     if "icd" in codes:
         ## Secondary care
         ### First record in year
         incident.append(
-            first_matching_apc_between(codes["icd"], start_date, end_date, only_prim_diagnoses=False)
+            first_matching_apc_between(codes["icd"], start_date, end_date, death_date, only_prim_diagnoses=False)
         )
         ### Identify prevalent cases
         prevalent.append(
-            prevalent_apc(codes["icd"], start_date)
+            prevalent_apc(codes["icd"], start_date, death_date)
         )
         
         ## Death
         ### First record in year
         incident.append(
-            first_matching_death_between(codes["icd"], start_date, end_date)
+            first_matching_death_between(codes["icd"], start_date, end_date, death_date)
         )
 
     # Prevalance numerator

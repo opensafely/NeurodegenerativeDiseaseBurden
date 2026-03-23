@@ -160,7 +160,8 @@ for name, codes in olists.items():
         f"inumer_bin_{name}",
         case(
             when(tmp_pnumer_bin_start == 1).then(0),
-            otherwise=tmp_incident_date.is_not_null().as_int(),
+            when(practice_registrations.exists_for_patient_on(tmp_incident_date)).then(1),
+            otherwise=0,
         )
     )
 

@@ -103,7 +103,7 @@ stroke_codelist = codelist_from_csv(
     column="code"
 )
 
-athma_codelist = codelist_from_csv(
+asthma_codelist = codelist_from_csv(
     "codelists/nhsd-primary-care-domain-refsets-ast_cod.csv",
     column="code"
 )

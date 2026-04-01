@@ -42,44 +42,58 @@ def check_date_validity(
 
 # Function to obtain Cambridge multimorbidity score
 
-def get_cms_on_date(date, death_date):
-    cms = clinical_events.exists_for_patient().as_int().as_float() * 0
+def get_cms_on_date(date, death_date, return_components=False):
 
-    for codelist, weight in [
-    (alcohol_codelist, 0.65),
-    (anxiety_codelist, 0.50),
-    (af_codelist, 1.34),
-    (cancer_codelist, 1.53),
-    (ckd_codelist, 0.53),
-    (tissue_codelist, 0.43),
-    (copd_codelist, 1.46),
-    (chd_codelist, 0.49),
-    (dementia_codelist, 2.50),
-    (diabetes_codelist, 0.75),
-    (epilepsy_codelist, 0.92),
-    (hearloss_codelist, 0.09),
-    (hf_codelist, 1.18),
-    (bowel_codelist, 0.21),
-    (psychosis_codelist, 0.64),
-    (stroke_codelist, 0.80),
-    (athma_codelist, 0.19),
-    (hypertension_codelist, 0.08),
-    (constipation_codelist, 1.12),
-    (pain_codelist, 0.92),
+    cms = clinical_events.exists_for_patient().as_int().as_float() * 0
+    components = {}
+
+    for name, codelist, weight in [
+        ("alcohol", alcohol_codelist, 0.65),
+        ("anxiety", anxiety_codelist, 0.50),
+        ("af", af_codelist, 1.34),
+        ("cancer", cancer_codelist, 1.53),
+        ("ckd", ckd_codelist, 0.53),
+        ("tissue", tissue_codelist, 0.43),
+        ("copd", copd_codelist, 1.46),
+        ("chd", chd_codelist, 0.49),
+        ("dementia", dementia_codelist, 2.50),
+        ("diabetes", diabetes_codelist, 0.75),
+        ("epilepsy", epilepsy_codelist, 0.92),
+        ("hearing_loss", hearloss_codelist, 0.09),
+        ("hf", hf_codelist, 1.18),
+        ("bowel", bowel_codelist, 0.21),
+        ("psychosis", psychosis_codelist, 0.64),
+        ("stroke", stroke_codelist, 0.80),
+        ("asthma", asthma_codelist, 0.19),
+        ("hypertension", hypertension_codelist, 0.08),
+        ("constipation", constipation_codelist, 1.12),
+        ("pain", pain_codelist, 0.92),
     ]:
+
         filtered = clinical_events.where(
             clinical_events.snomedct_code.is_in(codelist)
         ).where(
             clinical_events.date.is_before(date)
         )
-        cms += (
+
+        binary = (
             filtered.where(
                 check_date_validity(filtered.date, death_date=death_date).is_not_null()
-            ).exists_for_patient().as_int().as_float()
-            * weight
+            )
+            .exists_for_patient()
+            .as_int()
         )
 
-    return(cms)
+        cms += binary.as_float() * weight
+
+        if return_components:
+            components[name] = binary
+
+    if return_components:
+        components["cms"] = cms
+        return components
+
+    return cms
 
 # Function to obtain last recorded ethnicity in TPP or SUS
 

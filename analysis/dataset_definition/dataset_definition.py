@@ -50,7 +50,29 @@ dataset.cov_cat_ethnicity = get_latest_ethnicity(
 )
 
 ## Cambridge Multimorbidity Score (CMS)
-dataset.cov_num_cms = get_cms_on_date(start_date, death_date)
+cms_parts = get_cms_on_date(start_date, death_date, return_components=True)
+
+dataset.cov_num_cms = cms_parts["cms"]
+dataset.cov_bin_cms_alcohol = cms_parts["alcohol"]
+dataset.cov_bin_cms_anxiety = cms_parts["anxiety"]
+dataset.cov_bin_cms_af = cms_parts["af"]
+dataset.cov_bin_cms_cancer = cms_parts["cancer"]
+dataset.cov_bin_cms_ckd = cms_parts["ckd"]
+dataset.cov_bin_cms_tissue = cms_parts["tissue"]
+dataset.cov_bin_cms_copd = cms_parts["copd"]
+dataset.cov_bin_cms_chd = cms_parts["chd"]
+dataset.cov_bin_cms_dementia = cms_parts["dementia"]
+dataset.cov_bin_cms_diabetes = cms_parts["diabetes"]
+dataset.cov_bin_cms_epilepsy = cms_parts["epilepsy"]
+dataset.cov_bin_cms_hearing_loss = cms_parts["hearing_loss"]
+dataset.cov_bin_cms_hf = cms_parts["hf"]
+dataset.cov_bin_cms_bowel = cms_parts["bowel"]
+dataset.cov_bin_cms_psychosis = cms_parts["psychosis"]
+dataset.cov_bin_cms_stroke = cms_parts["stroke"]
+dataset.cov_bin_cms_asthma = cms_parts["asthma"]
+dataset.cov_bin_cms_hypertension = cms_parts["hypertension"]
+dataset.cov_bin_cms_constipation = cms_parts["constipation"]
+dataset.cov_bin_cms_pain = cms_parts["pain"]
 
 # Outcomes
 

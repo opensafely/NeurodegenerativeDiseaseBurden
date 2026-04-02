@@ -2,8 +2,528 @@ version: '4.0'
 
 actions:
 
-  generate_dataset:
-    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_2020.py --output output/dataset.csv.gz
+  ## # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  ## DO NOT EDIT project.yaml DIRECTLY 
+  ## This file is created by create_project_actions.R 
+  ## Edit and run create_project_actions.R to update the project.yaml 
+  ## # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  ## Generate dataset-20200101_20201231 
+
+  generate_dataset-20200101_20201231:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200101_20201231.csv.gz -- --start_date
+      2020-01-01 --end_date 2020-12-31
     outputs:
       highly_sensitive:
-        dataset: output/dataset.csv.gz
+        dataset: output/dataset_definition/dataset-20200101_20201231.csv.gz
+
+  ## Generate dataset-20210101_20211231 
+
+  generate_dataset-20210101_20211231:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210101_20211231.csv.gz -- --start_date
+      2021-01-01 --end_date 2021-12-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210101_20211231.csv.gz
+
+  ## Generate dataset-20220101_20221231 
+
+  generate_dataset-20220101_20221231:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220101_20221231.csv.gz -- --start_date
+      2022-01-01 --end_date 2022-12-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220101_20221231.csv.gz
+
+  ## Generate dataset-20230101_20231231 
+
+  generate_dataset-20230101_20231231:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230101_20231231.csv.gz -- --start_date
+      2023-01-01 --end_date 2023-12-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230101_20231231.csv.gz
+
+  ## Generate dataset-20200101_20200131 
+
+  generate_dataset-20200101_20200131:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200101_20200131.csv.gz -- --start_date
+      2020-01-01 --end_date 2020-01-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20200101_20200131.csv.gz
+
+  ## Generate dataset-20200201_20200229 
+
+  generate_dataset-20200201_20200229:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200201_20200229.csv.gz -- --start_date
+      2020-02-01 --end_date 2020-02-29
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20200201_20200229.csv.gz
+
+  ## Generate dataset-20200301_20200331 
+
+  generate_dataset-20200301_20200331:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200301_20200331.csv.gz -- --start_date
+      2020-03-01 --end_date 2020-03-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20200301_20200331.csv.gz
+
+  ## Generate dataset-20200401_20200430 
+
+  generate_dataset-20200401_20200430:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200401_20200430.csv.gz -- --start_date
+      2020-04-01 --end_date 2020-04-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20200401_20200430.csv.gz
+
+  ## Generate dataset-20200501_20200531 
+
+  generate_dataset-20200501_20200531:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200501_20200531.csv.gz -- --start_date
+      2020-05-01 --end_date 2020-05-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20200501_20200531.csv.gz
+
+  ## Generate dataset-20200601_20200630 
+
+  generate_dataset-20200601_20200630:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200601_20200630.csv.gz -- --start_date
+      2020-06-01 --end_date 2020-06-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20200601_20200630.csv.gz
+
+  ## Generate dataset-20200701_20200731 
+
+  generate_dataset-20200701_20200731:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200701_20200731.csv.gz -- --start_date
+      2020-07-01 --end_date 2020-07-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20200701_20200731.csv.gz
+
+  ## Generate dataset-20200801_20200831 
+
+  generate_dataset-20200801_20200831:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200801_20200831.csv.gz -- --start_date
+      2020-08-01 --end_date 2020-08-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20200801_20200831.csv.gz
+
+  ## Generate dataset-20200901_20200930 
+
+  generate_dataset-20200901_20200930:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20200901_20200930.csv.gz -- --start_date
+      2020-09-01 --end_date 2020-09-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20200901_20200930.csv.gz
+
+  ## Generate dataset-20201001_20201031 
+
+  generate_dataset-20201001_20201031:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20201001_20201031.csv.gz -- --start_date
+      2020-10-01 --end_date 2020-10-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20201001_20201031.csv.gz
+
+  ## Generate dataset-20201101_20201130 
+
+  generate_dataset-20201101_20201130:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20201101_20201130.csv.gz -- --start_date
+      2020-11-01 --end_date 2020-11-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20201101_20201130.csv.gz
+
+  ## Generate dataset-20201201_20201231 
+
+  generate_dataset-20201201_20201231:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20201201_20201231.csv.gz -- --start_date
+      2020-12-01 --end_date 2020-12-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20201201_20201231.csv.gz
+
+  ## Generate dataset-20210101_20210131 
+
+  generate_dataset-20210101_20210131:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210101_20210131.csv.gz -- --start_date
+      2021-01-01 --end_date 2021-01-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210101_20210131.csv.gz
+
+  ## Generate dataset-20210201_20210228 
+
+  generate_dataset-20210201_20210228:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210201_20210228.csv.gz -- --start_date
+      2021-02-01 --end_date 2021-02-28
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210201_20210228.csv.gz
+
+  ## Generate dataset-20210301_20210331 
+
+  generate_dataset-20210301_20210331:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210301_20210331.csv.gz -- --start_date
+      2021-03-01 --end_date 2021-03-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210301_20210331.csv.gz
+
+  ## Generate dataset-20210401_20210430 
+
+  generate_dataset-20210401_20210430:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210401_20210430.csv.gz -- --start_date
+      2021-04-01 --end_date 2021-04-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210401_20210430.csv.gz
+
+  ## Generate dataset-20210501_20210531 
+
+  generate_dataset-20210501_20210531:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210501_20210531.csv.gz -- --start_date
+      2021-05-01 --end_date 2021-05-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210501_20210531.csv.gz
+
+  ## Generate dataset-20210601_20210630 
+
+  generate_dataset-20210601_20210630:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210601_20210630.csv.gz -- --start_date
+      2021-06-01 --end_date 2021-06-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210601_20210630.csv.gz
+
+  ## Generate dataset-20210701_20210731 
+
+  generate_dataset-20210701_20210731:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210701_20210731.csv.gz -- --start_date
+      2021-07-01 --end_date 2021-07-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210701_20210731.csv.gz
+
+  ## Generate dataset-20210801_20210831 
+
+  generate_dataset-20210801_20210831:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210801_20210831.csv.gz -- --start_date
+      2021-08-01 --end_date 2021-08-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210801_20210831.csv.gz
+
+  ## Generate dataset-20210901_20210930 
+
+  generate_dataset-20210901_20210930:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20210901_20210930.csv.gz -- --start_date
+      2021-09-01 --end_date 2021-09-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20210901_20210930.csv.gz
+
+  ## Generate dataset-20211001_20211031 
+
+  generate_dataset-20211001_20211031:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20211001_20211031.csv.gz -- --start_date
+      2021-10-01 --end_date 2021-10-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20211001_20211031.csv.gz
+
+  ## Generate dataset-20211101_20211130 
+
+  generate_dataset-20211101_20211130:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20211101_20211130.csv.gz -- --start_date
+      2021-11-01 --end_date 2021-11-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20211101_20211130.csv.gz
+
+  ## Generate dataset-20211201_20211231 
+
+  generate_dataset-20211201_20211231:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20211201_20211231.csv.gz -- --start_date
+      2021-12-01 --end_date 2021-12-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20211201_20211231.csv.gz
+
+  ## Generate dataset-20220101_20220131 
+
+  generate_dataset-20220101_20220131:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220101_20220131.csv.gz -- --start_date
+      2022-01-01 --end_date 2022-01-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220101_20220131.csv.gz
+
+  ## Generate dataset-20220201_20220228 
+
+  generate_dataset-20220201_20220228:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220201_20220228.csv.gz -- --start_date
+      2022-02-01 --end_date 2022-02-28
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220201_20220228.csv.gz
+
+  ## Generate dataset-20220301_20220331 
+
+  generate_dataset-20220301_20220331:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220301_20220331.csv.gz -- --start_date
+      2022-03-01 --end_date 2022-03-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220301_20220331.csv.gz
+
+  ## Generate dataset-20220401_20220430 
+
+  generate_dataset-20220401_20220430:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220401_20220430.csv.gz -- --start_date
+      2022-04-01 --end_date 2022-04-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220401_20220430.csv.gz
+
+  ## Generate dataset-20220501_20220531 
+
+  generate_dataset-20220501_20220531:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220501_20220531.csv.gz -- --start_date
+      2022-05-01 --end_date 2022-05-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220501_20220531.csv.gz
+
+  ## Generate dataset-20220601_20220630 
+
+  generate_dataset-20220601_20220630:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220601_20220630.csv.gz -- --start_date
+      2022-06-01 --end_date 2022-06-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220601_20220630.csv.gz
+
+  ## Generate dataset-20220701_20220731 
+
+  generate_dataset-20220701_20220731:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220701_20220731.csv.gz -- --start_date
+      2022-07-01 --end_date 2022-07-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220701_20220731.csv.gz
+
+  ## Generate dataset-20220801_20220831 
+
+  generate_dataset-20220801_20220831:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220801_20220831.csv.gz -- --start_date
+      2022-08-01 --end_date 2022-08-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220801_20220831.csv.gz
+
+  ## Generate dataset-20220901_20220930 
+
+  generate_dataset-20220901_20220930:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20220901_20220930.csv.gz -- --start_date
+      2022-09-01 --end_date 2022-09-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20220901_20220930.csv.gz
+
+  ## Generate dataset-20221001_20221031 
+
+  generate_dataset-20221001_20221031:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20221001_20221031.csv.gz -- --start_date
+      2022-10-01 --end_date 2022-10-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20221001_20221031.csv.gz
+
+  ## Generate dataset-20221101_20221130 
+
+  generate_dataset-20221101_20221130:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20221101_20221130.csv.gz -- --start_date
+      2022-11-01 --end_date 2022-11-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20221101_20221130.csv.gz
+
+  ## Generate dataset-20221201_20221231 
+
+  generate_dataset-20221201_20221231:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20221201_20221231.csv.gz -- --start_date
+      2022-12-01 --end_date 2022-12-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20221201_20221231.csv.gz
+
+  ## Generate dataset-20230101_20230131 
+
+  generate_dataset-20230101_20230131:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230101_20230131.csv.gz -- --start_date
+      2023-01-01 --end_date 2023-01-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230101_20230131.csv.gz
+
+  ## Generate dataset-20230201_20230228 
+
+  generate_dataset-20230201_20230228:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230201_20230228.csv.gz -- --start_date
+      2023-02-01 --end_date 2023-02-28
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230201_20230228.csv.gz
+
+  ## Generate dataset-20230301_20230331 
+
+  generate_dataset-20230301_20230331:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230301_20230331.csv.gz -- --start_date
+      2023-03-01 --end_date 2023-03-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230301_20230331.csv.gz
+
+  ## Generate dataset-20230401_20230430 
+
+  generate_dataset-20230401_20230430:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230401_20230430.csv.gz -- --start_date
+      2023-04-01 --end_date 2023-04-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230401_20230430.csv.gz
+
+  ## Generate dataset-20230501_20230531 
+
+  generate_dataset-20230501_20230531:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230501_20230531.csv.gz -- --start_date
+      2023-05-01 --end_date 2023-05-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230501_20230531.csv.gz
+
+  ## Generate dataset-20230601_20230630 
+
+  generate_dataset-20230601_20230630:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230601_20230630.csv.gz -- --start_date
+      2023-06-01 --end_date 2023-06-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230601_20230630.csv.gz
+
+  ## Generate dataset-20230701_20230731 
+
+  generate_dataset-20230701_20230731:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230701_20230731.csv.gz -- --start_date
+      2023-07-01 --end_date 2023-07-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230701_20230731.csv.gz
+
+  ## Generate dataset-20230801_20230831 
+
+  generate_dataset-20230801_20230831:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230801_20230831.csv.gz -- --start_date
+      2023-08-01 --end_date 2023-08-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230801_20230831.csv.gz
+
+  ## Generate dataset-20230901_20230930 
+
+  generate_dataset-20230901_20230930:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20230901_20230930.csv.gz -- --start_date
+      2023-09-01 --end_date 2023-09-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20230901_20230930.csv.gz
+
+  ## Generate dataset-20231001_20231031 
+
+  generate_dataset-20231001_20231031:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20231001_20231031.csv.gz -- --start_date
+      2023-10-01 --end_date 2023-10-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20231001_20231031.csv.gz
+
+  ## Generate dataset-20231101_20231130 
+
+  generate_dataset-20231101_20231130:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20231101_20231130.csv.gz -- --start_date
+      2023-11-01 --end_date 2023-11-30
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20231101_20231130.csv.gz
+
+  ## Generate dataset-20231201_20231231 
+
+  generate_dataset-20231201_20231231:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition.py
+      --output output/dataset_definition/dataset-20231201_20231231.csv.gz -- --start_date
+      2023-12-01 --end_date 2023-12-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-20231201_20231231.csv.gz
+

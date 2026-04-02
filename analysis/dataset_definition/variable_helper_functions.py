@@ -1,9 +1,103 @@
 from ehrql import case, when
-from ehrql.tables.tpp import clinical_events, ethnicity_from_sus, patients, ons_deaths 
+from ehrql.tables.tpp import patients, clinical_events, ethnicity_from_sus, apcs, ons_deaths 
+from codelists import *
 
-def get_latest_ethnicity(
-        index_date, codelist, grouping=6
-    ):
+# Function to check dates are valid (i.e., not before or after death)
+
+def check_date_validity(
+    date_to_check,
+    death_date,
+    check_not_before_dob=True,
+    check_not_after_death=True
+):
+
+    conditions = []
+
+    ## Base requirement: must not be null
+    conditions.append(date_to_check.is_not_null())
+
+    ## Check not before DOB
+    if check_not_before_dob:
+        conditions.append(
+            patients.date_of_birth.is_null()
+            | (date_to_check >= patients.date_of_birth)
+        )
+
+    ## Check not after death
+    if check_not_after_death:
+        conditions.append(
+            death_date.is_null()
+            | (date_to_check <= death_date)
+        )
+
+    ## Combine all validity conditions
+    is_valid = conditions[0]
+    for cond in conditions[1:]:
+        is_valid = is_valid & cond
+
+    return case(
+        when(is_valid).then(date_to_check),
+        otherwise=None
+    )
+
+# Function to obtain Cambridge multimorbidity score
+
+def get_cms_on_date(date, death_date, return_components=False):
+
+    cms = clinical_events.exists_for_patient().as_int().as_float() * 0
+    components = {}
+
+    for name, codelist, weight in [
+        ("alcohol", alcohol_codelist, 0.65),
+        ("anxiety", anxiety_codelist, 0.50),
+        ("af", af_codelist, 1.34),
+        ("cancer", cancer_codelist, 1.53),
+        ("ckd", ckd_codelist, 0.53),
+        ("tissue", tissue_codelist, 0.43),
+        ("copd", copd_codelist, 1.46),
+        ("chd", chd_codelist, 0.49),
+        ("dementia", dementia_codelist, 2.50),
+        ("diabetes", diabetes_codelist, 0.75),
+        ("epilepsy", epilepsy_codelist, 0.92),
+        ("hearing_loss", hearloss_codelist, 0.09),
+        ("hf", hf_codelist, 1.18),
+        ("bowel", bowel_codelist, 0.21),
+        ("psychosis", psychosis_codelist, 0.64),
+        ("stroke", stroke_codelist, 0.80),
+        ("asthma", asthma_codelist, 0.19),
+        ("hypertension", hypertension_codelist, 0.08),
+        ("constipation", constipation_codelist, 1.12),
+        ("pain", pain_codelist, 0.92),
+    ]:
+
+        filtered = clinical_events.where(
+            clinical_events.snomedct_code.is_in(codelist)
+        ).where(
+            clinical_events.date.is_before(date)
+        )
+
+        binary = (
+            filtered.where(
+                check_date_validity(filtered.date, death_date=death_date).is_not_null()
+            )
+            .exists_for_patient()
+            .as_int()
+        )
+
+        cms += binary.as_float() * weight
+
+        if return_components:
+            components[name] = binary
+
+    if return_components:
+        components["cms"] = cms
+        return components
+
+    return cms
+
+# Function to obtain last recorded ethnicity in TPP or SUS
+
+def get_latest_ethnicity(index_date, codelist, grouping=6):   
         latest_ethnicity_from_codes_category_num = (
             clinical_events.where(clinical_events.snomedct_code.is_in(codelist))
             .where(clinical_events.date.is_on_or_before(index_date))
@@ -101,12 +195,95 @@ def get_latest_ethnicity(
 
         return ethnicity_combined
 
-def check_date_validity(date_to_check):
-    date_corrected = case(when((date_to_check.is_not_null()) & (patients.date_of_birth.is_not_null()) & (
-                               date_to_check < patients.date_of_birth)).then(None),
-                        when((date_to_check.is_not_null()) & 
-                             (ons_deaths.date.is_not_null()) & 
-                             (date_to_check > ons_deaths.date)).then(None),
-                        otherwise=date_to_check
+# Function to obtain valid date of clinical event in TPP during time period
+
+def first_matching_tpp_between(codelist, start_date, end_date, death_date):
+    query = (
+        clinical_events
+        .where(clinical_events.snomedct_code.is_in(codelist))
+        .where(clinical_events.date.is_on_or_between(start_date, end_date))
     )
-    return date_corrected
+
+    valid_date = check_date_validity(clinical_events.date, death_date=death_date)
+
+    return (
+        query
+        .where(valid_date.is_not_null())
+        .sort_by(valid_date)
+        .first_for_patient()
+        .date
+    )
+
+# Function to obtain indicator for prevalent clinical event in TPP
+
+def prevalent_tpp(codelist, date, death_date):
+    query = (
+        clinical_events
+        .where(clinical_events.snomedct_code.is_in(codelist))
+        .where(clinical_events.date.is_before(date))
+    )
+
+    valid_date = check_date_validity(clinical_events.date, death_date=death_date)
+
+    return (
+        query
+        .where(valid_date.is_not_null())
+        .exists_for_patient()
+        .as_int()
+    )
+
+# Function to obtain valid date of clinical event in SUS during time period
+
+def first_matching_apc_between(codelist, start_date, end_date, death_date, only_prim_diagnoses=False):
+    query = apcs.where(
+        apcs.admission_date.is_on_or_between(start_date, end_date)
+    )
+
+    if only_prim_diagnoses:
+        query = query.where(apcs.primary_diagnosis.is_in(codelist))
+    else:
+        query = query.where(apcs.all_diagnoses.contains_any_of(codelist))
+
+    valid_date = check_date_validity(apcs.admission_date, death_date=death_date)
+
+    return (
+        query
+        .where(valid_date.is_not_null())
+        .sort_by(valid_date)
+        .first_for_patient()
+        .admission_date
+    )
+
+# Function to obtain indicator for prevalent clinical event in SUS
+
+def prevalent_apc(codelist, date, death_date):
+    query = apcs.where(
+        apcs.admission_date.is_before(date)
+    )
+
+    query = query.where(apcs.all_diagnoses.contains_any_of(codelist))
+
+    valid_date = check_date_validity(apcs.admission_date, death_date=death_date)
+
+    return (
+        query
+        .where(valid_date.is_not_null())
+        .exists_for_patient()
+        .as_int()
+    )
+
+# Function to obtain valid date of clinical event in death registry during time period
+
+def first_matching_death_between(codelist, start_date, end_date, death_date):
+    raw_date = case(
+        when(
+            ons_deaths.cause_of_death_is_in(codelist)
+            & death_date.is_on_or_between(start_date, end_date)
+        ).then(death_date)
+    )
+
+    valid_date = check_date_validity(raw_date, death_date=death_date)
+
+    return case(
+        when(valid_date.is_not_null()).then(valid_date)
+    )

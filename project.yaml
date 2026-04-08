@@ -527,3 +527,523 @@ actions:
       highly_sensitive:
         dataset: output/dataset_definition/dataset-20231201_20231231.csv.gz
 
+  ## Perform calculations for dataset-20200101_20201231 
+
+  calculations-20200101_20201231:
+    run: r:v2 analysis/calculations/calculation.R 20200101_20201231
+    needs:
+    - generate_dataset-20200101_20201231
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200101_20201231.csv
+
+  ## Perform calculations for dataset-20210101_20211231 
+
+  calculations-20210101_20211231:
+    run: r:v2 analysis/calculations/calculation.R 20210101_20211231
+    needs:
+    - generate_dataset-20210101_20211231
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210101_20211231.csv
+
+  ## Perform calculations for dataset-20220101_20221231 
+
+  calculations-20220101_20221231:
+    run: r:v2 analysis/calculations/calculation.R 20220101_20221231
+    needs:
+    - generate_dataset-20220101_20221231
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220101_20221231.csv
+
+  ## Perform calculations for dataset-20230101_20231231 
+
+  calculations-20230101_20231231:
+    run: r:v2 analysis/calculations/calculation.R 20230101_20231231
+    needs:
+    - generate_dataset-20230101_20231231
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230101_20231231.csv
+
+  ## Perform calculations for dataset-20200101_20200131 
+
+  calculations-20200101_20200131:
+    run: r:v2 analysis/calculations/calculation.R 20200101_20200131
+    needs:
+    - generate_dataset-20200101_20200131
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200101_20200131.csv
+
+  ## Perform calculations for dataset-20200201_20200229 
+
+  calculations-20200201_20200229:
+    run: r:v2 analysis/calculations/calculation.R 20200201_20200229
+    needs:
+    - generate_dataset-20200201_20200229
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200201_20200229.csv
+
+  ## Perform calculations for dataset-20200301_20200331 
+
+  calculations-20200301_20200331:
+    run: r:v2 analysis/calculations/calculation.R 20200301_20200331
+    needs:
+    - generate_dataset-20200301_20200331
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200301_20200331.csv
+
+  ## Perform calculations for dataset-20200401_20200430 
+
+  calculations-20200401_20200430:
+    run: r:v2 analysis/calculations/calculation.R 20200401_20200430
+    needs:
+    - generate_dataset-20200401_20200430
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200401_20200430.csv
+
+  ## Perform calculations for dataset-20200501_20200531 
+
+  calculations-20200501_20200531:
+    run: r:v2 analysis/calculations/calculation.R 20200501_20200531
+    needs:
+    - generate_dataset-20200501_20200531
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200501_20200531.csv
+
+  ## Perform calculations for dataset-20200601_20200630 
+
+  calculations-20200601_20200630:
+    run: r:v2 analysis/calculations/calculation.R 20200601_20200630
+    needs:
+    - generate_dataset-20200601_20200630
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200601_20200630.csv
+
+  ## Perform calculations for dataset-20200701_20200731 
+
+  calculations-20200701_20200731:
+    run: r:v2 analysis/calculations/calculation.R 20200701_20200731
+    needs:
+    - generate_dataset-20200701_20200731
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200701_20200731.csv
+
+  ## Perform calculations for dataset-20200801_20200831 
+
+  calculations-20200801_20200831:
+    run: r:v2 analysis/calculations/calculation.R 20200801_20200831
+    needs:
+    - generate_dataset-20200801_20200831
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200801_20200831.csv
+
+  ## Perform calculations for dataset-20200901_20200930 
+
+  calculations-20200901_20200930:
+    run: r:v2 analysis/calculations/calculation.R 20200901_20200930
+    needs:
+    - generate_dataset-20200901_20200930
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20200901_20200930.csv
+
+  ## Perform calculations for dataset-20201001_20201031 
+
+  calculations-20201001_20201031:
+    run: r:v2 analysis/calculations/calculation.R 20201001_20201031
+    needs:
+    - generate_dataset-20201001_20201031
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20201001_20201031.csv
+
+  ## Perform calculations for dataset-20201101_20201130 
+
+  calculations-20201101_20201130:
+    run: r:v2 analysis/calculations/calculation.R 20201101_20201130
+    needs:
+    - generate_dataset-20201101_20201130
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20201101_20201130.csv
+
+  ## Perform calculations for dataset-20201201_20201231 
+
+  calculations-20201201_20201231:
+    run: r:v2 analysis/calculations/calculation.R 20201201_20201231
+    needs:
+    - generate_dataset-20201201_20201231
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20201201_20201231.csv
+
+  ## Perform calculations for dataset-20210101_20210131 
+
+  calculations-20210101_20210131:
+    run: r:v2 analysis/calculations/calculation.R 20210101_20210131
+    needs:
+    - generate_dataset-20210101_20210131
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210101_20210131.csv
+
+  ## Perform calculations for dataset-20210201_20210228 
+
+  calculations-20210201_20210228:
+    run: r:v2 analysis/calculations/calculation.R 20210201_20210228
+    needs:
+    - generate_dataset-20210201_20210228
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210201_20210228.csv
+
+  ## Perform calculations for dataset-20210301_20210331 
+
+  calculations-20210301_20210331:
+    run: r:v2 analysis/calculations/calculation.R 20210301_20210331
+    needs:
+    - generate_dataset-20210301_20210331
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210301_20210331.csv
+
+  ## Perform calculations for dataset-20210401_20210430 
+
+  calculations-20210401_20210430:
+    run: r:v2 analysis/calculations/calculation.R 20210401_20210430
+    needs:
+    - generate_dataset-20210401_20210430
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210401_20210430.csv
+
+  ## Perform calculations for dataset-20210501_20210531 
+
+  calculations-20210501_20210531:
+    run: r:v2 analysis/calculations/calculation.R 20210501_20210531
+    needs:
+    - generate_dataset-20210501_20210531
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210501_20210531.csv
+
+  ## Perform calculations for dataset-20210601_20210630 
+
+  calculations-20210601_20210630:
+    run: r:v2 analysis/calculations/calculation.R 20210601_20210630
+    needs:
+    - generate_dataset-20210601_20210630
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210601_20210630.csv
+
+  ## Perform calculations for dataset-20210701_20210731 
+
+  calculations-20210701_20210731:
+    run: r:v2 analysis/calculations/calculation.R 20210701_20210731
+    needs:
+    - generate_dataset-20210701_20210731
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210701_20210731.csv
+
+  ## Perform calculations for dataset-20210801_20210831 
+
+  calculations-20210801_20210831:
+    run: r:v2 analysis/calculations/calculation.R 20210801_20210831
+    needs:
+    - generate_dataset-20210801_20210831
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210801_20210831.csv
+
+  ## Perform calculations for dataset-20210901_20210930 
+
+  calculations-20210901_20210930:
+    run: r:v2 analysis/calculations/calculation.R 20210901_20210930
+    needs:
+    - generate_dataset-20210901_20210930
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20210901_20210930.csv
+
+  ## Perform calculations for dataset-20211001_20211031 
+
+  calculations-20211001_20211031:
+    run: r:v2 analysis/calculations/calculation.R 20211001_20211031
+    needs:
+    - generate_dataset-20211001_20211031
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20211001_20211031.csv
+
+  ## Perform calculations for dataset-20211101_20211130 
+
+  calculations-20211101_20211130:
+    run: r:v2 analysis/calculations/calculation.R 20211101_20211130
+    needs:
+    - generate_dataset-20211101_20211130
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20211101_20211130.csv
+
+  ## Perform calculations for dataset-20211201_20211231 
+
+  calculations-20211201_20211231:
+    run: r:v2 analysis/calculations/calculation.R 20211201_20211231
+    needs:
+    - generate_dataset-20211201_20211231
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20211201_20211231.csv
+
+  ## Perform calculations for dataset-20220101_20220131 
+
+  calculations-20220101_20220131:
+    run: r:v2 analysis/calculations/calculation.R 20220101_20220131
+    needs:
+    - generate_dataset-20220101_20220131
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220101_20220131.csv
+
+  ## Perform calculations for dataset-20220201_20220228 
+
+  calculations-20220201_20220228:
+    run: r:v2 analysis/calculations/calculation.R 20220201_20220228
+    needs:
+    - generate_dataset-20220201_20220228
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220201_20220228.csv
+
+  ## Perform calculations for dataset-20220301_20220331 
+
+  calculations-20220301_20220331:
+    run: r:v2 analysis/calculations/calculation.R 20220301_20220331
+    needs:
+    - generate_dataset-20220301_20220331
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220301_20220331.csv
+
+  ## Perform calculations for dataset-20220401_20220430 
+
+  calculations-20220401_20220430:
+    run: r:v2 analysis/calculations/calculation.R 20220401_20220430
+    needs:
+    - generate_dataset-20220401_20220430
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220401_20220430.csv
+
+  ## Perform calculations for dataset-20220501_20220531 
+
+  calculations-20220501_20220531:
+    run: r:v2 analysis/calculations/calculation.R 20220501_20220531
+    needs:
+    - generate_dataset-20220501_20220531
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220501_20220531.csv
+
+  ## Perform calculations for dataset-20220601_20220630 
+
+  calculations-20220601_20220630:
+    run: r:v2 analysis/calculations/calculation.R 20220601_20220630
+    needs:
+    - generate_dataset-20220601_20220630
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220601_20220630.csv
+
+  ## Perform calculations for dataset-20220701_20220731 
+
+  calculations-20220701_20220731:
+    run: r:v2 analysis/calculations/calculation.R 20220701_20220731
+    needs:
+    - generate_dataset-20220701_20220731
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220701_20220731.csv
+
+  ## Perform calculations for dataset-20220801_20220831 
+
+  calculations-20220801_20220831:
+    run: r:v2 analysis/calculations/calculation.R 20220801_20220831
+    needs:
+    - generate_dataset-20220801_20220831
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220801_20220831.csv
+
+  ## Perform calculations for dataset-20220901_20220930 
+
+  calculations-20220901_20220930:
+    run: r:v2 analysis/calculations/calculation.R 20220901_20220930
+    needs:
+    - generate_dataset-20220901_20220930
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20220901_20220930.csv
+
+  ## Perform calculations for dataset-20221001_20221031 
+
+  calculations-20221001_20221031:
+    run: r:v2 analysis/calculations/calculation.R 20221001_20221031
+    needs:
+    - generate_dataset-20221001_20221031
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20221001_20221031.csv
+
+  ## Perform calculations for dataset-20221101_20221130 
+
+  calculations-20221101_20221130:
+    run: r:v2 analysis/calculations/calculation.R 20221101_20221130
+    needs:
+    - generate_dataset-20221101_20221130
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20221101_20221130.csv
+
+  ## Perform calculations for dataset-20221201_20221231 
+
+  calculations-20221201_20221231:
+    run: r:v2 analysis/calculations/calculation.R 20221201_20221231
+    needs:
+    - generate_dataset-20221201_20221231
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20221201_20221231.csv
+
+  ## Perform calculations for dataset-20230101_20230131 
+
+  calculations-20230101_20230131:
+    run: r:v2 analysis/calculations/calculation.R 20230101_20230131
+    needs:
+    - generate_dataset-20230101_20230131
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230101_20230131.csv
+
+  ## Perform calculations for dataset-20230201_20230228 
+
+  calculations-20230201_20230228:
+    run: r:v2 analysis/calculations/calculation.R 20230201_20230228
+    needs:
+    - generate_dataset-20230201_20230228
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230201_20230228.csv
+
+  ## Perform calculations for dataset-20230301_20230331 
+
+  calculations-20230301_20230331:
+    run: r:v2 analysis/calculations/calculation.R 20230301_20230331
+    needs:
+    - generate_dataset-20230301_20230331
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230301_20230331.csv
+
+  ## Perform calculations for dataset-20230401_20230430 
+
+  calculations-20230401_20230430:
+    run: r:v2 analysis/calculations/calculation.R 20230401_20230430
+    needs:
+    - generate_dataset-20230401_20230430
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230401_20230430.csv
+
+  ## Perform calculations for dataset-20230501_20230531 
+
+  calculations-20230501_20230531:
+    run: r:v2 analysis/calculations/calculation.R 20230501_20230531
+    needs:
+    - generate_dataset-20230501_20230531
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230501_20230531.csv
+
+  ## Perform calculations for dataset-20230601_20230630 
+
+  calculations-20230601_20230630:
+    run: r:v2 analysis/calculations/calculation.R 20230601_20230630
+    needs:
+    - generate_dataset-20230601_20230630
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230601_20230630.csv
+
+  ## Perform calculations for dataset-20230701_20230731 
+
+  calculations-20230701_20230731:
+    run: r:v2 analysis/calculations/calculation.R 20230701_20230731
+    needs:
+    - generate_dataset-20230701_20230731
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230701_20230731.csv
+
+  ## Perform calculations for dataset-20230801_20230831 
+
+  calculations-20230801_20230831:
+    run: r:v2 analysis/calculations/calculation.R 20230801_20230831
+    needs:
+    - generate_dataset-20230801_20230831
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230801_20230831.csv
+
+  ## Perform calculations for dataset-20230901_20230930 
+
+  calculations-20230901_20230930:
+    run: r:v2 analysis/calculations/calculation.R 20230901_20230930
+    needs:
+    - generate_dataset-20230901_20230930
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20230901_20230930.csv
+
+  ## Perform calculations for dataset-20231001_20231031 
+
+  calculations-20231001_20231031:
+    run: r:v2 analysis/calculations/calculation.R 20231001_20231031
+    needs:
+    - generate_dataset-20231001_20231031
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20231001_20231031.csv
+
+  ## Perform calculations for dataset-20231101_20231130 
+
+  calculations-20231101_20231130:
+    run: r:v2 analysis/calculations/calculation.R 20231101_20231130
+    needs:
+    - generate_dataset-20231101_20231130
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20231101_20231130.csv
+
+  ## Perform calculations for dataset-20231201_20231231 
+
+  calculations-20231201_20231231:
+    run: r:v2 analysis/calculations/calculation.R 20231201_20231231
+    needs:
+    - generate_dataset-20231201_20231231
+    outputs:
+      moderately_sensitive:
+        results: output/calculations/results-20231201_20231231.csv
+

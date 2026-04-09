@@ -31,13 +31,28 @@ pat_end_date = minimum_of(end_date, death_date, practice_registrations.for_patie
 
 d1 = date.fromisoformat(start_date)
 d2 = date.fromisoformat(end_date)
-if d1.month != d2.month:
-    mid_date = f'{d1.year}-06-30'
-    mid_date_prev = f'{d1.year}-07-01'
+# Identify mid-dates 
+d1 = date.fromisoformat(start_date)
+d2 = date.fromisoformat(end_date)
+
+## If full calendar year, use 30/06
+if d1.month == 1 and d1.day == 1 and d2.month == 12 and d2.day == 31 and d1.year == d2.year:
+    mid_date = f"{d1.year}-06-30"
+    mid_date_prev = f"{d1.year}-07-01"
+## If full calendar month, use 15/MM
+elif (
+    d1.day == 1 and
+    d1.year == d2.year and
+    d1.month == d2.month and
+    d2.day == calendar.monthrange(d1.year, d1.month)[1]
+):
+    mid_date = f"{d1.year}-{d1.month:02d}-15"
+    mid_date_prev = f"{d1.year}-{d1.month:02d}-16"
+## Otherwise split interval in half
 else:
-    mid_date = f'{d1.year}-{d1.month:02d}-15'
-    mid_date_prev = f'{d1.year}-{d1.month:02d}-16'
-    
+    midpoint = d1 + (d2 - d1) / 2
+    mid_date = midpoint.isoformat()
+    mid_date_prev = (midpoint + timedelta(days=1)).isoformat()
 # Covariates 
 
 ## Age

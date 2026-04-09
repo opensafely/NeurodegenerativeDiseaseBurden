@@ -15,7 +15,8 @@ from variable_helper_functions import (
     prevalent_tpp,
     prevalent_apc,
 )
-from datetime import date
+from datetime import date, timedelta
+import calendar
 
 # Create dataset
 dataset = create_dataset()
@@ -29,12 +30,9 @@ end_date = get_parameter(name="end_date")
 death_date = minimum_of(patients.date_of_death, ons_deaths.date)
 pat_end_date = minimum_of(end_date, death_date, practice_registrations.for_patient_on(start_date).end_date) 
 
-d1 = date.fromisoformat(start_date)
-d2 = date.fromisoformat(end_date)
 # Identify mid-dates 
 d1 = date.fromisoformat(start_date)
 d2 = date.fromisoformat(end_date)
-
 ## If full calendar year, use 30/06
 if d1.month == 1 and d1.day == 1 and d2.month == 12 and d2.day == 31 and d1.year == d2.year:
     mid_date = f"{d1.year}-06-30"
@@ -53,6 +51,7 @@ else:
     midpoint = d1 + (d2 - d1) / 2
     mid_date = midpoint.isoformat()
     mid_date_prev = (midpoint + timedelta(days=1)).isoformat()
+
 # Covariates 
 
 ## Age

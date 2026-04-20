@@ -57,6 +57,19 @@ df[,
 df[,
   cov_cat_imd := factor(
     cov_cat_imd,
+    levels = c(
+      "1 (most deprived)",
+      "10 (least deprived)",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "unknown"
+    ),
     labels = c(
       "1-2 (most deprived)",
       "9-10 (least deprived)",

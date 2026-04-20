@@ -66,7 +66,7 @@ convert_comment_actions <- function(yaml.txt) {
     str_replace_all("\\#\\#\\'\\\n", "\n")
 }
 
-# Create function to generate study population ---------------------------------
+# Create function to generate study population ----
 
 generate_dataset <- function(start_date, end_date, dataset_name) {
   splice(
@@ -84,6 +84,38 @@ generate_dataset <- function(start_date, end_date, dataset_name) {
     )
   )
 }
+
+# Create function to perform calculations ----
+
+perform_calculations <- function(dataset_name) {
+  splice(
+    comment(glue("Perform calculations for dataset-{dataset_name}")),
+    action(
+      name = glue("calculations-{dataset_name}"),
+      run = glue(
+        "r:v2 analysis/calculations/calculation.R"
+      ),
+      arguments = list(glue("{dataset_name}")),
+      needs = list(glue("generate_dataset-{dataset_name}")),
+      moderately_sensitive = list(
+        results = glue(
+          "output/calculations/results-{dataset_name}.csv"
+        )
+      )
+    )
+  )
+}
+
+# Create function to convert comment "actions" in a yaml string into proper comments ----
+
+convert_comment_actions <- function(yaml.txt) {
+  yaml.txt %>%
+    str_replace_all("\\\n(\\s*)\\'\\'\\:(\\s*)\\'", "\n\\1") %>%
+    #str_replace_all("\\\n(\\s*)\\'", "\n\\1") %>%
+    str_replace_all("([^\\'])\\\n(\\s*)\\#\\#", "\\1\n\n\\2\\#\\#") %>%
+    str_replace_all("\\#\\#\\'\\\n", "\n")
+}
+
 
 # Define dates ----
 
@@ -112,6 +144,22 @@ actions_list <- splice(
           generate_dataset(
             start_date = dates[x, ]$start_date,
             end_date = dates[x, ]$end_date,
+            dataset_name = dates[x, ]$dataset_name
+          )
+        }
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  ## Perform calculations ----
+
+  splice(
+    unlist(
+      lapply(
+        1:nrow(dates),
+        function(x) {
+          perform_calculations(
             dataset_name = dates[x, ]$dataset_name
           )
         }

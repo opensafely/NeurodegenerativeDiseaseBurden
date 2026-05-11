@@ -38,11 +38,26 @@ for (i in dates$dataset_name){
   df <- rbind(df, tmp)
 }
 
+# Round results
+roundmid_any <- function(x, to=6){
+  # like round_any, but centers on (integer) midpoint of the rounding points
+  ceiling(x/to)*to - (floor(to/2)*(x!=0))
+}
+df[metric %in% c("prevalence", "fatality_1y", "fatality_5y"), 
+  c("numer_midpoint6", "denom_midpoint6") := .(roundmid_any(numer), roundmid_any(denom))]
+df[metric == "incidence", c("numer_midpoint6","denom_midpoint6") := .(roundmid_any(numer), roundmid_any(denom*100000)/100000)]
+df[metric %in% c("prevalence", "fatality_1y", "fatality_5y"), "result_midpoint6_derived" := numer_midpoint6 / denom_midpoint6 *100]
+df[metric == "incidence", "result_midpoint6_derived" := numer_midpoint6 / denom_midpoint6]
+
+# Save rounded results
+fwrite(df[,.(metric, disease, date, numer_midpoint6, denom_midpoint6, result_midpoint6_derived)], 
+       paste0("output/figs/rounded_month_", ystart, "_", yend, ".csv"))
+       
 # Generate plots
 print('Generate plot for monthly results')
 
 make_plot <- function(data, ylab) {
-  ggplot(data, aes(x = date, y = result, group = disease, color = disease)) +
+  ggplot(data, aes(x = date, y = result_midpoint6_derived, group = disease, color = disease)) +
     geom_line() +
     scale_x_date(
       breaks = seq(min(data$date), max(data$date), by = "12 months"),

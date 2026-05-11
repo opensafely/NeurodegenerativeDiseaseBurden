@@ -151,6 +151,9 @@ plot_results <- function(start_year=ystart, end_year=yend) {
       moderately_sensitive = list(
         g = glue(
           "output/figs/fig_month_{start_year}_{end_year}.png"
+        ),
+        rounded_month = glue(
+          "output/figs/rounded_month_{start_year}_{end_year}.csv"
         )
       )
     )

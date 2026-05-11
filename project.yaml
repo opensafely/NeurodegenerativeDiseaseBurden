@@ -1168,4 +1168,5 @@ actions:
     outputs:
       moderately_sensitive:
         g: output/figs/fig_month_2020_2023.png
+        rounded_month: output/figs/rounded_month_2020_2023.csv
 

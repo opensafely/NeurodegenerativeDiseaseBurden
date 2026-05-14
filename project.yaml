@@ -1167,6 +1167,7 @@ actions:
     - calculations-20231201_20231231
     outputs:
       moderately_sensitive:
-        g: output/figs/fig_month_2020_2023.png
-        rounded_month: output/figs/rounded_month_2020_2023.csv
+        g_round: output/figs/fig_round_month_2020_2023.png
+        g_raw: output/figs/fig_raw_month_2020_2023.png
+        rounded_month: output/figs/tbl_round_month_2020_2023.csv
 

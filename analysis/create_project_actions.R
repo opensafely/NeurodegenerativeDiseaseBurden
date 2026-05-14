@@ -149,11 +149,14 @@ plot_results <- function(start_year=ystart, end_year=yend) {
       arguments = list(paste0(start_year, "_", end_year)),
       needs = lapply(dates_month$dataset_name, function(i) glue("calculations-{i}")),
       moderately_sensitive = list(
-        g = glue(
-          "output/figs/fig_month_{start_year}_{end_year}.png"
+        g_round = glue(
+          "output/figs/fig_round_month_{start_year}_{end_year}.png"
+        ),
+        g_raw = glue(
+          "output/figs/fig_raw_month_{start_year}_{end_year}.png"
         ),
         rounded_month = glue(
-          "output/figs/rounded_month_{start_year}_{end_year}.csv"
+          "output/figs/tbl_round_month_{start_year}_{end_year}.csv"
         )
       )
     )

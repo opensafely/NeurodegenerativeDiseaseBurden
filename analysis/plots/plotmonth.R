@@ -39,25 +39,29 @@ for (i in dates$dataset_name){
 }
 
 # Round results
+print('Round results')
 roundmid_any <- function(x, to=6){
   # like round_any, but centers on (integer) midpoint of the rounding points
   ceiling(x/to)*to - (floor(to/2)*(x!=0))
 }
 df[metric %in% c("prevalence", "fatality_1y", "fatality_5y"), 
   c("numer_midpoint6", "denom_midpoint6") := .(roundmid_any(numer), roundmid_any(denom))]
-df[metric == "incidence", c("numer_midpoint6","denom_midpoint6") := .(roundmid_any(numer), roundmid_any(denom*100000)/100000)]
+df[metric == "incidence", c("numer_midpoint6") := .(roundmid_any(numer))]
 df[metric %in% c("prevalence", "fatality_1y", "fatality_5y"), "result_midpoint6_derived" := numer_midpoint6 / denom_midpoint6 *100]
-df[metric == "incidence", "result_midpoint6_derived" := numer_midpoint6 / denom_midpoint6]
+df[metric == "incidence", "result_midpoint6_derived" := numer_midpoint6 / denom]
 
 # Save rounded results
-fwrite(df[,.(metric, disease, date, numer_midpoint6, denom_midpoint6, result_midpoint6_derived)], 
-       paste0("output/figs/rounded_month_", ystart, "_", yend, ".csv"))
+fwrite(df[,.(metric, disease, date, numer_midpoint6, denom_midpoint6, result_midpoint6_derived, result)], 
+       paste0("output/figs/tbl_round_month_", ystart, "_", yend, ".csv"))
        
-# Generate plots
-print('Generate plot for monthly results')
-
-make_plot <- function(data, ylab) {
-  ggplot(data, aes(x = date, y = result_midpoint6_derived, group = disease, color = disease)) +
+# Function to generate plots
+make_plot <- function(data, rounded = TRUE, ylab) {
+  if (rounded) {
+    setnames(data, "result_midpoint6_derived", "result_to_plot")
+  } else {
+    setnames(data, "result", "result_to_plot")
+  }
+  ggplot(data, aes(x = date, y = result_to_plot, group = disease, color = disease)) +
     geom_line() +
     scale_x_date(
       breaks = seq(min(data$date), max(data$date), by = "12 months"),
@@ -68,15 +72,33 @@ make_plot <- function(data, ylab) {
     theme_bw()
 }
 
-p1 <- make_plot(df[df$metric == "prevalence"], "Prevalence(%)")
-p2 <- make_plot(df[df$metric == "incidence"], "Incidence(per 100,000 person-years)")
-p3 <- make_plot(df[df$metric == "fatality_1y"], "1-Year fatality(%)")
-p4 <- make_plot(df[df$metric == "fatality_5y"], "5-Year fatality(%)")
+# Use rounded results
+print('Generate plot for rounded monthly results')
+p1 <- make_plot(df[df$metric == "prevalence"], TRUE, "Prevalence(%)")
+p2 <- make_plot(df[df$metric == "incidence"], TRUE, "Incidence(per 100,000 person-years)")
+p3 <- make_plot(df[df$metric == "fatality_1y"], TRUE, "1-Year fatality(%)")
+p4 <- make_plot(df[df$metric == "fatality_5y"], TRUE, "5-Year fatality(%)")
 
-g <- (p1 | p2) / (p3 | p4) +
+g_round <- (p1 | p2) / (p3 | p4) +
      plot_layout(guides = "collect") & 
      theme(legend.position = "right")
 
 # Save plot
-ggsave(g, filename = paste0("output/figs/fig_month_", ystart, "_", yend, ".png"))
+ggsave(g_round, filename = paste0("output/figs/fig_round_month_", ystart, "_", yend, ".png"))
+
+rm(list=c("p1", "p2", "p3", "p4", "g_round"))
+
+# Use rounded results
+print('Generate plot for raw monthly results')
+p1 <- make_plot(df[df$metric == "prevalence"], FALSE, "Prevalence(%)")
+p2 <- make_plot(df[df$metric == "incidence"], FALSE, "Incidence(per 100,000 person-years)")
+p3 <- make_plot(df[df$metric == "fatality_1y"], FALSE, "1-Year fatality(%)")
+p4 <- make_plot(df[df$metric == "fatality_5y"], FALSE, "5-Year fatality(%)")
+
+g_raw <- (p1 | p2) / (p3 | p4) +
+     plot_layout(guides = "collect") & 
+     theme(legend.position = "right")
+
+# Save plot
+ggsave(g_raw, filename = paste0("output/figs/fig_raw_month_", ystart, "_", yend, ".png"))
 

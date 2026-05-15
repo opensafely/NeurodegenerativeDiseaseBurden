@@ -7,6 +7,11 @@ library(glue)
 library(readr)
 library(dplyr)
 
+# Define time frame
+
+ystart <- 2020
+yend <- 2023
+
 # Source functions ----
 
 source("analysis/fn-define_dates.R")
@@ -100,6 +105,58 @@ perform_calculations <- function(dataset_name) {
       moderately_sensitive = list(
         results = glue(
           "output/calculations/results-{dataset_name}.csv"
+        ),
+        results_byallg = glue(
+          "output/calculations/results-byallg-{dataset_name}.csv"
+        )
+      )
+    )
+  )
+}
+
+# Create function to fit models ----
+
+fit_models <- function(start_year=ystart, end_year=yend) {
+  splice(
+    comment("Fit models using yearly calculation results"),
+    action(
+      name = "model-full-year",
+      run = glue(
+        "r:v2 analysis/models/modelfullyear.R"
+      ),
+      arguments = list(paste0(start_year, "_", end_year)),
+      needs = lapply(start_year:end_year, function(i) glue("calculations-{i}0101_{i}1231")),
+      moderately_sensitive = list(
+        modelresults = glue(
+          "output/models/modelfull_year{start_year}_{end_year}.csv"
+        )
+      )
+    )
+  )
+}
+
+# Create function to plot monthly results ----
+
+plot_results <- function(start_year=ystart, end_year=yend) {
+  dates_month <- define_dates(start_year, end_year, year = FALSE)
+  splice(
+    comment("Plot monthly results"),
+    action(
+      name = "plot-month",
+      run = glue(
+        "r:v2 analysis/plots/plotmonth.R"
+      ),
+      arguments = list(paste0(start_year, "_", end_year)),
+      needs = lapply(dates_month$dataset_name, function(i) glue("calculations-{i}")),
+      moderately_sensitive = list(
+        g_round = glue(
+          "output/figs/fig_round_month_{start_year}_{end_year}.png"
+        ),
+        g_raw = glue(
+          "output/figs/fig_raw_month_{start_year}_{end_year}.png"
+        ),
+        rounded_month = glue(
+          "output/figs/tbl_round_month_{start_year}_{end_year}.csv"
         )
       )
     )
@@ -119,7 +176,7 @@ convert_comment_actions <- function(yaml.txt) {
 
 # Define dates ----
 
-dates <- define_dates(start_year = 2020, end_year = 2023)
+dates <- define_dates(start_year = ystart, end_year = yend)
 
 # Make actions list ----
 
@@ -166,7 +223,17 @@ actions_list <- splice(
       ),
       recursive = FALSE
     )
-  )
+  ),
+
+  ## Fit models ----
+  splice(
+    fit_models()
+  ),
+
+  ## Plot results ----
+  splice(
+    plot_results()
+   )
 )
 
 # Combine actions into project list ----

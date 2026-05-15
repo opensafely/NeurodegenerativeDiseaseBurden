@@ -536,6 +536,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200101_20201231.csv
+        results_byallg: output/calculations/results-byallg-20200101_20201231.csv
 
   ## Perform calculations for dataset-20210101_20211231 
 
@@ -546,6 +547,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210101_20211231.csv
+        results_byallg: output/calculations/results-byallg-20210101_20211231.csv
 
   ## Perform calculations for dataset-20220101_20221231 
 
@@ -556,6 +558,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220101_20221231.csv
+        results_byallg: output/calculations/results-byallg-20220101_20221231.csv
 
   ## Perform calculations for dataset-20230101_20231231 
 
@@ -566,6 +569,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230101_20231231.csv
+        results_byallg: output/calculations/results-byallg-20230101_20231231.csv
 
   ## Perform calculations for dataset-20200101_20200131 
 
@@ -576,6 +580,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200101_20200131.csv
+        results_byallg: output/calculations/results-byallg-20200101_20200131.csv
 
   ## Perform calculations for dataset-20200201_20200229 
 
@@ -586,6 +591,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200201_20200229.csv
+        results_byallg: output/calculations/results-byallg-20200201_20200229.csv
 
   ## Perform calculations for dataset-20200301_20200331 
 
@@ -596,6 +602,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200301_20200331.csv
+        results_byallg: output/calculations/results-byallg-20200301_20200331.csv
 
   ## Perform calculations for dataset-20200401_20200430 
 
@@ -606,6 +613,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200401_20200430.csv
+        results_byallg: output/calculations/results-byallg-20200401_20200430.csv
 
   ## Perform calculations for dataset-20200501_20200531 
 
@@ -616,6 +624,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200501_20200531.csv
+        results_byallg: output/calculations/results-byallg-20200501_20200531.csv
 
   ## Perform calculations for dataset-20200601_20200630 
 
@@ -626,6 +635,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200601_20200630.csv
+        results_byallg: output/calculations/results-byallg-20200601_20200630.csv
 
   ## Perform calculations for dataset-20200701_20200731 
 
@@ -636,6 +646,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200701_20200731.csv
+        results_byallg: output/calculations/results-byallg-20200701_20200731.csv
 
   ## Perform calculations for dataset-20200801_20200831 
 
@@ -646,6 +657,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200801_20200831.csv
+        results_byallg: output/calculations/results-byallg-20200801_20200831.csv
 
   ## Perform calculations for dataset-20200901_20200930 
 
@@ -656,6 +668,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20200901_20200930.csv
+        results_byallg: output/calculations/results-byallg-20200901_20200930.csv
 
   ## Perform calculations for dataset-20201001_20201031 
 
@@ -666,6 +679,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20201001_20201031.csv
+        results_byallg: output/calculations/results-byallg-20201001_20201031.csv
 
   ## Perform calculations for dataset-20201101_20201130 
 
@@ -676,6 +690,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20201101_20201130.csv
+        results_byallg: output/calculations/results-byallg-20201101_20201130.csv
 
   ## Perform calculations for dataset-20201201_20201231 
 
@@ -686,6 +701,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20201201_20201231.csv
+        results_byallg: output/calculations/results-byallg-20201201_20201231.csv
 
   ## Perform calculations for dataset-20210101_20210131 
 
@@ -696,6 +712,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210101_20210131.csv
+        results_byallg: output/calculations/results-byallg-20210101_20210131.csv
 
   ## Perform calculations for dataset-20210201_20210228 
 
@@ -706,6 +723,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210201_20210228.csv
+        results_byallg: output/calculations/results-byallg-20210201_20210228.csv
 
   ## Perform calculations for dataset-20210301_20210331 
 
@@ -716,6 +734,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210301_20210331.csv
+        results_byallg: output/calculations/results-byallg-20210301_20210331.csv
 
   ## Perform calculations for dataset-20210401_20210430 
 
@@ -726,6 +745,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210401_20210430.csv
+        results_byallg: output/calculations/results-byallg-20210401_20210430.csv
 
   ## Perform calculations for dataset-20210501_20210531 
 
@@ -736,6 +756,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210501_20210531.csv
+        results_byallg: output/calculations/results-byallg-20210501_20210531.csv
 
   ## Perform calculations for dataset-20210601_20210630 
 
@@ -746,6 +767,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210601_20210630.csv
+        results_byallg: output/calculations/results-byallg-20210601_20210630.csv
 
   ## Perform calculations for dataset-20210701_20210731 
 
@@ -756,6 +778,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210701_20210731.csv
+        results_byallg: output/calculations/results-byallg-20210701_20210731.csv
 
   ## Perform calculations for dataset-20210801_20210831 
 
@@ -766,6 +789,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210801_20210831.csv
+        results_byallg: output/calculations/results-byallg-20210801_20210831.csv
 
   ## Perform calculations for dataset-20210901_20210930 
 
@@ -776,6 +800,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20210901_20210930.csv
+        results_byallg: output/calculations/results-byallg-20210901_20210930.csv
 
   ## Perform calculations for dataset-20211001_20211031 
 
@@ -786,6 +811,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20211001_20211031.csv
+        results_byallg: output/calculations/results-byallg-20211001_20211031.csv
 
   ## Perform calculations for dataset-20211101_20211130 
 
@@ -796,6 +822,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20211101_20211130.csv
+        results_byallg: output/calculations/results-byallg-20211101_20211130.csv
 
   ## Perform calculations for dataset-20211201_20211231 
 
@@ -806,6 +833,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20211201_20211231.csv
+        results_byallg: output/calculations/results-byallg-20211201_20211231.csv
 
   ## Perform calculations for dataset-20220101_20220131 
 
@@ -816,6 +844,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220101_20220131.csv
+        results_byallg: output/calculations/results-byallg-20220101_20220131.csv
 
   ## Perform calculations for dataset-20220201_20220228 
 
@@ -826,6 +855,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220201_20220228.csv
+        results_byallg: output/calculations/results-byallg-20220201_20220228.csv
 
   ## Perform calculations for dataset-20220301_20220331 
 
@@ -836,6 +866,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220301_20220331.csv
+        results_byallg: output/calculations/results-byallg-20220301_20220331.csv
 
   ## Perform calculations for dataset-20220401_20220430 
 
@@ -846,6 +877,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220401_20220430.csv
+        results_byallg: output/calculations/results-byallg-20220401_20220430.csv
 
   ## Perform calculations for dataset-20220501_20220531 
 
@@ -856,6 +888,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220501_20220531.csv
+        results_byallg: output/calculations/results-byallg-20220501_20220531.csv
 
   ## Perform calculations for dataset-20220601_20220630 
 
@@ -866,6 +899,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220601_20220630.csv
+        results_byallg: output/calculations/results-byallg-20220601_20220630.csv
 
   ## Perform calculations for dataset-20220701_20220731 
 
@@ -876,6 +910,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220701_20220731.csv
+        results_byallg: output/calculations/results-byallg-20220701_20220731.csv
 
   ## Perform calculations for dataset-20220801_20220831 
 
@@ -886,6 +921,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220801_20220831.csv
+        results_byallg: output/calculations/results-byallg-20220801_20220831.csv
 
   ## Perform calculations for dataset-20220901_20220930 
 
@@ -896,6 +932,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20220901_20220930.csv
+        results_byallg: output/calculations/results-byallg-20220901_20220930.csv
 
   ## Perform calculations for dataset-20221001_20221031 
 
@@ -906,6 +943,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20221001_20221031.csv
+        results_byallg: output/calculations/results-byallg-20221001_20221031.csv
 
   ## Perform calculations for dataset-20221101_20221130 
 
@@ -916,6 +954,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20221101_20221130.csv
+        results_byallg: output/calculations/results-byallg-20221101_20221130.csv
 
   ## Perform calculations for dataset-20221201_20221231 
 
@@ -926,6 +965,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20221201_20221231.csv
+        results_byallg: output/calculations/results-byallg-20221201_20221231.csv
 
   ## Perform calculations for dataset-20230101_20230131 
 
@@ -936,6 +976,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230101_20230131.csv
+        results_byallg: output/calculations/results-byallg-20230101_20230131.csv
 
   ## Perform calculations for dataset-20230201_20230228 
 
@@ -946,6 +987,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230201_20230228.csv
+        results_byallg: output/calculations/results-byallg-20230201_20230228.csv
 
   ## Perform calculations for dataset-20230301_20230331 
 
@@ -956,6 +998,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230301_20230331.csv
+        results_byallg: output/calculations/results-byallg-20230301_20230331.csv
 
   ## Perform calculations for dataset-20230401_20230430 
 
@@ -966,6 +1009,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230401_20230430.csv
+        results_byallg: output/calculations/results-byallg-20230401_20230430.csv
 
   ## Perform calculations for dataset-20230501_20230531 
 
@@ -976,6 +1020,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230501_20230531.csv
+        results_byallg: output/calculations/results-byallg-20230501_20230531.csv
 
   ## Perform calculations for dataset-20230601_20230630 
 
@@ -986,6 +1031,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230601_20230630.csv
+        results_byallg: output/calculations/results-byallg-20230601_20230630.csv
 
   ## Perform calculations for dataset-20230701_20230731 
 
@@ -996,6 +1042,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230701_20230731.csv
+        results_byallg: output/calculations/results-byallg-20230701_20230731.csv
 
   ## Perform calculations for dataset-20230801_20230831 
 
@@ -1006,6 +1053,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230801_20230831.csv
+        results_byallg: output/calculations/results-byallg-20230801_20230831.csv
 
   ## Perform calculations for dataset-20230901_20230930 
 
@@ -1016,6 +1064,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20230901_20230930.csv
+        results_byallg: output/calculations/results-byallg-20230901_20230930.csv
 
   ## Perform calculations for dataset-20231001_20231031 
 
@@ -1026,6 +1075,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20231001_20231031.csv
+        results_byallg: output/calculations/results-byallg-20231001_20231031.csv
 
   ## Perform calculations for dataset-20231101_20231130 
 
@@ -1036,6 +1086,7 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20231101_20231130.csv
+        results_byallg: output/calculations/results-byallg-20231101_20231130.csv
 
   ## Perform calculations for dataset-20231201_20231231 
 
@@ -1046,4 +1097,77 @@ actions:
     outputs:
       moderately_sensitive:
         results: output/calculations/results-20231201_20231231.csv
+        results_byallg: output/calculations/results-byallg-20231201_20231231.csv
+
+  ## Fit models using yearly calculation results 
+
+  model-full-year:
+    run: r:v2 analysis/models/modelfullyear.R 2020_2023
+    needs:
+    - calculations-20200101_20201231
+    - calculations-20210101_20211231
+    - calculations-20220101_20221231
+    - calculations-20230101_20231231
+    outputs:
+      moderately_sensitive:
+        modelresults: output/models/modelfull_year2020_2023.csv
+
+  ## Plot monthly results 
+
+  plot-month:
+    run: r:v2 analysis/plots/plotmonth.R 2020_2023
+    needs:
+    - calculations-20200101_20200131
+    - calculations-20200201_20200229
+    - calculations-20200301_20200331
+    - calculations-20200401_20200430
+    - calculations-20200501_20200531
+    - calculations-20200601_20200630
+    - calculations-20200701_20200731
+    - calculations-20200801_20200831
+    - calculations-20200901_20200930
+    - calculations-20201001_20201031
+    - calculations-20201101_20201130
+    - calculations-20201201_20201231
+    - calculations-20210101_20210131
+    - calculations-20210201_20210228
+    - calculations-20210301_20210331
+    - calculations-20210401_20210430
+    - calculations-20210501_20210531
+    - calculations-20210601_20210630
+    - calculations-20210701_20210731
+    - calculations-20210801_20210831
+    - calculations-20210901_20210930
+    - calculations-20211001_20211031
+    - calculations-20211101_20211130
+    - calculations-20211201_20211231
+    - calculations-20220101_20220131
+    - calculations-20220201_20220228
+    - calculations-20220301_20220331
+    - calculations-20220401_20220430
+    - calculations-20220501_20220531
+    - calculations-20220601_20220630
+    - calculations-20220701_20220731
+    - calculations-20220801_20220831
+    - calculations-20220901_20220930
+    - calculations-20221001_20221031
+    - calculations-20221101_20221130
+    - calculations-20221201_20221231
+    - calculations-20230101_20230131
+    - calculations-20230201_20230228
+    - calculations-20230301_20230331
+    - calculations-20230401_20230430
+    - calculations-20230501_20230531
+    - calculations-20230601_20230630
+    - calculations-20230701_20230731
+    - calculations-20230801_20230831
+    - calculations-20230901_20230930
+    - calculations-20231001_20231031
+    - calculations-20231101_20231130
+    - calculations-20231201_20231231
+    outputs:
+      moderately_sensitive:
+        g_round: output/figs/fig_round_month_2020_2023.png
+        g_raw: output/figs/fig_raw_month_2020_2023.png
+        rounded_month: output/figs/tbl_round_month_2020_2023.csv
 

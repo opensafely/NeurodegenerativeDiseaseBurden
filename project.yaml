@@ -1171,3 +1171,24 @@ actions:
         g_raw: output/figs/fig_raw_month_2020_2023.png
         rounded_month: output/figs/tbl_round_month_2020_2023.csv
 
+  ## Generate dataset for lifetime risk calculations 
+
+  generate_dataset_lifetime:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_lifetime.py
+      --output output/dataset_definition/dataset-lifetime-20200101_20231231.csv.gz
+      -- --start_date 2020-01-01 --end_date 2023-12-31
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-lifetime-20200101_20231231.csv.gz
+
+  ## Calculate lifetime risk 
+
+  calculate-lifetime-risk:
+    run: r:v2 analysis/models/lifetimerisk.R 20200101_20231231
+    needs:
+    - generate_dataset_lifetime
+    outputs:
+      moderately_sensitive:
+        liferisks: output/models/lifetimerisk_20200101_20231231.csv
+        g_life: output/figs/fig_lifetimerisk_all_20200101_20231231.png
+

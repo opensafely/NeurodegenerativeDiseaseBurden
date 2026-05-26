@@ -163,6 +163,49 @@ plot_results <- function(start_year=ystart, end_year=yend) {
   )
 }
 
+# Create function to generate dataset for lifetime risk----
+generate_dataset_lifetime <- function(start_year = ystart, end_year = yend) {
+  splice(
+    comment("Generate dataset for lifetime risk calculations"),
+    action(
+      name = "generate_dataset_lifetime",
+      run = glue(
+        "ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_lifetime.py --output output/dataset_definition/dataset-lifetime-{start_year}0101_{end_year}1231.csv.gz -- --start_date {start_year}-01-01 --end_date {end_year}-12-31"
+      ),
+      highly_sensitive = list(
+        dataset = glue(
+          "output/dataset_definition/dataset-lifetime-{start_year}0101_{end_year}1231.csv.gz"
+        )
+      )
+    )
+  )
+}
+
+# Create function to calculate lifetime risk ----
+
+calculate_lifetime_risk <- function(start_year=ystart, end_year=yend) {
+  splice(
+    comment("Calculate lifetime risk"),
+    action(
+      name = "calculate-lifetime-risk",
+      run = glue(
+        "r:v2 analysis/models/lifetimerisk.R"
+      ),
+      arguments = glue("{start_year}0101_{end_year}1231"),
+      needs = list("generate_dataset_lifetime"),
+      moderately_sensitive = list(
+        liferisks = glue(
+          "output/models/lifetimerisk_{start_year}0101_{end_year}1231.csv"
+        ),
+        g_life = glue(
+          "output/figs/fig_lifetimerisk_all_{start_year}0101_{end_year}1231.png"
+      )
+    )
+  )
+)
+}
+
+
 # Create function to convert comment "actions" in a yaml string into proper comments ----
 
 convert_comment_actions <- function(yaml.txt) {
@@ -233,7 +276,17 @@ actions_list <- splice(
   ## Plot results ----
   splice(
     plot_results()
-   )
+   ),
+
+   ## Generate lifetime risk datasets ----
+  splice(
+    generate_dataset_lifetime()
+   ),
+
+   ## Calculate lifetime risk ----
+  splice(
+    calculate_lifetime_risk()
+  )
 )
 
 # Combine actions into project list ----

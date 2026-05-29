@@ -1,5 +1,5 @@
 library(data.table)
-library(emmeans)
+
 # Define output folder 
 print("Define output folder")
 

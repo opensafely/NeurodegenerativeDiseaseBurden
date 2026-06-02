@@ -1169,7 +1169,8 @@ actions:
       moderately_sensitive:
         g_round: output/figs/fig_round_month_2020_2023.png
         g_raw: output/figs/fig_raw_month_2020_2023.png
-        rounded_month: output/figs/tbl_round_month_2020_2023.csv
+        raw_month: output/figs/tbl_raw_month_2020_2023.csv
+        round_month: output/figs/tbl_round_month_2020_2023.csv
 
   ## Generate dataset for lifetime risk calculations 
 

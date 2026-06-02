@@ -22,7 +22,7 @@ import calendar
 dataset = create_dataset()
 
 # Configure dummy data
-dataset.configure_dummy_data(population_size=10000)
+dataset.configure_dummy_data(population_size=2000)
 
 # Specify start, end and mid dates
 start_date = get_parameter(name="start_date")

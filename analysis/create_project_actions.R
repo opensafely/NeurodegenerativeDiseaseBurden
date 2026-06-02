@@ -155,7 +155,10 @@ plot_results <- function(start_year=ystart, end_year=yend) {
         g_raw = glue(
           "output/figs/fig_raw_month_{start_year}_{end_year}.png"
         ),
-        rounded_month = glue(
+        raw_month = glue(
+          "output/figs/tbl_raw_month_{start_year}_{end_year}.csv"
+        ),
+        round_month = glue(
           "output/figs/tbl_round_month_{start_year}_{end_year}.csv"
         )
       )

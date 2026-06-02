@@ -46,17 +46,6 @@ df[, logdenom := log(denom)]
 # Remove zeros
 df <- df[!(numer==0 | denom==0)]
 
-# Create table for predictions
-vars <- c("year", "age", "sex", "region", "imd", "ethnicity", "cms")
-pred_dt <- rbindlist(lapply(vars, function(v) {
-  lvls <- df[,levels(get(v))]
-  base <- df[,lapply(.SD, function(x) levels(x)[1]),.SDcols=vars]
-  base[,logdenom := 0]
-  newdata <- base[rep(1, length(lvls)), ]
-  newdata[[v]] = lvls
-  newdata
-}))
-
 # Function to fit model and extract coefficients and predictions
 fitfullmodel <- function(df, outcome, metric){
   data = df[disease == outcome & metric == metric]
@@ -74,18 +63,35 @@ fitfullmodel <- function(df, outcome, metric){
       
       #get response for different cov comb
       vars <- c("year", "age", "sex", "region", "imd", "ethnicity", "cms")
-      pred_dt <- rbindlist(lapply(vars, function(v) {
-        lvls <- df[,levels(get(v))]
-        base <- df[,lapply(.SD, function(x) levels(x)[1]),.SDcols=vars]
-        base[,logdenom := 0]
-        newdata <- base[rep(1, length(lvls)), ]
-        newdata[[v]] = lvls
-        rbindlist(lapply(1:nrow(newdata), function(i) {
-          data.table(term=paste0(v,newdata[i,..v]),
-                     pred=predict(fit, newdata = newdata[i, ], type = "response")
-          )                    
-          }))
-      }))
+
+      # get levels actually retained in model frame
+      mf <- model.frame(fit)
+
+      # ref level of each factor
+      ref <- lapply(mf[vars], function(x) {
+        levels(x)[1] 
+      })
+      ref <- as.data.frame(ref)
+
+      # generate predictions
+      pred_dt <- do.call(
+        rbind,
+        lapply(vars, function(v) {
+          x <- mf[[v]]
+          levs <- levels(x)
+          do.call(
+            rbind,
+            lapply(levs, function(z) {
+              tmp <- ref
+              tmp[[v]] <- z
+              tmp[['logdenom']] <- 0
+              data.frame(term = paste0(v, z), pred = predict(fit, newdata = tmp, type = "response"))
+            })
+          )
+        })
+      )
+      rownames(pred_dt) <- NULL
+      
       #combine results
       dt2 <- merge(dt, pred_dt, by = "term", all = TRUE)
       dt2[, c("disease", "metric", "error") := .(outcome, metric, NA_character_)]

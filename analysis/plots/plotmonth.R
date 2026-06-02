@@ -46,12 +46,14 @@ roundmid_any <- function(x, to=6){
 }
 df[metric %in% c("prevalence", "fatality_1y", "fatality_5y"), 
   c("numer_midpoint6", "denom_midpoint6") := .(roundmid_any(numer), roundmid_any(denom))]
-df[metric == "incidence", c("numer_midpoint6") := .(roundmid_any(numer))]
+df[metric == "incidence", c("numer_midpoint6", "denom_midpoint6") := .(roundmid_any(numer), denom)]
 df[metric %in% c("prevalence", "fatality_1y", "fatality_5y"), "result_midpoint6_derived" := numer_midpoint6 / denom_midpoint6 *100]
-df[metric == "incidence", "result_midpoint6_derived" := numer_midpoint6 / denom]
+df[metric == "incidence", "result_midpoint6_derived" := numer_midpoint6 / denom_midpoint6]
 
 # Save rounded results
 fwrite(df[,.(metric, disease, date, numer_midpoint6, denom_midpoint6, result_midpoint6_derived, result)], 
+       paste0("output/figs/tbl_raw_month_", ystart, "_", yend, ".csv"))
+fwrite(df[,.(metric, disease, date, numer_midpoint6, denom_midpoint6, result_midpoint6_derived)], 
        paste0("output/figs/tbl_round_month_", ystart, "_", yend, ".csv"))
        
 # Function to generate plots

@@ -47,11 +47,12 @@ df[, logdenom := log(denom)]
 df <- df[!(numer==0 | denom==0)]
 
 # Function to fit model and extract coefficients and predictions
-fitfullmodel <- function(df, outcome, metric){
-  data = df[disease == outcome & metric == metric]
+fitfullmodel <- function(df, out_arg, metric_arg){
+  data = df[disease == out_arg & metric == metric_arg]
+  
   tryCatch({
       #fit model
-      fit <- glm(numer ~ 
+      fit <- glm(numer ~
       year + age + sex + region + imd + ethnicity + cms, 
         offset = logdenom, data = data, family = quasipoisson(link = "log")
         )
@@ -94,15 +95,15 @@ fitfullmodel <- function(df, outcome, metric){
       
       #combine results
       dt2 <- merge(dt, pred_dt, by = "term", all = TRUE)
-      dt2[, c("disease", "metric", "error") := .(outcome, metric, NA_character_)]
+      dt2[, c("disease", "metric", "error") := .(out_arg, metric_arg, NA_character_)]
       setcolorder(dt2, c("disease", "metric", "term", "estimate", "std_error", "statistic", "p_value", "pred", "error"))
       dt2
     },
     #get error message if model fails 
     error = function(e) {
       data.table(
-        disease = outcome,
-        metric = metric,
+        disease = out_arg,
+        metric = metric_arg,
         term = NA_character_,
         estimate = NA_real_,
         std_error = NA_real_,
@@ -120,9 +121,9 @@ outcomes <- c("osd", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd
 
 metrics <- c("prevalence", "incidence", "fatality_1y", "fatality_5y")
 
-modelresults <- rbindlist(lapply(outcomes, function(outcome) {
-  rbindlist(lapply(metrics, function(metric) {
-    fitfullmodel(df = df, outcome = outcome, metric = metric)
+modelresults <- rbindlist(lapply(outcomes, function(o) {
+  rbindlist(lapply(metrics, function(m) {
+    fitfullmodel(df = df, out_arg = o, metric_arg = m)
   }))
 }))
 

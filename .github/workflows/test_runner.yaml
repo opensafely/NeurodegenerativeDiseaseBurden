@@ -15,5 +15,5 @@ jobs:
       uses: actions/checkout@v2
     - name: Test that the project is runnable
       uses: opensafely-core/research-action@v2      
-      with:
-        actions: create_cohort_summary
+     # with:
+      #  actions: create_cohort_summary

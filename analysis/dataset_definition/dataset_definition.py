@@ -127,7 +127,7 @@ for name, codes in olists.items():
         ## Primary care
         ### First record in year
         incident.append(
-            first_matching_tpp_between(codes["snomed"], start_date, end_date, death_date)
+            first_matching_tpp_between(codes["snomed"], start_date, pat_end_date, death_date)
         )
         ### Identify prevalent cases
 
@@ -143,7 +143,7 @@ for name, codes in olists.items():
         ## Secondary care
         ### First record in year
         incident.append(
-            first_matching_apc_between(codes["icd"], start_date, end_date, death_date, only_prim_diagnoses=False)
+            first_matching_apc_between(codes["icd"], start_date, pat_end_date, death_date, only_prim_diagnoses=False)
         )
         ### Identify prevalent cases
 
@@ -158,7 +158,7 @@ for name, codes in olists.items():
         ## Death
         ### First record in year
         incident.append(
-            first_matching_death_between(codes["icd"], start_date, end_date, death_date)
+            first_matching_death_between(codes["icd"], start_date, pat_end_date, death_date)
         )
 
     # Prevalance at start date
@@ -196,7 +196,7 @@ for name, codes in olists.items():
         f"inumer_bin_{name}",
         case(
             when(tmp_pnumer_bin_start == 1).then(0),
-            when(practice_registrations.exists_for_patient_on(tmp_incident_date)).then(1),
+            when(tmp_incident_date.is_not_null()).then(1),
             otherwise=0,
         )
     )
@@ -206,7 +206,10 @@ for name, codes in olists.items():
     setattr(
         dataset,
         f"idenom_num_{name}",
-        maximum_of(0,(tmp_idenom_num - start_date).days)
+        case(
+            when(tmp_pnumer_bin_start == 1).then(0),
+            otherwise = maximum_of(0,(tmp_idenom_num - start_date).days)
+        )
     )
 
     # Case fatality numerator

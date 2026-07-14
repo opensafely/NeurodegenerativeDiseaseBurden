@@ -8,6 +8,7 @@ library(cowplot)
 print("Define output folder")
 
 fs::dir_create(here::here("output/coh/"))
+fs::dir_create(here::here("output/figs/"))
 
 # Specify arguments 
 print('Specify arguments')

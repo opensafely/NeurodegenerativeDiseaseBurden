@@ -12,6 +12,9 @@ library(dplyr)
 ystart <- 2020
 yend <- 2023
 
+# Define start age for cohort included in calculating lifetime risk
+agestart <- c(18, 50, 65, 80)
+
 # Source functions ----
 
 source("analysis/fn-define_dates.R")
@@ -114,100 +117,82 @@ perform_calculations <- function(dataset_name) {
   )
 }
 
-# Create function to fit models ----
 
-fit_models <- function(start_year=ystart, end_year=yend) {
+# Create function to generate dataset for lifetime risk
+generate_dataset_liferisk <- function(start_year = ystart, end_year = yend, sage) {
   splice(
-    comment("Fit models using yearly calculation results"),
+    comment(glue("Generate dataset for lifetime risk calculation from age {sage}")),
     action(
-      name = "model-full-year",
+      name = glue("generate_dataset_liferisk_age{sage}"),
       run = glue(
-        "r:v2 analysis/models/modelfullyear.R"
-      ),
-      arguments = list(paste0(start_year, "_", end_year)),
-      needs = lapply(start_year:end_year, function(i) glue("calculations-{i}0101_{i}1231")),
-      moderately_sensitive = list(
-        modelresults = glue(
-          "output/models/modelfull_year{start_year}_{end_year}.csv"
-        )
-      )
-    )
-  )
-}
-
-# Create function to plot monthly results ----
-
-plot_results <- function(start_year=ystart, end_year=yend) {
-  dates_month <- define_dates(start_year, end_year, year = FALSE)
-  splice(
-    comment("Plot monthly results"),
-    action(
-      name = "plot-month",
-      run = glue(
-        "r:v2 analysis/plots/plotmonth.R"
-      ),
-      arguments = list(paste0(start_year, "_", end_year)),
-      needs = lapply(dates_month$dataset_name, function(i) glue("calculations-{i}")),
-      moderately_sensitive = list(
-        g_round = glue(
-          "output/figs/fig_round_month_{start_year}_{end_year}.png"
-        ),
-        g_raw = glue(
-          "output/figs/fig_raw_month_{start_year}_{end_year}.png"
-        ),
-        raw_month = glue(
-          "output/figs/tbl_raw_month_{start_year}_{end_year}.csv"
-        ),
-        round_month = glue(
-          "output/figs/tbl_round_month_{start_year}_{end_year}.csv"
-        )
-      )
-    )
-  )
-}
-
-# Create function to generate dataset for lifetime risk----
-generate_dataset_lifetime <- function(start_year = ystart, end_year = yend) {
-  splice(
-    comment("Generate dataset for lifetime risk calculations"),
-    action(
-      name = "generate_dataset_lifetime",
-      run = glue(
-        "ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_lifetime.py --output output/dataset_definition/dataset-lifetime-{start_year}0101_{end_year}1231.csv.gz -- --start_date {start_year}-01-01 --end_date {end_year}-12-31"
+        "ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_lifetime.py",
+        " --output output/dataset_definition/dataset-lifetime-{start_year}0101_{end_year}1231_age{sage}.csv.gz",
+        " -- --start_date {start_year}-01-01 --end_date {end_year}-12-31 --start_age {sage}"
       ),
       highly_sensitive = list(
         dataset = glue(
-          "output/dataset_definition/dataset-lifetime-{start_year}0101_{end_year}1231.csv.gz"
+          "output/dataset_definition/dataset-lifetime-{start_year}0101_{end_year}1231_age{sage}.csv.gz"
         )
       )
     )
-  )
+   )
 }
 
-# Create function to calculate lifetime risk ----
-
-calculate_lifetime_risk <- function(start_year=ystart, end_year=yend) {
+# Function to calculate lifetime risk
+calculate_liferisk <- function(start_year = ystart, end_year = yend, sage) {
   splice(
-    comment("Calculate lifetime risk"),
+    comment(glue("Calculate lifetime risk from age {sage}")),
     action(
-      name = "calculate-lifetime-risk",
+      name = glue("calculate_liferisk_age{sage}"),
       run = glue(
         "r:v2 analysis/models/lifetimerisk.R"
       ),
-      arguments = glue("{start_year}0101_{end_year}1231"),
-      needs = list("generate_dataset_lifetime"),
+      arguments = glue("{start_year}0101_{end_year}1231 {sage}"),
+      needs = list(glue("generate_dataset_liferisk_age{sage}")),
       moderately_sensitive = list(
-        liferisks = glue(
-          "output/models/lifetimerisk_{start_year}0101_{end_year}1231.csv"
+        liferiskall = glue(
+          "output/models/tbl_liferisk_all_{start_year}0101_{end_year}1231_age{sage}.csv"
         ),
-        g_life = glue(
-          "output/figs/fig_lifetimerisk_all_{start_year}0101_{end_year}1231.png"
-      )
+        g_life_all = glue(
+          "output/figs/fig_liferisk_all_{start_year}0101_{end_year}1231_age{sage}.png"
+      ),
+        liferisksex = glue(
+          "output/models/tbl_liferisk_sex_{start_year}0101_{end_year}1231_age{sage}.csv"
+        ),
+        g_life_sex = glue(
+          "output/figs/fig_liferisk_sex_{start_year}0101_{end_year}1231_age{sage}.png"
+      ),
+        liferiskimd = glue(
+          "output/models/tbl_liferisk_imd_{start_year}0101_{end_year}1231_age{sage}.csv"
+        ),
+        g_life_imd = glue(
+          "output/figs/fig_liferisk_imd_{start_year}0101_{end_year}1231_age{sage}.png"
+      ),
+        liferisketh = glue(
+          "output/models/tbl_liferisk_ethnicity_{start_year}0101_{end_year}1231_age{sage}.csv"
+        ),
+        g_life_eth = glue(
+          "output/figs/fig_liferisk_ethnicity_{start_year}0101_{end_year}1231_age{sage}.png"
+      ),
+        dem_censor = glue(
+          "output/models/tbl_liferisk_all_demcensor_{start_year}0101_{end_year}1231_age{sage}.csv"
+        ),
+        dem_comp = glue(
+          "output/models/tbl_liferisk_all_demcomp_{start_year}0101_{end_year}1231_age{sage}.csv"
+        ),
+        # g_life_all_dem = glue(
+        #   "output/figs/fig_liferisk_all_dem_{start_year}0101_{end_year}1231_age{sage}.png"
+        # ),
+        g_life_all_demcensor = glue(
+            "output/figs/fig_liferisk_all_demcensor_{start_year}0101_{end_year}1231_age{sage}.png"
+        ),
+        g_life_all_demcomp = glue(
+            "output/figs/fig_liferisk_all_demcomp_{start_year}0101_{end_year}1231_age{sage}.png"
+        )
     )
   )
-)
+  )
 }
-
 
 # Create function to convert comment "actions" in a yaml string into proper comments ----
 
@@ -223,6 +208,7 @@ convert_comment_actions <- function(yaml.txt) {
 # Define dates ----
 
 dates <- define_dates(start_year = ystart, end_year = yend)
+dates_month <- define_dates(start_year = ystart, end_year = yend, year = FALSE)
 
 # Make actions list ----
 
@@ -273,24 +259,172 @@ actions_list <- splice(
 
   ## Fit models ----
   splice(
-    fit_models()
+    comment("Fit models using yearly calculation results"),
+    action(
+      name = "model_full_year",
+      run = glue(
+        "r:v2 analysis/models/modelfullyear.R"
+      ),
+      arguments = glue("{ystart}_{yend}"),
+      needs = lapply(ystart:yend, function(i) glue("calculations-{i}0101_{i}1231")),
+      moderately_sensitive = list(
+        modelresults = glue(
+          "output/models/tbl_modelfull_year_{ystart}_{yend}.csv"
+        ),
+        g_pred = glue("output/figs/fig_preds_modelfull_year_{ystart}_{yend}.png"
+        ),
+        g_forest = glue("output/figs/fig_forest_modelfull_year_{ystart}_{yend}.png"
+        ),
+        g_heat = glue("output/figs/fig_heat_ethnicity_{ystart}_{yend}.png"
+        )
+      )
+    )
+  ),
+
+  splice(
+    comment("Fit models for covid periods"),
+    action(
+      name = "model_covid",
+      run = glue(
+        "r:v2 analysis/models/modelcovid.R"
+      ),
+      arguments = glue("{ystart}_{yend}"),
+      needs = lapply(dates_month$dataset_name, function(i) glue("calculations-{i}")),
+      moderately_sensitive = list(
+        modelresults = glue(
+          "output/models/tbl_modelcovid_month_{ystart}_{yend}.csv"
+        ),
+        g_covid_avg = glue("output/figs/fig_modelcovid_avg_{ystart}_{yend}.png"
+        ),
+        g_covid_pred1 = glue("output/figs/fig_modelcovid_pred1_{ystart}_{yend}.png"
+        ),
+        g_covid_pred2 = glue("output/figs/fig_modelcovid_pred2_{ystart}_{yend}.png"
+        )
+      )
+    )
   ),
 
   ## Plot results ----
   splice(
-    plot_results()
+    comment("Plot monthly results"),
+    action(
+      name = "plot_month",
+      run = glue(
+        "r:v2 analysis/plots/plotmonth.R"
+      ),
+      arguments = list(paste0(ystart, "_", yend)),
+      needs = lapply(dates_month$dataset_name, function(i) glue("calculations-{i}")),
+      moderately_sensitive = list(
+        g_round = glue(
+          "output/figs/fig_round_month_{ystart}_{yend}.png"
+        ),
+        g_raw = glue(
+          "output/figs/fig_raw_month_{ystart}_{yend}.png"
+        ),
+        raw_month = glue(
+          "output/figs/tbl_raw_month_{ystart}_{yend}.csv"
+        ),
+        round_month = glue(
+          "output/figs/tbl_round_month_{ystart}_{yend}.csv"
+        )
+      )
+    )
+  ),
+
+  ## Generate annual bar plots
+  splice(
+    comment("Genenerate annual bar plots for dementia"),
+    action(
+      name = "plot_year_bar",
+      run = glue(
+        "r:v2 analysis/plots/plotyear.R"
+      ),
+      arguments = glue("{ystart}_{yend}"),
+      needs = lapply(ystart:yend, function(i) glue("calculations-{i}0101_{i}1231")),
+      moderately_sensitive = list(
+        df = glue(
+          "output/figs/tbl_round_year_{ystart}_{yend}.csv"
+        ),
+        g_bar = glue(
+          "output/figs/fig_round_year_bar_{ystart}_{yend}.png"
+        )
+      )
+    )
    ),
 
    ## Generate lifetime risk datasets ----
   splice(
-    generate_dataset_lifetime()
-   ),
+    unlist(
+      lapply(
+        agestart,
+        function(x) {
+          generate_dataset_liferisk(sage = x)
+        }
+      ),
+      recursive = FALSE
+    )
+  ),
 
    ## Calculate lifetime risk ----
   splice(
-    calculate_lifetime_risk()
+    unlist(
+      lapply(
+        agestart,
+        function(x) {
+          calculate_liferisk(sage = x)
+        }
+      ),
+      recursive = FALSE
+    )
+  ),
+
+  ## Generate cohort summary table
+  splice(
+    comment("Generate cohort summary table"),
+    action(
+      name = "create_cohort_summary",
+      run = glue(
+        "r:v2 analysis/characteristics.R"
+      ),
+      arguments = glue("{ystart}0101_{yend}1231"),
+      needs = list("generate_dataset_liferisk_age18"),
+      moderately_sensitive = list(
+        coh = glue(
+          "output/coh/tbl_round_coh_subgroup_{ystart}0101_{yend}1231.csv"
+        ),
+        diag_source = glue(
+          "output/coh/tbl_round_diag_source_{ystart}0101_{yend}1231.csv"
+        ),
+        g_source_all = glue(
+          "output/figs/fig_bar_diagsource_all_{ystart}0101_{yend}1231.png"
+        ),
+        g_source_sex = glue(
+          "output/figs/fig_bar_diagsource_sex_{ystart}0101_{yend}1231.png"
+        ),
+        g_source_age = glue(
+          "output/figs/fig_bar_diagsource_age_{ystart}0101_{yend}1231.png"
+        ),
+        g_source_eth = glue(
+          "output/figs/fig_bar_diagsource_ethnicity_{ystart}0101_{yend}1231.png"
+        ),
+        g_source_cms = glue(
+          "output/figs/fig_bar_diagsource_cms_{ystart}0101_{yend}1231.png"
+        ),
+        g_source_imd = glue(
+          "output/figs/fig_bar_diagsource_imd_{ystart}0101_{yend}1231.png"
+        ),
+        g_diagage_all = glue(
+          "output/figs/fig_box_diagage_all_{ystart}0101_{yend}1231.png"
+        ),
+        g_diagage_sex = glue(
+          "output/figs/fig_box_diagage_sex_{ystart}0101_{yend}1231.png"
+        )
+    )
+    )
   )
 )
+
+
 
 # Combine actions into project list ----
 

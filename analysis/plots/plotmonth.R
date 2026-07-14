@@ -57,9 +57,11 @@ fwrite(df[,.(metric, disease, date, numer_midpoint6, denom_midpoint6, result_mid
        paste0("output/figs/tbl_round_month_", ystart, "_", yend, ".csv"))
        
 # Function to generate plots
+ds <- c("osd", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
+        "pca", "dlb", "dementia")
 colpal <- setNames(
-  viridisLite::turbo(df[,length(unique(disease))]),
-  df[,unique(disease)][order(substr(df[,unique(disease)],1,1))]
+  viridisLite::turbo(length(ds)),
+  ds[order(substr(ds,1,1))]
 )
 
 make_plot <- function(data, rounded = TRUE, ylab, ylog = TRUE) { 
@@ -69,25 +71,25 @@ make_plot <- function(data, rounded = TRUE, ylab, ylog = TRUE) {
     setnames(data, "result", "result_to_plot")
   }
   ggplot(data, aes(x = date, y = result_to_plot, group = disease, color = disease)) +
-    geom_line(linewidth = .8) +
+    geom_line(linewidth = .8, show.legend = TRUE) +
     scale_x_date(
       breaks = seq(min(data$date), max(data$date), by = "12 months"),
       date_labels = "%Y"
     ) +
     scale_color_manual(
       values = colpal,
-      drop = FALSE
+      drop = FALSE,
+      limits = names(colpal)
     ) +
     labs(x = "Year", y = ylab, color = "Disease") +
     theme_bw() +
-    theme(legend.position = "None") +
     if (ylog) scale_y_log10() 
 }
 
 
 # Use rounded results
 print('Generate plot for rounded monthly results')
-p1 <- make_plot(df[df$metric == "prevalence"], TRUE, "Prevalence(%)", TRUE) + theme(legend.position = "right")
+p1 <- make_plot(df[df$metric == "prevalence"], TRUE, "Prevalence(%)", TRUE)
 p2 <- make_plot(df[df$metric == "incidence"], TRUE, "Incidence(per 100,000 person-years)", TRUE)
 p3 <- make_plot(df[df$metric == "fatality_1y" & !disease %in% c("cbd", "cjd")], TRUE, "1-year fatality(%)", FALSE)
 # p4 <- make_plot(df[df$metric == "fatality_5y" & !disease %in% c("cbd", "cjd")], TRUE, "5-year fatality(%)", FALSE)
@@ -102,7 +104,7 @@ rm(list=c("p1", "p2", "p3", "g_round"))
 
 # Use rounded results
 print('Generate plot for raw monthly results')
-p1 <- make_plot(df[df$metric == "prevalence"], FALSE, "Prevalence(%)", TRUE) + theme(legend.position = "right")
+p1 <- make_plot(df[df$metric == "prevalence"], FALSE, "Prevalence(%)", TRUE) 
 p2 <- make_plot(df[df$metric == "incidence"], FALSE, "Incidence(per 100,000 person-years)", TRUE)
 p3 <- make_plot(df[df$metric == "fatality_1y"], FALSE, "1-Year fatality(%)", FALSE)
 # p4 <- make_plot(df[df$metric == "fatality_5y"], FALSE, "5-Year fatality(%)", FALSE)

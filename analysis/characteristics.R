@@ -278,24 +278,17 @@ print("generate boxplot for median and iqr of diag age")
 get_diagage <- function(df, outcome, bygroup = NA){
   if (bygroup %in% c("age", "sex", "ethnicity", "imd", "region", "cms")){
     tmp <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .(age=get(paste0("survage_", outcome))
-    # ,
-                        # q1=quantile(get(paste0("survage_", outcome)), 0.25, na.rm = TRUE),
-                        # q3=quantile(get(paste0("survage_", outcome)), 0.75, na.rm = TRUE)
-                        ),
-                        by=.(group=get(paste0("cov_cat_", bygroup)))]
+              ),
+              by=.(group=get(paste0("cov_cat_", bygroup)))]
     tmp[, c("disease", "category") := .(outcome, bygroup)]
     } else{
       tmp <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .(age=get(paste0("survage_", outcome))
-      # ,
-                        # q1=quantile(get(paste0("survage_", outcome)), 0.25, na.rm = TRUE),
-                        # q3=quantile(get(paste0("survage_", outcome)), 0.75, na.rm = TRUE)
-                        )
-                      ]
+                )
+                ]
       tmp[, c("disease", "category", "group") := .(outcome, "all", "all")]
     }
 }
 diag_age<- rbindlist(lapply(ds, function(x) rbindlist(lapply(cats, get_diagage, df=df, outcome=x), use.names = TRUE)),use.names = TRUE)
-# fwrite(diag_age, paste0("output/coh/tbl_median_diag_age_",dataset_name, ".csv"))
 
 print("function to plot diag age")
 makeplot2 <- function(data, bygroup=NA){

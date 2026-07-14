@@ -129,7 +129,7 @@ fitfullmodel <- function(df, out_arg, metric_arg){
 
 # Fit models for all outcomes and metrics
 outcomes <- c("osd", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
-              "pca", "dlb")
+              "pca", "dlb", "dementia")
 
 metrics <- c("prevalence", "incidence", "fatality_1y", "fatality_5y")
 
@@ -238,7 +238,8 @@ ggsave(g_pred, filename = paste0("output/figs/fig_preds_modelfull_year_", ystart
 
 # Forest plot for relative estiamtes
 print("Generate forest plot for relative estimates")
-results2 = results[metric!='fatality_5y']
+results2 <- results[metric!='fatality_5y'] 
+results2 <- results2[results2[term %in% c("age40-49", "sexmale", "imd9-10 (least deprived)", "cmsQ1"), unique(group)], on="group"]
 results2[,lab:= factor(lab, levels = rev(levels(lab)))]
 results2[,metric := factor(metric,levels = c('prevalence', 'incidence', 'fatality_1y'))]
 g_forest <- ggplot(results2, aes(

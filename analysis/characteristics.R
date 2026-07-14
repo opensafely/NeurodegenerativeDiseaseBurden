@@ -168,7 +168,7 @@ makeplot <- function(data, bygroup=NA){
     ggplot(data, aes(
       x = factor(disease),
       y = percent,
-      fill = source
+      fill = factor(source, levels=c('primary', 'secondary', 'death'))
     )) +
       geom_col(show.legend = TRUE) +
       labs(x = "Disesae", y = "Pencent", fill = "Data source", title = title) +

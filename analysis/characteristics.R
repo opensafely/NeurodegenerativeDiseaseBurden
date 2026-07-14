@@ -255,23 +255,23 @@ ggsave(g_source_all, filename = paste0("output/figs/fig_bar_diagsource_all_", da
 
 print("plot diag source by sex")
 g_source_sex <- makeplot(diag_source, bygroup="sex")     
-ggsave(g_source_sex, filename = paste0("output/figs/fig_bar_diagsource_sex_", dataset_name, ".png"), width=16, units="in")
+ggsave(g_source_sex, filename = paste0("output/figs/fig_bar_diagsource_sex_", dataset_name, ".png"), width=20, units="in")
 
 print("plot diag source by age")
 g_source_sex <- makeplot(diag_source, bygroup="age")     
-ggsave(g_source_sex, filename = paste0("output/figs/fig_bar_diagsource_age_", dataset_name, ".png"), width=16, units="in")
+ggsave(g_source_sex, filename = paste0("output/figs/fig_bar_diagsource_age_", dataset_name, ".png"), width=20, units="in")
 
 print("plot diag source by ethnicity")
 g_source_eth <- makeplot(diag_source, bygroup="ethnicity")     
-ggsave(g_source_eth, filename = paste0("output/figs/fig_bar_diagsource_ethnicity_", dataset_name, ".png"), width=16, units="in")
+ggsave(g_source_eth, filename = paste0("output/figs/fig_bar_diagsource_ethnicity_", dataset_name, ".png"), width=20, units="in")
 
 print("plot diag source by comorbidity")
 g_source_cms <- makeplot(diag_source, bygroup="cms")     
-ggsave(g_source_cms, filename = paste0("output/figs/fig_bar_diagsource_cms_", dataset_name, ".png"), width=16, units="in")
+ggsave(g_source_cms, filename = paste0("output/figs/fig_bar_diagsource_cms_", dataset_name, ".png"), width=20, units="in")
 
 print("plot diag source by deprivation")
 g_source_imd <- makeplot(diag_source, bygroup="imd")     
-ggsave(g_source_imd, filename = paste0("output/figs/fig_bar_diagsource_imd_", dataset_name, ".png"), width=16, units="in")
+ggsave(g_source_imd, filename = paste0("output/figs/fig_bar_diagsource_imd_", dataset_name, ".png"), width=20, units="in")
 
 #diag age boxplot
 print("generate boxplot for median and iqr of diag age")
@@ -373,5 +373,5 @@ ggsave(g_diagage_all, filename = paste0("output/figs/fig_box_diagage_all_", data
 
 print("plot diag age by sex")
 g_diagage_sex <- makeplot2(diag_age, bygroup="sex")     
-ggsave(g_diagage_sex, filename = paste0("output/figs/fig_box_diagage_sex_", dataset_name, ".png"), width=16, units="in")
+ggsave(g_diagage_sex, filename = paste0("output/figs/fig_box_diagage_sex_", dataset_name, ".png"), width=20, units="in")
 

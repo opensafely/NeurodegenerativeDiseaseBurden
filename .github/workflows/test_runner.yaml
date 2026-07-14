@@ -14,7 +14,4 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Test that the project is runnable
-      uses: opensafely-core/research-action@v2
-      with:
-        actions: generate_dataset_lifetime calculate-lifetime-risk
-
+      uses: opensafely-core/research-action@v2      

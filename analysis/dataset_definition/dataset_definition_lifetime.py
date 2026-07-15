@@ -135,6 +135,8 @@ prevalent_dementia = maximum_of(*prev_dementia)
 
 
 for name, codes in olists.items():
+    
+    # For other neuro disease
     if name not in ["osd", "ud", "ad", "vd"]:
         incident = {}
         prevalent_start = []
@@ -160,7 +162,7 @@ for name, codes in olists.items():
                 prevalent_apc(codes["icd"], index_date, death_date)
             )
 
-        # Add prevalance status
+        # Add prevalance status for other neuro disease
         if len(prevalent_start) == 1:
             tmp_prev = prevalent_start[0]
         elif len(prevalent_start) > 1:
@@ -172,7 +174,7 @@ for name, codes in olists.items():
             tmp_prev
         )
         
-        # Add incidence status
+        # Add incidence status for other neuro disease
         if len(incident) ==1:
             tmp_incident_date = list(incident.values())[0]
         else:
@@ -189,36 +191,74 @@ for name, codes in olists.items():
             )
         )
 
-        # Add data source
+        # Add data source for other neuro disease
         if len(incident) == 1:
             setattr(
                     dataset,
-                    f"event_{name}_source",
+                    f"event_{name}_source_primary",
                     case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(None),
-                        otherwise = list(incident.values())[0]                
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(list(incident.keys())[0] == "primary").then(1),
+                        otherwise = 0                
+                    )
+                    )
+            setattr(
+                    dataset,
+                    f"event_{name}_source_secondary",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(list(incident.keys())[0] == "secondary").then(1),
+                        otherwise = 0                
+                    )
+                    )
+            setattr(
+                    dataset,
+                    f"event_{name}_source_death",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(list(incident.keys())[0] == "death").then(1),
+                        otherwise = 0                
                     )
                     )
         else:
             setattr(
                     dataset,
-                    f"event_{name}_source",
+                    f"event_{name}_source_primary",
                     case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(None),
-                        when(tmp_incident_date == incident["secondary"]).then("secondary"),
-                        when(tmp_incident_date == incident["primary"]).then("primary"),
-                        when(tmp_incident_date == incident["death"]).then("death")                
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(tmp_incident_date == incident["primary"]).then(1),
+                        otherwise = 0              
                     )
                     )
-        # Survage
+            setattr(
+                    dataset,
+                    f"event_{name}_source_secondary",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(tmp_incident_date == incident["secondary"]).then(1),
+                        otherwise = 0              
+                    )
+                    )
+            setattr(
+                    dataset,
+                    f"event_{name}_source_death",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(tmp_incident_date == incident["death"]).then(1),
+                        otherwise = 0              
+                    )
+                    )
+        # Survage for other neuro disease
         tmp_fu = minimum_of(pat_end_date, tmp_incident_date)
         setattr(
             dataset,
             f"survage_{name}",
             patients.age_on(tmp_fu)
         )
+
+    # For dementia subtypes
     else:
-        #Prevalent status for any dementia
+        #Prevalent status for dementia subtypes using any dementia
         setattr(
             dataset,
             f"prev_bin_{name}",
@@ -236,29 +276,65 @@ for name, codes in olists.items():
             )
         )
 
-        #Add data source
+        #Add data source for dementia subtypes
         if len(inci_dementia[name]) == 1:
             setattr(
-                dataset,
-                f"event_{name}_source",
-                case(
-                    when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(None),
-                    otherwise = list(inci_dementia[name].keys())[0],
-                )
-                )
+                    dataset,
+                    f"event_{name}_source_primary",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(list(inci_dementia[name].keys())[0] == "primary").then(1),
+                        otherwise = 0                
+                    )
+                    )
+            setattr(
+                    dataset,
+                    f"event_{name}_source_secondary",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(list(inci_dementia[name].keys())[0] == "secondary").then(1),
+                        otherwise = 0                
+                    )
+                    )
+            setattr(
+                    dataset,
+                    f"event_{name}_source_death",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(list(inci_dementia[name].keys())[0] == "death").then(1),
+                        otherwise = 0                
+                    )
+                    )
         else:    
             setattr(
-                dataset,
-                f"event_{name}_source",
-                case(
-                    when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(None),
-                    when(inci_dementia_1 == inci_dementia[name]["secondary"]).then("secondary"),
-                    when(inci_dementia_1 == inci_dementia[name]["primary"]).then("primary"),
-                    when(inci_dementia_1 == inci_dementia[name]["death"]).then("death"),
-                )
-                )
-
-        # Survage
+                    dataset,
+                    f"event_{name}_source_primary",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(inci_dementia_1 == inci_dementia[name]["primary"]).then(1),
+                        otherwise = 0              
+                    )
+                    )
+            setattr(
+                    dataset,
+                    f"event_{name}_source_secondary",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(inci_dementia_1 == inci_dementia[name]["secondary"]).then(1),
+                        otherwise = 0              
+                    )
+                    )
+            setattr(
+                    dataset,
+                    f"event_{name}_source_death",
+                    case(
+                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
+                        when(inci_dementia_1 == inci_dementia[name]["death"]).then(1),
+                        otherwise = 0              
+                    )
+                    )
+            
+        # Survage for dementia subtypes
         tmp_fu = minimum_of(pat_end_date, inci_dementia_1)
         setattr(
             dataset,

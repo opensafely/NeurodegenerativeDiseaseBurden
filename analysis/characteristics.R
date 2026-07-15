@@ -92,19 +92,21 @@ for (i in c("age", "sex", "ethnicity", "imd", "region", "cms")) {
 
 #function to get summary stats for diff outcomes
 print("function to get summary stats")
+roundmid_any <- function(x, to=6){
+  # like round_any, but centers on (integer) midpoint of the rounding points
+  ceiling(x/to)*to - (floor(to/2)*(x!=0))
+}
 get_summary <- function(df, outcome = NA){
   if (is.na(outcome)){
     dat <- copy(df)
   } else {
-    dat <- df[get(paste0("prev_bin_",outcome))==1|get(paste0("event_",outcome))=="neuro"]
+    dat <- df[get(paste0("prev_bin_",outcome))==0 & get(paste0("event_",outcome))=="neuro"]
   }
   coh <- dat[, .(category = "total", group = "total", n = .N, percent=100)]
-  coh[n < 7, "n" := NA_integer_]
-  coh[, "n" :=  round(n/5)*5]
+  coh[, "n" := roundmid_any(n)]
   for (i in c("age", "sex", "ethnicity", "imd", "region", "cms")) {
     tmp <- dat[,.(category = i, n=.N), by=.(group = get(paste0("cov_cat_",i)))]
-    tmp[n < 7, "n" := NA_integer_]
-    tmp[, "n" :=  round(n/5)*5]
+    tmp[, "n" := roundmid_any(n)]
     totn <- tmp[, sum(n)]
     tmp[, "percent" := round(n/totn*100,1)]
     coh <- rbind(coh, tmp)
@@ -133,24 +135,31 @@ fwrite(coh, paste0("output/coh/tbl_round_coh_subgroup_",dataset_name, ".csv"))
 
 # function to get percentage record in each data source
 print("function to calculate diag source")
+
 get_source <- function(df, outcome, bygroup = NA){
   if (bygroup %in% c("age", "sex", "ethnicity", "imd", "region", "cms")){
-    tmp <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .(n=.N), by = .(source = get(paste0("event_",outcome, "_source")), group=get(paste0("cov_cat_", bygroup)))]
-    tmp[n < 7, "n" := NA_integer_]
-    tmp[, "n" :=  round(n/5)*5]
-    tmp2 <- tmp[, .(totn = sum(n)),by =.(group)]
-    tmp3 <- tmp2[tmp, on="group"]
-    tmp3[, "percent" := round(n/totn*100,1)]
-    tmp3[, "disease" := outcome]
-    tmp3[, c("category", "totn") := .(bygroup, NULL)]
+    totn <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .N, by=.(group=get(paste0("cov_cat_", bygroup)))]
+    n_prim <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_primary"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+    n_second <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_secondary"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+    n_death <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_death"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+    totn[, "N" := roundmid_any(N)]
+    n_prim[, "n" := roundmid_any(n)]
+    n_second[, "n" := roundmid_any(n)]
+    n_death[, "n" := roundmid_any(n)]
+    tmp1 <- n_prim[totn, .(disease=outcome, category=bygroup, group, source="primary", percent=round(n/N*100,1)),on="group"]
+    tmp2 <- n_second[totn, .(disease=outcome, category=bygroup, group, source="secondary", percent=round(n/N*100,1)),on="group"]
+    tmp3 <- n_death[totn, .(disease=outcome, category=bygroup, group, source="death", percent=round(n/N*100,1)),on="group"]
+    tmp <- rbind(tmp1, tmp2, tmp3)
     } else{
-      tmp <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .(n=.N), by = .(source = get(paste0("event_",outcome, "_source")))]
-      tmp[n < 7, "n" := NA_integer_]
-      tmp[, "n" :=  round(n/5)*5]
-      totn <- tmp[,sum(n)]
-      tmp[, "percent" := round(n/totn*100,1)]
-      tmp[, "disease" := outcome]
-      tmp[, c("category", "group") := .("all", "all")]
+      totn <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .N]
+      n_prim <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_primary"))==1, .N]
+      n_second <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_secondary"))==1, .N]
+      n_death <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_death"))==1, .N]
+      totn <- roundmid_any(totn)
+      n_prim <- roundmid_any(n_prim)
+      n_second <- roundmid_any(n_second)
+      n_death <- roundmid_any(n_death)
+      tmp <- data.table(disease=outcome, category="all", group="all", source=c("primary", "secondary", "death"), percent=c(round(n_prim/totn*100,1), round(n_second/totn*100,1), round(n_death/totn*100,1)))
     }
 }
 
@@ -168,24 +177,27 @@ makeplot <- function(data, bygroup=NA){
     ggplot(data, aes(
       x = factor(disease),
       y = percent,
-      fill = factor(source, levels=c('primary', 'secondary', 'death'))
+      fill = factor(source, levels=c("primary", "secondary", "death"))
     )) +
-      geom_col(show.legend = TRUE) +
-      labs(x = "Disesae", y = "Pencent", fill = "Data source", title = title) +
-      scale_fill_manual(
+    geom_col(position = position_dodge(width = 0.8),
+        width = 0.7,
+        show.legend = TRUE) +
+    labs(x = "Disesae", y = "Pencent", fill = "Data source", title = title) +
+    scale_fill_manual(
       values = setNames(viridisLite::viridis(3),
-      c("primary", "secondary", "death")
-    ),
+        c("primary", "secondary", "death")
+        ),
       drop = FALSE,
       limits = c("primary", "secondary", "death")
-    ) +
-      scale_y_continuous(
-        expand = expansion(mult = c(0, 0.05))
       ) +
-      theme_bw() +
-      theme(axis.title = element_blank(),
-      )
+    scale_y_continuous(
+      expand = expansion(mult = c(0, 0.05))
+      ) +
+    theme_bw() +
+    theme(axis.title = element_blank(),
+    )
   }
+  
   if (is.na(bygroup)) {
     gen_plot(data[group=="all"]) + theme(axis.title = element_text(size=10))
     } else {

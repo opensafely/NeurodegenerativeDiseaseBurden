@@ -1101,7 +1101,7 @@ actions:
 
   ## Fit models using yearly calculation results 
 
-  model-full-year:
+  model_full_year:
     run: r:v2 analysis/models/modelfullyear.R 2020_2023
     needs:
     - calculations-20200101_20201231
@@ -1110,11 +1110,74 @@ actions:
     - calculations-20230101_20231231
     outputs:
       moderately_sensitive:
-        modelresults: output/models/modelfull_year2020_2023.csv
+        modelresults: output/models/tbl_modelfull_year_2020_2023.csv
+        g_pred: output/figs/fig_preds_modelfull_year_2020_2023.png
+        g_forest: output/figs/fig_forest_modelfull_year_2020_2023.png
+        g_heat: output/figs/fig_heat_ethnicity_2020_2023.png
+
+  ## Fit models for covid periods 
+
+  model_covid:
+    run: r:v2 analysis/models/modelcovid.R 2020_2023
+    needs:
+    - calculations-20200101_20200131
+    - calculations-20200201_20200229
+    - calculations-20200301_20200331
+    - calculations-20200401_20200430
+    - calculations-20200501_20200531
+    - calculations-20200601_20200630
+    - calculations-20200701_20200731
+    - calculations-20200801_20200831
+    - calculations-20200901_20200930
+    - calculations-20201001_20201031
+    - calculations-20201101_20201130
+    - calculations-20201201_20201231
+    - calculations-20210101_20210131
+    - calculations-20210201_20210228
+    - calculations-20210301_20210331
+    - calculations-20210401_20210430
+    - calculations-20210501_20210531
+    - calculations-20210601_20210630
+    - calculations-20210701_20210731
+    - calculations-20210801_20210831
+    - calculations-20210901_20210930
+    - calculations-20211001_20211031
+    - calculations-20211101_20211130
+    - calculations-20211201_20211231
+    - calculations-20220101_20220131
+    - calculations-20220201_20220228
+    - calculations-20220301_20220331
+    - calculations-20220401_20220430
+    - calculations-20220501_20220531
+    - calculations-20220601_20220630
+    - calculations-20220701_20220731
+    - calculations-20220801_20220831
+    - calculations-20220901_20220930
+    - calculations-20221001_20221031
+    - calculations-20221101_20221130
+    - calculations-20221201_20221231
+    - calculations-20230101_20230131
+    - calculations-20230201_20230228
+    - calculations-20230301_20230331
+    - calculations-20230401_20230430
+    - calculations-20230501_20230531
+    - calculations-20230601_20230630
+    - calculations-20230701_20230731
+    - calculations-20230801_20230831
+    - calculations-20230901_20230930
+    - calculations-20231001_20231031
+    - calculations-20231101_20231130
+    - calculations-20231201_20231231
+    outputs:
+      moderately_sensitive:
+        modelresults: output/models/tbl_modelcovid_month_2020_2023.csv
+        g_covid_avg: output/figs/fig_modelcovid_avg_2020_2023.png
+        g_covid_pred1: output/figs/fig_modelcovid_pred1_2020_2023.png
+        g_covid_pred2: output/figs/fig_modelcovid_pred2_2020_2023.png
 
   ## Plot monthly results 
 
-  plot-month:
+  plot_month:
     run: r:v2 analysis/plots/plotmonth.R 2020_2023
     needs:
     - calculations-20200101_20200131
@@ -1172,24 +1235,160 @@ actions:
         raw_month: output/figs/tbl_raw_month_2020_2023.csv
         round_month: output/figs/tbl_round_month_2020_2023.csv
 
-  ## Generate dataset for lifetime risk calculations 
+  ## Genenerate annual bar plots for dementia 
 
-  generate_dataset_lifetime:
-    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_lifetime.py
-      --output output/dataset_definition/dataset-lifetime-20200101_20231231.csv.gz
-      -- --start_date 2020-01-01 --end_date 2023-12-31
-    outputs:
-      highly_sensitive:
-        dataset: output/dataset_definition/dataset-lifetime-20200101_20231231.csv.gz
-
-  ## Calculate lifetime risk 
-
-  calculate-lifetime-risk:
-    run: r:v2 analysis/models/lifetimerisk.R 20200101_20231231
+  plot_year_bar:
+    run: r:v2 analysis/plots/plotyear.R 2020_2023
     needs:
-    - generate_dataset_lifetime
+    - calculations-20200101_20201231
+    - calculations-20210101_20211231
+    - calculations-20220101_20221231
+    - calculations-20230101_20231231
     outputs:
       moderately_sensitive:
-        liferisks: output/models/lifetimerisk_20200101_20231231.csv
-        g_life: output/figs/fig_lifetimerisk_all_20200101_20231231.png
+        df: output/figs/tbl_round_year_2020_2023.csv
+        g_bar: output/figs/fig_round_year_bar_2020_2023.png
+
+  ## Generate dataset for lifetime risk calculation from age 18 
+
+  generate_dataset_liferisk_age18:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_lifetime.py
+      --output output/dataset_definition/dataset-lifetime-20200101_20231231_age18.csv.gz
+      -- --start_date 2020-01-01 --end_date 2023-12-31 --start_age 18
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-lifetime-20200101_20231231_age18.csv.gz
+
+  ## Generate dataset for lifetime risk calculation from age 50 
+
+  generate_dataset_liferisk_age50:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_lifetime.py
+      --output output/dataset_definition/dataset-lifetime-20200101_20231231_age50.csv.gz
+      -- --start_date 2020-01-01 --end_date 2023-12-31 --start_age 50
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-lifetime-20200101_20231231_age50.csv.gz
+
+  ## Generate dataset for lifetime risk calculation from age 65 
+
+  generate_dataset_liferisk_age65:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_lifetime.py
+      --output output/dataset_definition/dataset-lifetime-20200101_20231231_age65.csv.gz
+      -- --start_date 2020-01-01 --end_date 2023-12-31 --start_age 65
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-lifetime-20200101_20231231_age65.csv.gz
+
+  ## Generate dataset for lifetime risk calculation from age 80 
+
+  generate_dataset_liferisk_age80:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition/dataset_definition_lifetime.py
+      --output output/dataset_definition/dataset-lifetime-20200101_20231231_age80.csv.gz
+      -- --start_date 2020-01-01 --end_date 2023-12-31 --start_age 80
+    outputs:
+      highly_sensitive:
+        dataset: output/dataset_definition/dataset-lifetime-20200101_20231231_age80.csv.gz
+
+  ## Calculate lifetime risk from age 18 
+
+  calculate_liferisk_age18:
+    run: r:v2 analysis/models/lifetimerisk.R 20200101_20231231 18
+    needs:
+    - generate_dataset_liferisk_age18
+    outputs:
+      moderately_sensitive:
+        liferiskall: output/models/tbl_liferisk_all_20200101_20231231_age18.csv
+        g_life_all: output/figs/fig_liferisk_all_20200101_20231231_age18.png
+        liferisksex: output/models/tbl_liferisk_sex_20200101_20231231_age18.csv
+        g_life_sex: output/figs/fig_liferisk_sex_20200101_20231231_age18.png
+        liferiskimd: output/models/tbl_liferisk_imd_20200101_20231231_age18.csv
+        g_life_imd: output/figs/fig_liferisk_imd_20200101_20231231_age18.png
+        liferisketh: output/models/tbl_liferisk_ethnicity_20200101_20231231_age18.csv
+        g_life_eth: output/figs/fig_liferisk_ethnicity_20200101_20231231_age18.png
+        dem_censor: output/models/tbl_liferisk_all_demcensor_20200101_20231231_age18.csv
+        dem_comp: output/models/tbl_liferisk_all_demcomp_20200101_20231231_age18.csv
+        g_life_all_demcensor: output/figs/fig_liferisk_all_demcensor_20200101_20231231_age18.png
+        g_life_all_demcomp: output/figs/fig_liferisk_all_demcomp_20200101_20231231_age18.png
+
+  ## Calculate lifetime risk from age 50 
+
+  calculate_liferisk_age50:
+    run: r:v2 analysis/models/lifetimerisk.R 20200101_20231231 50
+    needs:
+    - generate_dataset_liferisk_age50
+    outputs:
+      moderately_sensitive:
+        liferiskall: output/models/tbl_liferisk_all_20200101_20231231_age50.csv
+        g_life_all: output/figs/fig_liferisk_all_20200101_20231231_age50.png
+        liferisksex: output/models/tbl_liferisk_sex_20200101_20231231_age50.csv
+        g_life_sex: output/figs/fig_liferisk_sex_20200101_20231231_age50.png
+        liferiskimd: output/models/tbl_liferisk_imd_20200101_20231231_age50.csv
+        g_life_imd: output/figs/fig_liferisk_imd_20200101_20231231_age50.png
+        liferisketh: output/models/tbl_liferisk_ethnicity_20200101_20231231_age50.csv
+        g_life_eth: output/figs/fig_liferisk_ethnicity_20200101_20231231_age50.png
+        dem_censor: output/models/tbl_liferisk_all_demcensor_20200101_20231231_age50.csv
+        dem_comp: output/models/tbl_liferisk_all_demcomp_20200101_20231231_age50.csv
+        g_life_all_demcensor: output/figs/fig_liferisk_all_demcensor_20200101_20231231_age50.png
+        g_life_all_demcomp: output/figs/fig_liferisk_all_demcomp_20200101_20231231_age50.png
+
+  ## Calculate lifetime risk from age 65 
+
+  calculate_liferisk_age65:
+    run: r:v2 analysis/models/lifetimerisk.R 20200101_20231231 65
+    needs:
+    - generate_dataset_liferisk_age65
+    outputs:
+      moderately_sensitive:
+        liferiskall: output/models/tbl_liferisk_all_20200101_20231231_age65.csv
+        g_life_all: output/figs/fig_liferisk_all_20200101_20231231_age65.png
+        liferisksex: output/models/tbl_liferisk_sex_20200101_20231231_age65.csv
+        g_life_sex: output/figs/fig_liferisk_sex_20200101_20231231_age65.png
+        liferiskimd: output/models/tbl_liferisk_imd_20200101_20231231_age65.csv
+        g_life_imd: output/figs/fig_liferisk_imd_20200101_20231231_age65.png
+        liferisketh: output/models/tbl_liferisk_ethnicity_20200101_20231231_age65.csv
+        g_life_eth: output/figs/fig_liferisk_ethnicity_20200101_20231231_age65.png
+        dem_censor: output/models/tbl_liferisk_all_demcensor_20200101_20231231_age65.csv
+        dem_comp: output/models/tbl_liferisk_all_demcomp_20200101_20231231_age65.csv
+        g_life_all_demcensor: output/figs/fig_liferisk_all_demcensor_20200101_20231231_age65.png
+        g_life_all_demcomp: output/figs/fig_liferisk_all_demcomp_20200101_20231231_age65.png
+
+  ## Calculate lifetime risk from age 80 
+
+  calculate_liferisk_age80:
+    run: r:v2 analysis/models/lifetimerisk.R 20200101_20231231 80
+    needs:
+    - generate_dataset_liferisk_age80
+    outputs:
+      moderately_sensitive:
+        liferiskall: output/models/tbl_liferisk_all_20200101_20231231_age80.csv
+        g_life_all: output/figs/fig_liferisk_all_20200101_20231231_age80.png
+        liferisksex: output/models/tbl_liferisk_sex_20200101_20231231_age80.csv
+        g_life_sex: output/figs/fig_liferisk_sex_20200101_20231231_age80.png
+        liferiskimd: output/models/tbl_liferisk_imd_20200101_20231231_age80.csv
+        g_life_imd: output/figs/fig_liferisk_imd_20200101_20231231_age80.png
+        liferisketh: output/models/tbl_liferisk_ethnicity_20200101_20231231_age80.csv
+        g_life_eth: output/figs/fig_liferisk_ethnicity_20200101_20231231_age80.png
+        dem_censor: output/models/tbl_liferisk_all_demcensor_20200101_20231231_age80.csv
+        dem_comp: output/models/tbl_liferisk_all_demcomp_20200101_20231231_age80.csv
+        g_life_all_demcensor: output/figs/fig_liferisk_all_demcensor_20200101_20231231_age80.png
+        g_life_all_demcomp: output/figs/fig_liferisk_all_demcomp_20200101_20231231_age80.png
+
+  ## Generate cohort summary table 
+
+  create_cohort_summary:
+    run: r:v2 analysis/characteristics.R 20200101_20231231
+    needs:
+    - generate_dataset_liferisk_age18
+    outputs:
+      moderately_sensitive:
+        coh: output/coh/tbl_round_coh_subgroup_20200101_20231231.csv
+        diag_source: output/coh/tbl_round_diag_source_20200101_20231231.csv
+        g_source_all: output/figs/fig_bar_diagsource_all_20200101_20231231.png
+        g_source_sex: output/figs/fig_bar_diagsource_sex_20200101_20231231.png
+        g_source_age: output/figs/fig_bar_diagsource_age_20200101_20231231.png
+        g_source_eth: output/figs/fig_bar_diagsource_ethnicity_20200101_20231231.png
+        g_source_cms: output/figs/fig_bar_diagsource_cms_20200101_20231231.png
+        g_source_imd: output/figs/fig_bar_diagsource_imd_20200101_20231231.png
+        g_diagage_all: output/figs/fig_box_diagage_all_20200101_20231231.png
+        g_diagage_sex: output/figs/fig_box_diagage_sex_20200101_20231231.png
 

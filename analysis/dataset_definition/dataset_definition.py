@@ -29,6 +29,7 @@ start_date = get_parameter(name="start_date")
 end_date = get_parameter(name="end_date")
 death_date = minimum_of(patients.date_of_death, ons_deaths.date)
 pat_end_date = minimum_of(end_date, death_date, practice_registrations.for_patient_on(start_date).end_date) 
+start_date_default = "1900-01-01"
 
 # Identify mid-dates 
 d1 = date.fromisoformat(start_date)
@@ -116,125 +117,358 @@ olists = {
     "pca": {"snomed": postcortical_snomed},
     "dlb": {"snomed": lewybody_snomed},
 }
+olists["dementia"] = {
+    "snomed": specified_dementia_snomed+unspecified_dementia_snomed+alzheimers_snomed+vascular_snomed, 
+    "icd": specified_dementia_icd+unspecified_dementia_icd+alzheimers_icd+vascular_icd
+}
+
+# Prevalent status for any dementia before start date
+prev_dementia_start = []
+prev_dementia_start.append(
+                prevalent_tpp(olists["dementia"]["snomed"], start_date, death_date)
+            )
+prev_dementia_start.append(
+                prevalent_apc(olists["dementia"]["icd"], start_date, death_date)
+            )
+prevalent_dementia_start = maximum_of(*prev_dementia_start)
+
+# First incident date among dementia subtypes during follow up by data source
+inci_dementia_source = {}
+inci_dementia_min = {}
+for name in ["osd", "ud", "ad", "vd"]:
+    incident = {}
+    if "snomed" in olists[name]:
+        incident["primary"] = first_matching_tpp_between(olists[name]["snomed"], start_date, pat_end_date, death_date)
+    if "icd" in olists[name]:
+        incident["secondary"] = first_matching_apc_between(olists[name]["icd"], start_date, pat_end_date, death_date, only_prim_diagnoses=False)
+        incident["death"] = first_matching_death_between(olists[name]["icd"], start_date, pat_end_date, death_date) 
+    if len(incident) ==1:
+        tmp_incident_date = list(incident.values())[0]
+    else:
+        tmp_incident_date = minimum_of(*incident.values())
+    inci_dementia_min[name] = tmp_incident_date   
+    inci_dementia_source[name] = incident
+inci_dementia_1 = minimum_of(*inci_dementia_min.values())
+inci_dementia_status = case(
+            when(inci_dementia_1 == inci_dementia_min['ad']).then("ad"),
+            when(inci_dementia_1 == inci_dementia_min['vd']).then("vd"),
+            when(inci_dementia_1 == inci_dementia_min['osd']).then("osd"),
+            when(inci_dementia_1 == inci_dementia_min['ud']).then("ud")
+        )
+
+# First incident date among dementia subtypes before mid time point
+inci_dementia_mid = {}
+for name in ["osd", "ud", "ad", "vd"]:
+    incident = []
+    if "snomed" in olists[name]:
+        incident.append(
+            first_matching_tpp_between(olists[name]["snomed"], start_date_default, mid_date, death_date)
+        )
+    if "icd" in olists[name]:
+        incident.append(
+            first_matching_apc_between(olists[name]["icd"], start_date_default, mid_date, death_date, only_prim_diagnoses=False)
+        )
+        incident.append(
+            first_matching_death_between(olists[name]["icd"], start_date_default, mid_date, death_date) 
+        )
+    if len(incident) ==1:
+        tmp_incident_date = incident[0]
+    else:
+        tmp_incident_date = minimum_of(*incident)  
+    inci_dementia_mid[name] = tmp_incident_date
+inci_dementia_mid_1 = minimum_of(*inci_dementia_mid.values())
+prevalent_dementia_mid = case(
+            when(inci_dementia_mid_1 == inci_dementia_mid["ad"]).then("ad"),
+            when(inci_dementia_mid_1 == inci_dementia_mid['vd']).then("vd"),
+            when(inci_dementia_mid_1 == inci_dementia_mid['osd']).then("osd"),
+            when(inci_dementia_mid_1 == inci_dementia_mid['ud']).then("ud"),
+            )
 
 for name, codes in olists.items():
+    # For other neuro disease
+    if name not in ["osd", "ud", "ad", "vd"]:
+        incident = {}
+        prevalent_start = []
+        prevalent_mid = []
 
-    incident = []
-    prevalent_start = []
-    prevalent_mid = []
+        if "snomed" in codes:
+            ## Primary care
+            ### First incidence
+            incident["primary"] = first_matching_tpp_between(codes["snomed"], start_date, pat_end_date, death_date)
 
-    if "snomed" in codes:
-        ## Primary care
-        ### First record in year
-        incident.append(
-            first_matching_tpp_between(codes["snomed"], start_date, pat_end_date, death_date)
-        )
-        ### Identify prevalent cases
+            ### Identify prevalent cases
+            prevalent_start.append(
+                prevalent_tpp(codes["snomed"], start_date, death_date)
+            )
 
-        prevalent_start.append(
-            prevalent_tpp(codes["snomed"], start_date, death_date)
-        )
+            prevalent_mid.append(
+                prevalent_tpp(codes["snomed"], mid_date_prev, death_date)
+            )
 
-        prevalent_mid.append(
-            prevalent_tpp(codes["snomed"], mid_date_prev, death_date)
-        )
+        if "icd" in codes:
+            ## Secondary care
+            ### Frist incidence
+            incident["secondary"] = first_matching_apc_between(codes["icd"], start_date, pat_end_date, death_date, only_prim_diagnoses=False)
+            
+            ### Identify prevalent cases
+            prevalent_start.append(
+                prevalent_apc(codes["icd"], start_date, death_date)
+            )
 
-    if "icd" in codes:
-        ## Secondary care
-        ### First record in year
-        incident.append(
-            first_matching_apc_between(codes["icd"], start_date, pat_end_date, death_date, only_prim_diagnoses=False)
-        )
-        ### Identify prevalent cases
-
-        prevalent_start.append(
-            prevalent_apc(codes["icd"], start_date, death_date)
-        )
-
-        prevalent_mid.append(
-            prevalent_apc(codes["icd"], mid_date_prev, death_date)
-        )         
+            prevalent_mid.append(
+                prevalent_apc(codes["icd"], mid_date_prev, death_date)
+            )         
+            
+            ## Death
+            ### First incidence
+            incident["death"] = first_matching_death_between(codes["icd"], start_date, pat_end_date, death_date)
+            
+        # Prevalance at start date
+        if len(prevalent_start) == 1:
+            tmp_pnumer_bin_start = prevalent_start[0]
+        elif len(prevalent_start) > 1:
+            tmp_pnumer_bin_start = maximum_of(*prevalent_start)
         
-        ## Death
-        ### First record in year
-        incident.append(
-            first_matching_death_between(codes["icd"], start_date, pat_end_date, death_date)
+        # Prevalence at mid date
+        if len(prevalent_mid) == 1:
+            tmp_pnumer_bin_mid = prevalent_mid[0]
+        elif len(prevalent_mid) > 1:
+            tmp_pnumer_bin_mid = maximum_of(*prevalent_mid)
+
+        # Prevalence numerator
+        setattr(dataset,
+                f"pnumer_bin_{name}",
+                case(
+                    when((tmp_pnumer_bin_mid==1) & 
+                        ((death_date>=mid_date) | (death_date.is_null())) & 
+                        (practice_registrations.exists_for_patient_on(mid_date))
+                        ).then(1),
+                    otherwise=0
+                    )
+                )
+        
+        # Incidence numerator
+        if len(incident) == 1:
+            tmp_incident_date = list(incident.values())[0]
+        elif len(incident) > 1:
+            tmp_incident_date  = minimum_of(*incident.values())
+
+        setattr(
+            dataset,
+            f"inumer_bin_{name}",
+            case(
+                when(tmp_pnumer_bin_start == 1).then(0),
+                when(tmp_incident_date.is_not_null()).then(1),
+                otherwise=0,
+            )
         )
 
-    # Prevalance at start date
-    if len(prevalent_start) == 1:
-        tmp_pnumer_bin_start = prevalent_start[0]
-    elif len(prevalent_start) > 1:
-        tmp_pnumer_bin_start = maximum_of(*prevalent_start)
-    
-    # Prevalence at mid date
-    if len(prevalent_mid) == 1:
-        tmp_pnumer_bin_mid = prevalent_mid[0]
-    elif len(prevalent_mid) > 1:
-        tmp_pnumer_bin_mid = maximum_of(*prevalent_mid)
-
-    # Prevalence numerator
-    setattr(dataset,
-            f"pnumer_bin_{name}",
+        # Incidence denominator
+        tmp_idenom_num = minimum_of(pat_end_date, tmp_incident_date)
+        setattr(
+            dataset,
+            f"idenom_num_{name}",
             case(
-                when((tmp_pnumer_bin_mid==1) & 
-                     ((death_date>=mid_date) | (death_date.is_null())) & 
-                     (practice_registrations.exists_for_patient_on(mid_date))
+                when(tmp_pnumer_bin_start == 1).then(0),
+                otherwise = maximum_of(0,(tmp_idenom_num - start_date).days)
+            )
+        )
+
+        # Add data source for first incidence
+        if len(incident) == 1:
+            setattr(
+                    dataset,
+                    f"inci_primary_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(list(incident.keys())[0] == "primary").then(1),
+                        otherwise = 0                
+                    )
+            )
+            setattr(
+                    dataset,
+                    f"inci_secondary_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(list(incident.keys())[0] == "secondary").then(1),
+                        otherwise = 0                
+                    )
+            )
+            setattr(
+                    dataset,
+                    f"inci_death_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(list(incident.keys())[0] == "death").then(1),
+                        otherwise = 0                
+                    )
+            )
+        else:
+            setattr(
+                    dataset,
+                    f"inci_primary_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(tmp_incident_date == incident["primary"]).then(1),
+                        otherwise = 0              
+                    )
+            )
+            setattr(
+                    dataset,
+                    f"inci_secondary_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(tmp_incident_date == incident["secondary"]).then(1),
+                        otherwise = 0              
+                    )
+            )
+            setattr(
+                    dataset,
+                    f"inci_death_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(tmp_incident_date == incident["death"]).then(1),
+                        otherwise = 0              
+                    )
+            )
+
+        # Case fatality numerator
+        setattr(
+            dataset,
+            f"fnumer_bin_1y_{name}",
+            case(when((getattr(dataset,f"inumer_bin_{name}")==1) & 
+                    ((death_date - tmp_incident_date).years <=1) &
+                    (practice_registrations.exists_for_patient_on(death_date))
                     ).then(1),
                 otherwise=0
                 )
             )
-       
-    # Incidence numerator
-    if len(incident) == 1:
-        tmp_incident_date = incident[0]
-    elif len(incident) > 1:
-        tmp_incident_date  = minimum_of(*incident)
+        
+        setattr(
+            dataset,
+            f"fnumer_bin_5y_{name}",
+            case(when((getattr(dataset,f"inumer_bin_{name}")==1) & 
+                    ((death_date - tmp_incident_date).years <=5) &
+                    (practice_registrations.exists_for_patient_on(death_date))
+                    ).then(1),
+                otherwise=0
+                )
+            )
+        
+    # For dementia subtypes
+    else:
+        # Prevalence numerator
+        setattr(dataset,
+                f"pnumer_bin_{name}",
+                case(
+                    when((death_date<mid_date)|~(practice_registrations.exists_for_patient_on(mid_date))).then(0),
+                    when(prevalent_dementia_mid == name).then(1),
+                    otherwise=0
+                    )
+        )   
 
-    setattr(
-        dataset,
-        f"inumer_bin_{name}",
-        case(
-            when(tmp_pnumer_bin_start == 1).then(0),
-            when(tmp_incident_date.is_not_null()).then(1),
-            otherwise=0,
-        )
-    )
-
-    # Incidence denominator
-    tmp_idenom_num = minimum_of(pat_end_date, tmp_incident_date)
-    setattr(
-        dataset,
-        f"idenom_num_{name}",
-        case(
-            when(tmp_pnumer_bin_start == 1).then(0),
-            otherwise = maximum_of(0,(tmp_idenom_num - start_date).days)
-        )
-    )
-
-    # Case fatality numerator
-    setattr(
-        dataset,
-        f"fnumer_bin_1y_{name}",
-        case(when((getattr(dataset,f"inumer_bin_{name}")==1) & 
-                  ((death_date - tmp_incident_date).years <=1) &
-                  (practice_registrations.exists_for_patient_on(death_date))
-                ).then(1),
-             otherwise=0
+        # Incidence numerator 
+        setattr(
+            dataset,
+            f"inumer_bin_{name}",
+            case(
+                when(prevalent_dementia_start == 1).then(0),
+                when(inci_dementia_status == name).then(1),
+                otherwise=0,
             )
         )
-    
-    setattr(
-        dataset,
-        f"fnumer_bin_5y_{name}",
-        case(when((getattr(dataset,f"inumer_bin_{name}")==1) & 
-                  ((death_date - tmp_incident_date).years <=5) &
-                  (practice_registrations.exists_for_patient_on(death_date))
-                ).then(1),
-             otherwise=0
+
+        # Incidence denominator
+        tmp_idenom_num = minimum_of(pat_end_date, inci_dementia_1)
+        setattr(
+            dataset,
+            f"idenom_num_{name}",
+            case(
+                when(prevalent_dementia_start == 1).then(0),
+                otherwise = maximum_of(0,(tmp_idenom_num - start_date).days)
             )
         )
-            
+
+        #Add data source for first incidence
+        if len(inci_dementia_source[name]) == 1:
+            setattr(
+                    dataset,
+                    f"inci_primary_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(list(inci_dementia_source[name].keys())[0] == "primary").then(1),
+                        otherwise = 0                
+                    )
+            )
+            setattr(
+                    dataset,
+                    f"inci_secondary_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(list(inci_dementia_source[name].keys())[0] == "secondary").then(1),
+                        otherwise = 0                
+                    )
+            )
+            setattr(
+                    dataset,
+                    f"inci_death_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(list(inci_dementia_source[name].keys())[0] == "death").then(1),
+                        otherwise = 0                
+                    )
+            )
+        else:    
+            setattr(
+                    dataset,
+                    f"inci_primary_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(inci_dementia_1 == inci_dementia_source[name]["primary"]).then(1),
+                        otherwise = 0              
+                    )
+            )
+            setattr(
+                    dataset,
+                    f"inci_secondary_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(inci_dementia_1 == inci_dementia_source[name]["secondary"]).then(1),
+                        otherwise = 0              
+                    )
+            )
+            setattr(
+                    dataset,
+                    f"inci_death_bin_{name}",
+                    case(
+                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
+                        when(inci_dementia_1 == inci_dementia_source[name]["death"]).then(1),
+                        otherwise = 0              
+                    )
+            )
+        
+        # Case fatality numerator
+        setattr(
+            dataset,
+            f"fnumer_bin_1y_{name}",
+            case(when((getattr(dataset,f"inumer_bin_{name}")==1) & 
+                    ((death_date - inci_dementia_1).years <=1) &
+                    (practice_registrations.exists_for_patient_on(death_date))
+                    ).then(1),
+                otherwise=0
+            )
+        )
+        
+        setattr(
+            dataset,
+            f"fnumer_bin_5y_{name}",
+            case(when((getattr(dataset,f"inumer_bin_{name}")==1) & 
+                    ((death_date - inci_dementia_1).years <=5) &
+                    (practice_registrations.exists_for_patient_on(death_date))
+                    ).then(1),
+                otherwise=0
+            )
+        )
 # Prevalence denominator - population at mid date
 dataset.pdenom_bin_mid = case(when(((death_date>=mid_date) | (death_date.is_null())) &
                                    (practice_registrations.exists_for_patient_on(mid_date))

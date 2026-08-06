@@ -47,33 +47,33 @@ def get_cms_on_date(date, death_date, return_components=False):
     cms = clinical_events.exists_for_patient().as_int().as_float() * 0
     components = {}
 
-    for name, codelist, medlist, weight in [
-        ("alcohol", alcohol_codelist, None, 0.792243),
-        ("anxiety", anxiety_codelist, anxiety_medlist, 0.324207), #med last 12 months >=4 or any diagnosis, anxiety med list missing
-        ("af", af_codelist, None, 0.334891),
-        ("cancer", cancer_codelist, None, 1.202615), #last 5 years any diagnosis
-        ("ckd", ckd_codelist, None, 0.213652), # larger egfr of most recent two measurements >60ml/min
-        ("copd", copd_codelist, None, 0.702181),
+    for name, codelist, medlist1, medlist2, weight in [
+        ("alcohol", alcohol_codelist, None, None, 0.792243),
+        ("anxiety", anxiety_codelist, anxiety_medlist, None, 0.324207), #med last 12 months >=4 or any diagnosis, anxiety med list missing
+        ("af", af_codelist, None, None, 0.334891),
+        ("cancer", cancer_codelist, None, None, 1.202615), #last 5 years any diagnosis
+        ("ckd", ckd_codelist, None, None, 0.213652), # larger egfr of most recent two measurements >60ml/min
+        ("copd", copd_codelist, None, None, 0.702181),
         #("chd", chd_codelist, 0.49), CHD not included
-        ("dementia", dementia_codelist, None, 0.938001),
-        ("diabetes", diabetes_codelist, None, 0.29467),
-        ("epilepsy", epilepsy_codelist, epilepsy_medlist, 0.477465), # any diagnosis AND med last 12 months >=1, med list missing
+        ("dementia", dementia_codelist, None, None, 0.938001),
+        ("diabetes", diabetes_codelist, None, None, 0.29467),
+        ("epilepsy", epilepsy_codelist, epilepsy_medlist, None, 0.477465), # any diagnosis AND med last 12 months >=1, med list missing
         #("hearing_loss", hearloss_codelist, 0.09), 
-        ("hf", hf_codelist, None, 0.505245),
-        ("bowel", bowel_codelist, bowel_medlist, -0.20368), # any diagnosis or med last 12 months >=4, med list missing
-        ("psychosis", psychosis_codelist, psychosis_medlist, 0.482469), #any disgnosis or ever med >=1, med list missing
+        ("hf", hf_codelist, None, None, 0.505245),
+        ("bowel", bowel_codelist, bowel_medlist, None, -0.20368), # any diagnosis or med last 12 months >=4, med list missing
+        ("psychosis", psychosis_codelist, psychosis_medlist, None, 0.482469), #any disgnosis or ever med >=1, med list missing
         #("stroke", stroke_codelist, 0.80),
         #("asthma", asthma_codelist, 0.19),
         #("hypertension", hypertension_codelist, 0.08),
-        ("constipation", constipation_codelist, constipation_medlist, 0.383006), # med last 12 months >=4, no need of diagnosis
-        ("pain", pain_codelist, pain_medlist, 0.445521), # med for 5065 last 12 months >=4 or (med for 5066>=4 AND no diagnosis for 2150), med list missing
-        ("cld", cld_codelist, None, 0.68621), # codelist for chronic liver disease and viral hepatitis missing 
-        ("prostate", prostate_codelist, None, -0.18781), # codelist for prostate disorder missing
-        ("learning", learning_codelist, None, 0.637273), # codelist for learning disability missing
-        ("sclerosis", sclerosis_codelist, None, 0.761606), # codelist missing
-        ("parkinsonism", parkinsonism_codelist, None, 0.546194), #codelist missing
-        ("perivascular_leg", perivascular_codelist, None, 0.334558), #codelist missing
-        ("psychosub_misuse", psychosub_codelist, None, 0.449321) #codelist missing
+        ("constipation", constipation_codelist, constipation_medlist, None, 0.383006), # med last 12 months >=4, no need of diagnosis
+        ("pain", epilepsy_codelist, pain_medlist1, pain_medlist2, 0.445521), # med for 5065 last 12 months >=4 or (med for 5066>=4 AND no diagnosis for 2150-epilepsy), med list missing
+        ("cld", cld_codelist, None, None, 0.68621), # codelist for chronic liver disease and viral hepatitis missing 
+        ("prostate", prostate_codelist, None, None, -0.18781), # codelist for prostate disorder missing
+        ("learning", learning_codelist, None, None, 0.637273), # codelist for learning disability missing
+        ("sclerosis", sclerosis_codelist, None, None, 0.761606), # codelist missing
+        ("parkinsonism", parkinsonism_codelist, None, None, 0.546194), #codelist missing
+        ("perivascular_leg", perivascular_codelist, None, None, 0.334558), #codelist missing
+        ("psychosub_misuse", psychosub_codelist, None, None, 0.449321) #codelist missing
     ]:
         
 

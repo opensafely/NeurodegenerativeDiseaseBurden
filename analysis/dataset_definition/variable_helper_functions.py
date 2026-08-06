@@ -49,24 +49,24 @@ def get_cms_on_date(date, death_date, return_components=False):
 
     for name, codelist, medlist1, medlist2, weight in [
         ("alcohol", alcohol_codelist, None, None, 0.792243),
-        ("anxiety", anxiety_codelist, anxiety_medlist, None, 0.324207), #med last 12 months >=4 or any diagnosis, anxiety med list missing
+        ("anxiety", anxiety_codelist, anxiety_medlist1, anxiety_medlist2, 0.324207), # last 12 months med1>=4 or med2>=4 or any diagnosis in last 12 months, anxiety med list missing
         ("af", af_codelist, None, None, 0.334891),
-        ("cancer", cancer_codelist, None, None, 1.202615), #last 5 years any diagnosis
-        ("ckd", ckd_codelist, None, None, 0.213652), # larger egfr of most recent two measurements >60ml/min
+        ("cancer", cancer_codelist, None, None, 1.202615), # new cancer (first snomded code in last 5 years) 
+        ("ckd", ckd_codelist, None, None, 0.213652), # larger egfr of most recent two measurements < 60ml/min
         ("copd", copd_codelist, None, None, 0.702181),
         #("chd", chd_codelist, 0.49), CHD not included
         ("dementia", dementia_codelist, None, None, 0.938001),
         ("diabetes", diabetes_codelist, None, None, 0.29467),
-        ("epilepsy", epilepsy_codelist, epilepsy_medlist, None, 0.477465), # any diagnosis AND med last 12 months >=1, med list missing
+        ("epilepsy", epilepsy_codelist, epilepsy_medlist, None, 0.477465), # any diagnosis ever AND med last 12 months >=1, med list missing
         #("hearing_loss", hearloss_codelist, 0.09), 
         ("hf", hf_codelist, None, None, 0.505245),
-        ("bowel", bowel_codelist, bowel_medlist, None, -0.20368), # any diagnosis or med last 12 months >=4, med list missing
+        ("bowel", bowel_codelist, bowel_medlist, None, -0.20368), # any diagnosis ever or med last 12 months >=4, med list missing
         ("psychosis", psychosis_codelist, psychosis_medlist, None, 0.482469), #any disgnosis or ever med >=1, med list missing
         #("stroke", stroke_codelist, 0.80),
         #("asthma", asthma_codelist, 0.19),
         #("hypertension", hypertension_codelist, 0.08),
         ("constipation", constipation_codelist, constipation_medlist, None, 0.383006), # med last 12 months >=4, no need of diagnosis
-        ("pain", epilepsy_codelist, pain_medlist1, pain_medlist2, 0.445521), # med for 5065 last 12 months >=4 or (med for 5066>=4 AND no diagnosis for 2150-epilepsy), med list missing
+        ("pain", epilepsy_codelist, pain_medlist1, pain_medlist2, 0.445521), # last 12 months med1 >=4 or (last 12 months med2 >=4 AND no diagnosis for epilepsy ever), med list missing
         ("cld", cld_codelist, None, None, 0.68621), # codelist for chronic liver disease and viral hepatitis missing 
         ("prostate", prostate_codelist, None, None, -0.18781), # codelist for prostate disorder missing
         ("learning", learning_codelist, None, None, 0.637273), # codelist for learning disability missing

@@ -1,5 +1,7 @@
-from ehrql import case, when
+from ehrql import case, when, maximum_of
 from ehrql.tables.tpp import patients, clinical_events, ethnicity_from_sus, apcs, ons_deaths 
+from ehrql.tables.core import medications
+from datetime import date
 from codelists import *
 
 # Function to check dates are valid (i.e., not before or after death)
@@ -42,50 +44,265 @@ def check_date_validity(
 
 # Function to obtain Cambridge multimorbidity score
 
-def get_cms_on_date(date, death_date, return_components=False):
+def get_cms_on_date(input_date, death_date, return_components=False):
 
     cms = clinical_events.exists_for_patient().as_int().as_float() * 0
     components = {}
 
+    #any diagnosis ever before
     for name, codelist, weight in [
-        ("alcohol", alcohol_codelist, 0.65),
-        ("anxiety", anxiety_codelist, 0.50),
-        ("af", af_codelist, 1.34),
-        ("cancer", cancer_codelist, 1.53),
-        ("ckd", ckd_codelist, 0.53),
-        ("tissue", tissue_codelist, 0.43),
-        ("copd", copd_codelist, 1.46),
-        ("chd", chd_codelist, 0.49),
-        ("dementia", dementia_codelist, 2.50),
-        ("diabetes", diabetes_codelist, 0.75),
-        ("epilepsy", epilepsy_codelist, 0.92),
-        ("hearing_loss", hearloss_codelist, 0.09),
-        ("hf", hf_codelist, 1.18),
-        ("bowel", bowel_codelist, 0.21),
-        ("psychosis", psychosis_codelist, 0.64),
-        ("stroke", stroke_codelist, 0.80),
-        ("asthma", asthma_codelist, 0.19),
-        ("hypertension", hypertension_codelist, 0.08),
-        ("constipation", constipation_codelist, 1.12),
-        ("pain", pain_codelist, 0.92),
+        ("alcohol", alcohol_codelist, 0.792243),
+        ("af", af_codelist, 0.334891),
+        ("copd", copd_codelist, 0.702181),
+        ("dementia", dementia_codelist, 0.938001),
+        ("diabetes", diabetes_codelist, 0.29467),
+        ("hf", hf_codelist, 0.505245),
+        ("cld", cld_codelist, 0.68621), # codelist for chronic liver disease and viral hepatitis missing 
+        ("prostate", prostate_codelist, -0.18781), # codelist for prostate disorder missing
+        ("learning", learning_codelist, 0.637273), # codelist for learning disability missing
+        ("sclerosis", sclerosis_codelist, 0.761606), # codelist missing
+        ("parkinsonism", parkinsonism_codelist, 0.546194), #codelist missing
+        ("perivascular_leg", perivascular_codelist, 0.334558), #codelist missing
+        ("psychosub_misuse", psychosub_codelist, 0.449321) #codelist missing
     ]:
-
         filtered = clinical_events.where(
             clinical_events.snomedct_code.is_in(codelist)
-        ).where(
-            clinical_events.date.is_before(date)
-        )
-
+            ).where(
+            clinical_events.date.is_before(input_date)
+            )
         binary = (
             filtered.where(
-                check_date_validity(filtered.date, death_date=death_date).is_not_null()
-            )
-            .exists_for_patient()
+            check_date_validity(filtered.date, death_date=death_date).is_not_null()
+            ).exists_for_patient()
             .as_int()
-        )
-
+            )
         cms += binary.as_float() * weight
+        if return_components:
+            components[name] = binary
 
+    # first diag in last 5 years for cancer
+    for name, codelist, weight in [
+        ("cancer", cancer_codelist, 1.202615)
+    ]:
+        d = date.fromisoformat(input_date)
+        earliest = f"{d.year-5}-{d.month:02d}-{d.day:02d}"
+        filtered = clinical_events.where(
+                clinical_events.snomedct_code.is_in(codelist)
+                ).where(
+                clinical_events.date.is_before(input_date)
+                )
+        filtered2 = filtered.where(
+                check_date_validity(filtered.date, death_date=death_date).is_not_null()
+                ).date.minimum_for_patient()
+        binary = ((filtered2.is_not_null()) & (filtered2 >= earliest)).as_int()
+        cms += binary.as_float() * weight
+        if return_components:
+            components[name] = binary
+
+    # larger egfr of most recent two measurements < 60ml/min
+    for name, codelist, weight in [
+        ("ckd", ckd_codelist, 0.213652)
+    ]:
+        filtered = clinical_events.where(
+            clinical_events.snomedct_code.is_in(codelist)
+            ).where(
+            clinical_events.date.is_before(input_date)
+            )
+        filtered2 = filtered.where(
+            check_date_validity(filtered.date, death_date=death_date).is_not_null()
+            )
+        filtered3 = filtered2.sort_by(filtered2.date).last_for_patient()
+        value1 = filtered3.numeric_value
+        filtered4 = filtered2.where(filtered2.date < filtered3.date)
+        value2 = filtered4.sort_by(filtered4.date).last_for_patient().numeric_value
+        value = maximum_of(value1, value2)
+        binary = ((value.is_not_null()) & (value < 60)).as_int()
+        cms += binary.as_float() * weight
+        if return_components:
+            components[name] = binary
+
+    # any diagnosis ever AND med last 12 months >=1, med list missing
+    for name, codelist, medlist, weight in [
+        ("epilepsy", epilepsy_codelist, epilepsy_medlist, 0.477465)
+    ]:
+        d = date.fromisoformat(input_date)
+        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        filtered = clinical_events.where(
+            clinical_events.snomedct_code.is_in(codelist)
+            ).where(
+            clinical_events.date.is_before(input_date)
+            )
+        diag = filtered.where(
+            check_date_validity(filtered.date, death_date=death_date).is_not_null()
+            ).exists_for_patient() 
+        medfiltered = medications.where(
+            medications.dmd_code.is_in(medlist)
+            ).where(
+            medications.date.is_before(input_date)
+            ).where(
+            medications.date.is_on_or_after(earliest)    
+            )
+        med = medfiltered.where(
+            check_date_validity(medfiltered.date, death_date=death_date).is_not_null()
+            ).exists_for_patient()
+        binary = (diag & med).as_int()
+        cms += binary.as_float() * weight
+        if return_components:
+            components[name] = binary
+
+    # any diagnosis ever or med last 12 months >=4, med list missing
+    for name, codelist, medlist, weight in [    
+        ("bowel", bowel_codelist, bowel_medlist, -0.20368)
+    ]:
+        d = date.fromisoformat(input_date)
+        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        filtered = clinical_events.where(
+            clinical_events.snomedct_code.is_in(codelist)
+            ).where(
+            clinical_events.date.is_before(input_date)
+            )
+        diag = filtered.where(
+            check_date_validity(filtered.date, death_date=death_date).is_not_null()
+            ).exists_for_patient() 
+        medfiltered = medications.where(
+            medications.dmd_code.is_in(medlist)
+            ).where(
+            medications.date.is_before(input_date)
+            ).where(
+            medications.date.is_on_or_after(earliest)    
+            )
+        med = medfiltered.where(
+            check_date_validity(medfiltered.date, death_date=death_date).is_not_null()
+            ).date.count_distinct_for_patient() 
+        binary = (diag | (med >= 4)).as_int()
+        cms += binary.as_float() * weight
+        if return_components:
+            components[name] = binary
+
+    #any disgnosis or ever med >=1, med list missing
+    for name, codelist, medlist, weight in [           
+        ("psychosis", psychosis_codelist, psychosis_medlist, 0.482469)
+    ]:
+        filtered = clinical_events.where(
+                    clinical_events.snomedct_code.is_in(codelist)
+                    ).where(
+                    clinical_events.date.is_before(input_date)
+                    )
+        diag = filtered.where(
+            check_date_validity(filtered.date, death_date=death_date).is_not_null()
+            ).exists_for_patient() 
+        medfiltered = medications.where(
+            medications.dmd_code.is_in(medlist)
+            ).where(
+            medications.date.is_before(input_date)
+            )
+        med = medfiltered.where(
+            check_date_validity(medfiltered.date, death_date=death_date).is_not_null()
+            ).exists_for_patient() 
+        binary = (diag | med).as_int()
+        cms += binary.as_float() * weight
+        if return_components:
+            components[name] = binary 
+
+    # med last 12 months >=4, no need of diagnosis
+    for name, medlist, weight in [ 
+        ("constipation", constipation_medlist, 0.383006)
+    ]:
+        d = date.fromisoformat(input_date)
+        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        
+        medfiltered = medications.where(
+            medications.dmd_code.is_in(medlist)
+            ).where(
+            medications.date.is_before(input_date)
+            ).where(
+            medications.date.is_on_or_after(earliest)    
+            )
+        med = medfiltered.where(
+            check_date_validity(medfiltered.date, death_date=death_date).is_not_null()
+            ).date.count_distinct_for_patient() 
+        binary = (med >= 4).as_int()
+        cms += binary.as_float() * weight
+        if return_components:
+            components[name] = binary   
+
+    # last 12 months med1>=4 or med2>=4 or any diagnosis in last 12 months, anxiety med list missing
+    for name, codelist, medlist1, medlist2, weight in [
+        ("anxiety", anxiety_codelist, anxiety_medlist1, anxiety_medlist2, 0.324207)
+    ]:
+        d = date.fromisoformat(input_date)
+        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        filtered = clinical_events.where(
+            clinical_events.snomedct_code.is_in(codelist)
+            ).where(
+            clinical_events.date.is_before(input_date)
+            ).where(
+            clinical_events.date.is_on_or_after(earliest)
+            )
+        diag = filtered.where(
+            check_date_validity(filtered.date, death_date=death_date).is_not_null()
+            ).exists_for_patient() 
+        medfiltered1 = medications.where(
+            medications.dmd_code.is_in(medlist1)
+            ).where(
+            medications.date.is_before(input_date)
+            ).where(
+            medications.date.is_on_or_after(earliest)    
+            )
+        med1 = medfiltered1.where(
+            check_date_validity(medfiltered1.date, death_date=death_date).is_not_null()
+            ).date.count_distinct_for_patient()   
+        medfiltered2 = medications.where(
+            medications.dmd_code.is_in(medlist2)
+            ).where(
+            medications.date.is_before(input_date)
+            ).where(
+            medications.date.is_on_or_after(earliest)    
+            )
+        med2 = medfiltered2.where(
+            check_date_validity(medfiltered2.date, death_date=death_date).is_not_null()
+            ).date.count_distinct_for_patient() 
+        binary = (diag | (med1 >= 4) | (med2 >= 4)).as_int()
+        cms += binary.as_float() * weight
+        if return_components:
+            components[name] = binary
+
+    # last 12 months med1 >=4 or (last 12 months med2 >=4 AND no diagnosis for epilepsy ever), med list missing
+    for name, codelist, medlist1, medlist2, weight in [   
+        ("pain", epilepsy_codelist, pain_medlist1, pain_medlist2, 0.445521)
+    ]:    
+        d = date.fromisoformat(input_date)
+        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        filtered = clinical_events.where(
+            clinical_events.snomedct_code.is_in(codelist)
+            ).where(
+            clinical_events.date.is_before(input_date)
+            )
+        diag = filtered.where(
+            check_date_validity(filtered.date, death_date=death_date).is_not_null()
+            ).exists_for_patient() 
+        medfiltered1 = medications.where(
+            medications.dmd_code.is_in(medlist1)
+            ).where(
+            medications.date.is_before(input_date)
+            ).where(
+            medications.date.is_on_or_after(earliest)    
+            )
+        med1 = medfiltered1.where(
+            check_date_validity(medfiltered1.date, death_date=death_date).is_not_null()
+            ).date.count_distinct_for_patient()   
+        medfiltered2 = medications.where(
+            medications.dmd_code.is_in(medlist2)
+            ).where(
+            medications.date.is_before(input_date)
+            ).where(
+            medications.date.is_on_or_after(earliest)    
+            )
+        med2 = medfiltered2.where(
+            check_date_validity(medfiltered2.date, death_date=death_date).is_not_null()
+            ).date.count_distinct_for_patient() 
+        binary = (((~diag) & (med2 >= 4))| (med1 >= 4)).as_int()
+        cms += binary.as_float() * weight
         if return_components:
             components[name] = binary
 

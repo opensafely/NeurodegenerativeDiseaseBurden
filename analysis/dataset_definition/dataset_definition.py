@@ -216,8 +216,8 @@ inci_dementia_status = case(
                  (inci_dementia_min['ftd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['dlb'])|
                  (inci_dementia_min['dlb'].is_null()))
-                ).then('advd_mixed'),
-            when(inci_dementia_1.is_not_null()).then('osd_mixed'),  
+                ).then('advdmixed'),
+            when(inci_dementia_1.is_not_null()).then('osdmixed'),  
             otherwise = None     
         )
 
@@ -309,8 +309,8 @@ prevalent_dementia_mid = case(
                     (inci_dementia_mid['ftd'].is_null()))&
                 ((inci_dementia_mid_1 != inci_dementia_mid['dlb'])|
                     (inci_dementia_mid['dlb'].is_null()))
-                ).then('advd_mixed'), 
-            when(inci_dementia_mid_1.is_not_null()).then('osd_mixed'),  
+                ).then('advdmixed'), 
+            when(inci_dementia_mid_1.is_not_null()).then('osdmixed'),  
             otherwise = None
             )
 
@@ -486,7 +486,7 @@ for name, codes in olists.items():
             )
 
 # For dementia subtypes
-for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'advd_mixed', 'osd_mixed']:
+for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'advdmixed', 'osdmixed']:
     # Prevalence numerator
     setattr(dataset,
         f"pnumer_bin_{name}",
@@ -520,7 +520,7 @@ for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'advd_mixed', 'osd_mixed']:
     )
 
     #Add data source for first incidence
-    if name not in ['advd_mixed', 'osd_mixed']:
+    if name not in ['advdmixed', 'osdmixed']:
         if len(inci_dementia_source[name]) == 1:
             setattr(
                     dataset,

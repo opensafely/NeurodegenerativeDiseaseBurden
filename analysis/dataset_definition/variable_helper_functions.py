@@ -197,13 +197,16 @@ def get_latest_ethnicity(index_date, codelist, grouping=6):
 
 # Function to obtain valid date of clinical event in TPP during time period
 
-def first_matching_tpp_between(codelist, start_date, end_date, death_date):
+def first_matching_tpp_between(codelist, end_date, death_date, start_date=None):
     query = (
         clinical_events
         .where(clinical_events.snomedct_code.is_in(codelist))
-        .where(clinical_events.date.is_on_or_between(start_date, end_date))
     )
-
+    if start_date is None:
+        query = query.where(clinical_events.date.is_on_or_before(end_date))
+    else:
+        query = query.where(clinical_events.date.is_on_or_between(start_date, end_date))
+    
     valid_date = check_date_validity(clinical_events.date, death_date=death_date)
 
     return (
@@ -234,10 +237,15 @@ def prevalent_tpp(codelist, date, death_date):
 
 # Function to obtain valid date of clinical event in SUS during time period
 
-def first_matching_apc_between(codelist, start_date, end_date, death_date, only_prim_diagnoses=False):
-    query = apcs.where(
-        apcs.admission_date.is_on_or_between(start_date, end_date)
-    )
+def first_matching_apc_between(codelist, end_date, death_date, start_date=None, only_prim_diagnoses=False):
+    if start_date is None:
+        query = apcs.where(
+            apcs.admission_date.is_on_or_before(end_date)
+            )
+    else:
+        query = apcs.where(
+            apcs.admission_date.is_on_or_between(start_date, end_date)
+            )
 
     if only_prim_diagnoses:
         query = query.where(apcs.primary_diagnosis.is_in(codelist))

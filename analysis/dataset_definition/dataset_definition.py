@@ -29,7 +29,6 @@ start_date = get_parameter(name="start_date")
 end_date = get_parameter(name="end_date")
 death_date = minimum_of(patients.date_of_death, ons_deaths.date)
 pat_end_date = minimum_of(end_date, death_date, practice_registrations.for_patient_on(start_date).end_date) 
-start_date_default = "1900-01-01"
 
 # Identify mid-dates 
 d1 = date.fromisoformat(start_date)
@@ -138,9 +137,9 @@ inci_dementia_min = {}
 for name in ["osd", "ud", "ad", "vd", "ftd", "dlb"]:
     incident = {}
     if "snomed" in olists[name]:
-        incident["primary"] = first_matching_tpp_between(olists[name]["snomed"], start_date, pat_end_date, death_date)
+        incident["primary"] = first_matching_tpp_between(olists[name]["snomed"], pat_end_date, death_date, start_date=start_date)
     if "icd" in olists[name]:
-        incident["secondary"] = first_matching_apc_between(olists[name]["icd"], start_date, pat_end_date, death_date, only_prim_diagnoses=False)
+        incident["secondary"] = first_matching_apc_between(olists[name]["icd"], pat_end_date, death_date, start_date=start_date, only_prim_diagnoses=False)
         incident["death"] = first_matching_death_between(olists[name]["icd"], start_date, pat_end_date, death_date) 
     if len(incident) ==1:
         tmp_incident_date = list(incident.values())[0]
@@ -227,14 +226,11 @@ for name in ["osd", "ud", "ad", "vd", "ftd", "dlb"]:
     incident = []
     if "snomed" in olists[name]:
         incident.append(
-            first_matching_tpp_between(olists[name]["snomed"], start_date_default, mid_date, death_date)
+            first_matching_tpp_between(olists[name]["snomed"], mid_date, death_date, start_date=None)
         )
     if "icd" in olists[name]:
         incident.append(
-            first_matching_apc_between(olists[name]["icd"], start_date_default, mid_date, death_date, only_prim_diagnoses=False)
-        )
-        incident.append(
-            first_matching_death_between(olists[name]["icd"], start_date_default, mid_date, death_date) 
+            first_matching_apc_between(olists[name]["icd"], mid_date, death_date, start_date=None, only_prim_diagnoses=False)
         )
     if len(incident) ==1:
         tmp_incident_date = incident[0]
@@ -324,7 +320,7 @@ for name, codes in olists.items():
         if "snomed" in codes:
             ## Primary care
             ### First incidence
-            incident["primary"] = first_matching_tpp_between(codes["snomed"], start_date, pat_end_date, death_date)
+            incident["primary"] = first_matching_tpp_between(codes["snomed"], pat_end_date, death_date, start_date=start_date)
 
             ### Identify prevalent cases
             prevalent_start.append(
@@ -338,7 +334,7 @@ for name, codes in olists.items():
         if "icd" in codes:
             ## Secondary care
             ### Frist incidence
-            incident["secondary"] = first_matching_apc_between(codes["icd"], start_date, pat_end_date, death_date, only_prim_diagnoses=False)
+            incident["secondary"] = first_matching_apc_between(codes["icd"], pat_end_date, death_date, start_date=start_date, only_prim_diagnoses=False)
             
             ### Identify prevalent cases
             prevalent_start.append(
@@ -369,8 +365,8 @@ for name, codes in olists.items():
         setattr(dataset,
                 f"pnumer_bin_{name}",
                 case(
-                    when((tmp_pnumer_bin_mid==1) & 
-                        ((death_date>=mid_date) | (death_date.is_null())) & 
+                    when((tmp_pnumer_bin_mid == 1) & 
+                        ((death_date > mid_date) | (death_date.is_null())) & 
                         (practice_registrations.exists_for_patient_on(mid_date))
                         ).then(1),
                     otherwise=0
@@ -491,7 +487,7 @@ for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'advdmixed', 'osdmixed']:
     setattr(dataset,
         f"pnumer_bin_{name}",
         case(
-            when((death_date<mid_date)|~(practice_registrations.exists_for_patient_on(mid_date))).then(0),
+            when((death_date <= mid_date)|~(practice_registrations.exists_for_patient_on(mid_date))).then(0),
             when(prevalent_dementia_mid == name).then(1),
             otherwise=0
             )
@@ -602,7 +598,7 @@ for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'advdmixed', 'osdmixed']:
     )
 
 # Prevalence denominator - population at mid date
-dataset.pdenom_bin_mid = case(when(((death_date>=mid_date) | (death_date.is_null())) &
+dataset.pdenom_bin_mid = case(when(((death_date > mid_date) | (death_date.is_null())) &
                                    (practice_registrations.exists_for_patient_on(mid_date))
                                   ).then(1), 
                               otherwise=0           

@@ -164,8 +164,8 @@ get_source <- function(df, outcome, bygroup = NA){
 }
 
 print("calculate diag source percentage for all outcome and subgroups")
-ds <- c("osd", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
-              "pca", "dlb", "dementia")
+ds <- c("ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
+        "dlb", "dementia")
 
 cats <- c(NA, "age", "sex", "ethnicity", "imd", "cms")
 diag_source<- rbindlist(lapply(ds, function(x) rbindlist(lapply(cats, get_source, df=df, outcome=x), use.names = TRUE)),use.names = TRUE)

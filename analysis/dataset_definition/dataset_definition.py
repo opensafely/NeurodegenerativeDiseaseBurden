@@ -22,7 +22,7 @@ import calendar
 dataset = create_dataset()
 
 # Configure dummy data
-dataset.configure_dummy_data(population_size=2000)
+dataset.configure_dummy_data(population_size=1000)
 
 # Specify start, end and mid dates
 start_date = get_parameter(name="start_date")
@@ -113,7 +113,6 @@ olists = {
     "hd": {"snomed": huntingtons_snomed, "icd": huntingtons_icd},
     "msa": {"snomed": multiatrophy_snomed, "icd": multiatrophy_icd},
     "cbd": {"snomed": corticobasal_snomed},
-    "pca": {"snomed": postcortical_snomed},
     "dlb": {"snomed": lewybody_snomed},
 }
 olists["dementia"] = {

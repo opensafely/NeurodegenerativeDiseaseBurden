@@ -186,7 +186,7 @@ frontotemporal_icd = codelist_from_csv(
 )
 
 motor_snomed = codelist_from_csv(
-    "codelists/bristol-burden-of-neurodegenerative-diseases-motor-neuron-disease-snomed.csv",
+    "codelists/bristol-burden-of-neurodegenerative-diseases-motor-neurone-disease-snomed.csv",
     column="code"
 )
 
@@ -241,7 +241,7 @@ corticobasal_snomed = codelist_from_csv(
 )
 
 lewybody_snomed = codelist_from_csv(
-    "codelists/bristol-burden-of-neurodegenerative-diseases-diffuse-lewy-body-disease-snomed.csv",
+    "codelists/bristol-burden-of-neurodegenerative-diseases-lewy-body-dementia-snomed.csv",
     column="code"
 )
 

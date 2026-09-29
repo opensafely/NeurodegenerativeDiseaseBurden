@@ -73,70 +73,50 @@ df[,
 
 ## Define function to calculate lifetime risk 
 get_lifetimerisk <- function(df, outcome, bygroup=NA, dementia_compete = FALSE) {
-  if (is.na(bygroup)) {
-    if (!dementia_compete) {
-      tmp <- df[get(paste0("prev_bin_",outcome))==0,.(entryage,survage = get(paste0("survage_",outcome)),event = get(paste0("event_",outcome)))]
-      tmp[, c("survage", "event") := .((survage + .5), factor(event, levels = c("censored", "neuro", "death")))]
-      fit <- survfit(Surv(time = entryage, time2 = survage, event =  event)~1, data = tmp, time0 = TRUE)
-      out <- data.table(
-        outcome = outcome,  
-        cat = "all",
-        group = "all",
-        time  = fit$time,
-        prob  = fit$pstate[, "neuro"],
-        lower = fit$lower[, "neuro"],
-        upper = fit$upper[, "neuro"]
-        
-      )
-      out[is.na(lower), c("lower") := 0]
-      out[is.na(upper), c("upper") := 0]
-      out
-    } else {
-      if (outcome %in% c("ad", "vd", "osd", "ud")) {
-        tmp <- df[get(paste0("prev_bin_",outcome))==0,.(entryage,survage = survage_dementia_compete,event = event_dementia_compete)]
-        tmp[, c("survage", "event") := .((survage + .5), factor(event, levels = c("censored", "ad", "vd", "osd", "ud", "death")))]
+  tryCatch({
+    if (is.na(bygroup)) {
+      if (!dementia_compete) {
+        tmp <- df[get(paste0("prev_bin_",outcome))==0,.(entryage,survage = get(paste0("survage_",outcome)),event = get(paste0("event_",outcome)))]
+        tmp[, c("survage", "event") := .((survage + .5), factor(event, levels = c("censored", "neuro", "death")))]
         fit <- survfit(Surv(time = entryage, time2 = survage, event =  event)~1, data = tmp, time0 = TRUE)
         out <- data.table(
           outcome = outcome,  
           cat = "all",
           group = "all",
           time  = fit$time,
-          prob  = fit$pstate[, outcome],
-          lower = fit$lower[, outcome],
-          upper = fit$upper[, outcome]
+          prob  = fit$pstate[, "neuro"],
+          lower = fit$lower[, "neuro"],
+          upper = fit$upper[, "neuro"]
+          
         )
         out[is.na(lower), c("lower") := 0]
         out[is.na(upper), c("upper") := 0]
         out
-      }
-    }
-  } else {
-    if (!dementia_compete) {
-      tmp <- df[get(paste0("prev_bin_",outcome))==0,.(entryage,survage = get(paste0("survage_",outcome)),event = get(paste0("event_",outcome)),group = get(paste0("cov_cat_",bygroup)))]
-      tmp[, c("survage", "event") := .((survage + .5), factor(event, levels = c("censored", "neuro", "death")))]
-      groups <- tmp[,unique(group)]
-      out <- lapply(groups, function(g) {
-          tmpg <- tmp[group == g, ]
-          fit <- survfit(Surv(time = entryage, time2 = survage, event =  event)~1, data = tmpg, time0 = TRUE)
-          outg <- data.table(
-            outcome = outcome,
-            cat = bygroup,
-            group = g,
+      } else {
+        if (outcome %in% c("ad", "vd", "ud", "ftd", "dlb", "advdmixed", "osdmixed")) {
+          tmp <- df[get(paste0("prev_bin_",outcome))==0,.(entryage,survage = survage_dementia_compete,event = event_dementia_compete)]
+          tmp[, c("survage", "event") := .((survage + .5), 
+              factor(event, levels = c("censored", "ad", "vd", "ftd", "dlb", "advdmixed", "osdmixed", "ud", "death"))
+            )]
+          fit <- survfit(Surv(time = entryage, time2 = survage, event =  event)~1, data = tmp, time0 = TRUE)
+          out <- data.table(
+            outcome = outcome,  
+            cat = "all",
+            group = "all",
             time  = fit$time,
-            prob  = fit$pstate[, "neuro"],
-            lower = fit$lower[, "neuro"],
-            upper = fit$upper[, "neuro"]
+            prob  = fit$pstate[, outcome],
+            lower = fit$lower[, outcome],
+            upper = fit$upper[, outcome]
           )
-          outg[is.na(lower), c("lower") := 0]
-          outg[is.na(upper), c("upper") := 0]
-          outg
-    
-        })
-      rbindlist(out)
+          out[is.na(lower), c("lower") := 0]
+          out[is.na(upper), c("upper") := 0]
+          out
+        }
+      }
     } else {
-      if (outcome %in% c("ad", "vd", "osd", "ud")){
-        tmp <- df[get(paste0("prev_bin_",outcome))==0,.(entryage, survage = survage_dementia_compete, event = event_dementia_compete,group = get(paste0("cov_cat_",bygroup)))]
-        tmp[, c("survage", "event") := .((survage + .5), factor(event, levels = c("censored", "ad", "vd", "osd", "ud", "death")))]
+      if (!dementia_compete) {
+        tmp <- df[get(paste0("prev_bin_",outcome))==0,.(entryage,survage = get(paste0("survage_",outcome)),event = get(paste0("event_",outcome)),group = get(paste0("cov_cat_",bygroup)))]
+        tmp[, c("survage", "event") := .((survage + .5), factor(event, levels = c("censored", "neuro", "death")))]
         groups <- tmp[,unique(group)]
         out <- lapply(groups, function(g) {
             tmpg <- tmp[group == g, ]
@@ -146,9 +126,9 @@ get_lifetimerisk <- function(df, outcome, bygroup=NA, dementia_compete = FALSE) 
               cat = bygroup,
               group = g,
               time  = fit$time,
-              prob  = fit$pstate[, outcome],
-              lower = fit$lower[, outcome],
-              upper = fit$upper[, outcome]
+              prob  = fit$pstate[, "neuro"],
+              lower = fit$lower[, "neuro"],
+              upper = fit$upper[, "neuro"]
             )
             outg[is.na(lower), c("lower") := 0]
             outg[is.na(upper), c("upper") := 0]
@@ -156,9 +136,38 @@ get_lifetimerisk <- function(df, outcome, bygroup=NA, dementia_compete = FALSE) 
       
           })
         rbindlist(out)
-        }
-      }  
-  }
+      } else {
+        if (outcome %in% c("ad", "vd", "ud", "ftd", "dlb", "advdmixed", "osdmixed")){
+          tmp <- df[get(paste0("prev_bin_",outcome))==0,.(entryage, survage = survage_dementia_compete, event = event_dementia_compete,group = get(paste0("cov_cat_",bygroup)))]
+          tmp[, c("survage", "event") := .((survage + .5), 
+            factor(event, levels = c("censored", "ad", "vd", "ftd", "dlb", "advdmixed", "osdmixed", "ud", "death"))
+          )]
+          groups <- tmp[,unique(group)]
+          out <- lapply(groups, function(g) {
+              tmpg <- tmp[group == g, ]
+              fit <- survfit(Surv(time = entryage, time2 = survage, event =  event)~1, data = tmpg, time0 = TRUE)
+              outg <- data.table(
+                outcome = outcome,
+                cat = bygroup,
+                group = g,
+                time  = fit$time,
+                prob  = fit$pstate[, outcome],
+                lower = fit$lower[, outcome],
+                upper = fit$upper[, outcome]
+              )
+              outg[is.na(lower), c("lower") := 0]
+              outg[is.na(upper), c("upper") := 0]
+              outg
+        
+            })
+          rbindlist(out)
+          }
+        }  
+    }
+    },
+    error=function(e) {
+      message(outcome,",",bygroup, ", competing risk = ", dementia_compete, ":", e$message)
+    }) 
 }  
 
 # function to generate lifetime risk plot
@@ -257,9 +266,10 @@ makeplot <- function(data, bygroup=NA, ylog=FALSE) {
       }
 
 }
+
 # set color for each disease
-ds <- c("osd", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
-              "pca", "dlb", "dementia")
+ds <- c("osdmixed", "advdmixed", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
+        "dlb", "dementia")
 
 colpal <- setNames(
   viridisLite::turbo(length(ds)),
@@ -268,7 +278,7 @@ colpal <- setNames(
 )
 
 print('Lifetime risk for dementia subtypes')
-dement = c("osd", "ud", "ad", "vd")
+dement <- c("osdmixed", "advdmixed", "ud", "ad", "vd", "ftd", "dlb")
 dem_censor <- rbindlist(lapply(c(dement,"dementia"), get_lifetimerisk, df = df))
 fwrite(dem_censor, paste0("output/models/tbl_liferisk_all_demcensor_", dataset_name, "_age", start_age, ".csv"))
 dem_comp <- rbind(rbindlist(lapply(dement, get_lifetimerisk, df = df, dementia_compete=TRUE)),get_lifetimerisk(df=df, outcome="dementia"))
@@ -297,31 +307,34 @@ g_dem_comp <- ggdraw() +
              angle = 90)
 ggsave(g_dem_comp, filename = paste0("output/figs/fig_liferisk_all_demcomp_", dataset_name, "_age", start_age, ".png"),width=12,units='in')
 
-print('Lifetime risk for other outcomes')
-outcomes <- c("cjd", "pd",  "ftd", "mnd", "psp", "hd",  "msa", "cbd",
-              "pca", "dlb")
-liferiskall <- rbindlist(lapply(outcomes, get_lifetimerisk, df = df))
+print('Lifetime risk for all outcomes')
+outcomes <- c("cjd", "pd", "mnd", "psp", "hd",  "msa", "cbd",
+              "dementia")
+liferiskall <- rbind(rbindlist(lapply(outcomes[!outcomes=="dementia"], get_lifetimerisk, df = df)),dem_comp)
 fwrite(liferiskall, paste0("output/models/tbl_liferisk_all_", dataset_name, "_age", start_age, ".csv"))
 
 g_life_all <- makeplot(liferiskall, ylog=TRUE)
 ggsave(g_life_all, filename = paste0("output/figs/fig_liferisk_all_", dataset_name, "_age", start_age, ".png"))
 
 print('Lifetime risk by sex')
-liferisksex <- rbindlist(lapply(outcomes, get_lifetimerisk, df = df, bygroup = "sex"))
+liferisksex <- rbindlist(c(lapply(outcomes, get_lifetimerisk, df = df, bygroup = "sex"),
+  lapply(dement, get_lifetimerisk, df = df, bygroup = "sex", dementia_compete=TRUE)))
 fwrite(liferisksex, paste0("output/models/tbl_liferisk_sex_", dataset_name, "_age", start_age, ".csv"))
 
 g_life_sex <- makeplot(liferisksex,bygroup="sex", ylog=TRUE)
 ggsave(g_life_sex, filename = paste0("output/figs/fig_liferisk_sex_", dataset_name, "_age", start_age, ".png"),width=12,units='in')
 
 print('Lifetime risk by deprivation')
-liferiskimd <- rbindlist(lapply(outcomes, get_lifetimerisk, df = df, bygroup = "imd"))
+liferiskimd <- rbindlist(c(lapply(outcomes, get_lifetimerisk, df = df, bygroup = "imd"),
+  lapply(dement, get_lifetimerisk, df = df, bygroup = "imd", dementia_compete=TRUE)))
 fwrite(liferiskimd, paste0("output/models/tbl_liferisk_imd_", dataset_name, "_age", start_age, ".csv"))
 
 g_life_imd <- makeplot(liferiskimd,bygroup="imd",ylog=TRUE)               
 ggsave(g_life_imd, filename = paste0("output/figs/fig_liferisk_imd_", dataset_name, "_age", start_age, ".png"),width=16,units='in')
 
 print('Lifetime risk by ethnicity')
-liferisketh <- rbindlist(lapply(outcomes, get_lifetimerisk, df = df, bygroup = "ethnicity"))
+liferisketh <- rbindlist(c(lapply(outcomes, get_lifetimerisk, df = df, bygroup = "ethnicity"),
+  lapply(dement, get_lifetimerisk, df = df, bygroup = "ethnicity", dementia_compete=TRUE)))
 fwrite(liferisketh, paste0("output/models/tbl_liferisk_ethnicity_", dataset_name, "_age", start_age, ".csv"))
 
 g_life_eth <- makeplot(liferisketh,bygroup="ethnicity",ylog=TRUE)   

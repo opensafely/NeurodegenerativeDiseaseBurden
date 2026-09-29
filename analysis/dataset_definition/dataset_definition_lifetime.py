@@ -20,7 +20,7 @@ from variable_helper_functions import (
 dataset = create_dataset()
 
 # Configure dummy data
-dataset.configure_dummy_data(population_size=4000)
+dataset.configure_dummy_data(population_size=2000)
 
 # Specify start age,  start date, end date and index date
 start_age = get_parameter(name="start_age", type = int)
@@ -70,11 +70,8 @@ olists = {
     "hd": {"snomed": huntingtons_snomed, "icd": huntingtons_icd},
     "msa": {"snomed": multiatrophy_snomed, "icd": multiatrophy_icd},
     "cbd": {"snomed": corticobasal_snomed},
-    "pca": {"snomed": postcortical_snomed},
     "dlb": {"snomed": lewybody_snomed}
 }
-olists["dementia"] = {"snomed": specified_dementia_snomed+unspecified_dementia_snomed+alzheimers_snomed+vascular_snomed, 
-                      "icd": specified_dementia_icd+unspecified_dementia_icd+alzheimers_icd+vascular_icd}
 
 snomedlist = []
 icdlist = []
@@ -86,37 +83,106 @@ for name, codes in olists.items():
 olists["anyneuro"] = {"snomed": snomedlist,
                       "icd": icdlist}
 
+olists["dementia"] = {
+    "snomed": specified_dementia_snomed+unspecified_dementia_snomed+alzheimers_snomed+vascular_snomed+frontotemporal_snomed+lewybody_snomed, 
+    "icd": specified_dementia_icd+unspecified_dementia_icd+alzheimers_icd+vascular_icd+frontotemporal_icd
+}
 
 # Generate inci status and survage for competing dementia subtypes
-inci_dementia = {}
-for name in ["osd", "ud", "ad", "vd"]:
+inci_dementia_source = {}
+inci_dementia_min = {}
+for name in ["osd", "ud", "ad", "vd", "ftd", "dlb"]:
     incident = {}
     if "snomed" in olists[name]:
-        incident["primary"] = first_matching_tpp_between(olists[name]["snomed"], index_date, pat_end_date, death_date)
-    
+        incident["primary"] = first_matching_tpp_between(olists[name]["snomed"], pat_end_date, death_date, start_date=index_date)
     if "icd" in olists[name]:
-        incident["secondary"] = first_matching_apc_between(olists[name]["icd"], index_date, pat_end_date, death_date, only_prim_diagnoses=False)
+        incident["secondary"] = first_matching_apc_between(olists[name]["icd"], pat_end_date, death_date, start_date=index_date, only_prim_diagnoses=False)
         incident["death"] = first_matching_death_between(olists[name]["icd"], index_date, pat_end_date, death_date) 
     if len(incident) ==1:
         tmp_incident_date = list(incident.values())[0]
     else:
         tmp_incident_date = minimum_of(*incident.values())
-    incident["min"] =  tmp_incident_date   
-    inci_dementia[name] = incident
-
-inci_dementia_1 = minimum_of(inci_dementia["osd"]["min"], inci_dementia["ud"]["min"], inci_dementia["ad"]["min"], inci_dementia["vd"]["min"])
+    inci_dementia_min[name] = tmp_incident_date   
+    inci_dementia_source[name] = incident
+inci_dementia_1 = minimum_of(*inci_dementia_min.values())
 inci_status = case(
-            when(inci_dementia_1 == inci_dementia['ad']['min']).then("ad"),
-            when(inci_dementia_1 == inci_dementia['vd']['min']).then("vd"),
-            when(inci_dementia_1 == inci_dementia['osd']['min']).then("osd"),
-            when(inci_dementia_1 == inci_dementia['ud']['min']).then("ud"),
+            when(
+                (inci_dementia_1 == inci_dementia_min['ad'])&
+                ((inci_dementia_1 != inci_dementia_min['vd'])|
+                 (inci_dementia_min['vd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['osd'])|
+                 (inci_dementia_min['osd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['ftd'])|
+                 (inci_dementia_min['ftd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['dlb'])|
+                 (inci_dementia_min['dlb'].is_null()))
+                ).then('ad'),
+            when(
+                (inci_dementia_1 == inci_dementia_min['vd'])&
+                ((inci_dementia_1 != inci_dementia_min['ad'])|
+                 (inci_dementia_min['ad'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['osd'])|
+                 (inci_dementia_min['osd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['ftd'])|
+                 (inci_dementia_min['ftd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['dlb'])|
+                 (inci_dementia_min['dlb'].is_null()))
+                ).then('vd'), 
+            when(
+                (inci_dementia_1 == inci_dementia_min['ud'])&
+                ((inci_dementia_1 != inci_dementia_min['vd'])|
+                 (inci_dementia_min['vd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['osd'])|
+                 (inci_dementia_min['osd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['ad'])|
+                 (inci_dementia_min['ud'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['ftd'])|
+                 (inci_dementia_min['ftd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['dlb'])|
+                 (inci_dementia_min['dlb'].is_null()))
+                ).then('ud'),   
+            when(
+                (inci_dementia_1 == inci_dementia_min['ftd'])&
+                ((inci_dementia_1 != inci_dementia_min['vd'])|
+                 (inci_dementia_min['vd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['osd'])|
+                 (inci_dementia_min['osd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['ad'])|
+                 (inci_dementia_min['ftd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['dlb'])|
+                 (inci_dementia_min['dlb'].is_null()))
+                ).then('ftd'), 
+            when(
+                (inci_dementia_1 == inci_dementia_min['dlb'])&
+                ((inci_dementia_1 != inci_dementia_min['vd'])|
+                 (inci_dementia_min['vd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['osd'])|
+                 (inci_dementia_min['osd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['ftd'])|
+                 (inci_dementia_min['ftd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['ad'])|
+                 (inci_dementia_min['dlb'].is_null()))
+                ).then('dlb'), 
+            when(
+                (inci_dementia_1 == inci_dementia_min['ad'])&
+                (inci_dementia_1 == inci_dementia_min['vd'])&
+                ((inci_dementia_1 != inci_dementia_min['osd'])|
+                 (inci_dementia_min['osd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['ftd'])|
+                 (inci_dementia_min['ftd'].is_null()))&
+                ((inci_dementia_1 != inci_dementia_min['dlb'])|
+                 (inci_dementia_min['dlb'].is_null()))
+                ).then('advdmixed'), 
+            when(inci_dementia_1.is_not_null()).then('osdmixed'),  
             when((death_date >= index_date) & (death_date <= pat_end_date)).then("death"),
-            otherwise="censored",
+            otherwise = 'censored'     
         )
+
 setattr(dataset,
         f"event_dementia_compete",
         inci_status
     )
+
 setattr(
         dataset,
         f"survage_dementia_compete",
@@ -133,17 +199,15 @@ prev_dementia.append(
             )
 prevalent_dementia = maximum_of(*prev_dementia)
 
-
-for name, codes in olists.items():
-    
+for name, codes in olists.items():  
     # For other neuro disease
-    if name not in ["osd", "ud", "ad", "vd"]:
+    if name not in ["osd", "ud", "ad", "vd", "ftd", "dlb"]:
         incident = {}
         prevalent_start = []
 
         if "snomed" in codes:
             ## Primary care incidence
-            incident["primary"] = first_matching_tpp_between(codes["snomed"], index_date, pat_end_date, death_date)
+            incident["primary"] = first_matching_tpp_between(codes["snomed"], pat_end_date, death_date, start_date=index_date)
             
             ### Identify prevalent cases
             prevalent_start.append(
@@ -152,7 +216,7 @@ for name, codes in olists.items():
         
         if "icd" in codes:
             ## Secondary care incidence
-            incident["secondary"] = first_matching_apc_between(codes["icd"], index_date, pat_end_date, death_date, only_prim_diagnoses=False)
+            incident["secondary"] = first_matching_apc_between(codes["icd"], pat_end_date, death_date, start_date=index_date, only_prim_diagnoses=False)
 
             ## Death incidence
             incident["death"] = first_matching_death_between(codes["icd"], index_date, pat_end_date, death_date)
@@ -256,34 +320,43 @@ for name, codes in olists.items():
             patients.age_on(tmp_fu)
         )
 
-    # For dementia subtypes
-    else:
-        #Prevalent status for dementia subtypes using any dementia
-        setattr(
-            dataset,
-            f"prev_bin_{name}",
-            prevalent_dementia
-        )
+# For dementia subtypes
+for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'advdmixed', 'osdmixed']:
+    #Prevalent status for dementia subtypes using any dementia
+    setattr(
+        dataset,
+        f"prev_bin_{name}",
+        prevalent_dementia
+    )
 
-        #Censor at dementia subtypes
-        setattr(
-            dataset,
-            f"event_{name}",
-            case(
-                when(inci_status == "death").then("death"),
-                when(inci_status == name).then("neuro"),
-                otherwise="censored",
-            )
+    #Censor at dementia subtypes
+    setattr(
+        dataset,
+        f"event_{name}",
+        case(
+            when(inci_status == "death").then("death"),
+            when(inci_status == name).then("neuro"),
+            otherwise="censored",
         )
+    )
 
-        #Add data source for dementia subtypes
-        if len(inci_dementia[name]) == 1:
+    # Survage for dementia subtypes
+    tmp_fu = minimum_of(pat_end_date, inci_dementia_1)
+    setattr(
+        dataset,
+        f"survage_{name}",
+        patients.age_on(tmp_fu)
+    )
+
+    #Add data source for dementia subtypes
+    if name not in ['advdmixed', 'osdmixed']:
+        if len(inci_dementia_source[name]) == 1:
             setattr(
                     dataset,
                     f"event_{name}_source_primary",
                     case(
                         when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(list(inci_dementia[name].keys())[0] == "primary").then(1),
+                        when(list(inci_dementia_source[name].keys())[0] == "primary").then(1),
                         otherwise = 0                
                     )
                     )
@@ -292,7 +365,7 @@ for name, codes in olists.items():
                     f"event_{name}_source_secondary",
                     case(
                         when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(list(inci_dementia[name].keys())[0] == "secondary").then(1),
+                        when(list(inci_dementia_source[name].keys())[0] == "secondary").then(1),
                         otherwise = 0                
                     )
                     )
@@ -301,7 +374,7 @@ for name, codes in olists.items():
                     f"event_{name}_source_death",
                     case(
                         when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(list(inci_dementia[name].keys())[0] == "death").then(1),
+                        when(list(inci_dementia_source[name].keys())[0] == "death").then(1),
                         otherwise = 0                
                     )
                     )
@@ -311,7 +384,7 @@ for name, codes in olists.items():
                     f"event_{name}_source_primary",
                     case(
                         when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(inci_dementia_1 == inci_dementia[name]["primary"]).then(1),
+                        when(inci_dementia_1 == inci_dementia_source[name]["primary"]).then(1),
                         otherwise = 0              
                     )
                     )
@@ -320,7 +393,7 @@ for name, codes in olists.items():
                     f"event_{name}_source_secondary",
                     case(
                         when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(inci_dementia_1 == inci_dementia[name]["secondary"]).then(1),
+                        when(inci_dementia_1 == inci_dementia_source[name]["secondary"]).then(1),
                         otherwise = 0              
                     )
                     )
@@ -329,19 +402,11 @@ for name, codes in olists.items():
                     f"event_{name}_source_death",
                     case(
                         when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(inci_dementia_1 == inci_dementia[name]["death"]).then(1),
+                        when(inci_dementia_1 == inci_dementia_source[name]["death"]).then(1),
                         otherwise = 0              
                     )
                     )
-            
-        # Survage for dementia subtypes
-        tmp_fu = minimum_of(pat_end_date, inci_dementia_1)
-        setattr(
-            dataset,
-            f"survage_{name}",
-            patients.age_on(tmp_fu)
-        )
-
+        
 # Define population
 population = (
     ((death_date >= index_date)|(death_date.is_null()))

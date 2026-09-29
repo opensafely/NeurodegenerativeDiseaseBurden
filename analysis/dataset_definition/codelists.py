@@ -240,11 +240,6 @@ corticobasal_snomed = codelist_from_csv(
     column="code"
 )
 
-postcortical_snomed = codelist_from_csv(
-    "codelists/bristol-burden-of-neurodegenerative-diseases-posterior-cortical-atrophy-snomed.csv",
-    column="code"
-)
-
 lewybody_snomed = codelist_from_csv(
     "codelists/bristol-burden-of-neurodegenerative-diseases-diffuse-lewy-body-disease-snomed.csv",
     column="code"

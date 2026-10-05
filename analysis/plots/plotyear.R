@@ -14,16 +14,17 @@ args <- commandArgs(trailingOnly = TRUE)
 
 if (length(args) == 1) {
   cargs <- unlist(strsplit(args[[1]], "_"))
-  yrange <- seq(as.integer(cargs[1]), as.integer(cargs[2]))
-} else {
-  yrange <- 2020:2023
-}
+  ystart <- as.integer(cargs[1])
+  yend <- as.integer(cargs[2])
+  } else {
+  ystart <- 2020
+  yend <- 2023}
 
 # Read data
 print("Read annual results")
 
 df <- data.table()
-for (i in yrange){
+for (i in ystart:yend){
   dataset_name <- paste0(i,"0101_",i,"1231")
   tmp <- fread(file = paste0(
   "output/calculations/results-", dataset_name, ".csv")
@@ -47,10 +48,10 @@ roundmid_any <- function(x, to=6){
 df[, c("numer_midpoint6", "denom_midpoint6") := .(roundmid_any(numer), denom)]
 df[, "result_midpoint6_derived" := numer_midpoint6 / denom_midpoint6]
 
-fwrite(df, paste0("output/figs/tbl_round_year_", yrange[1], "_", yrange[length(yrange)], ".csv"))
+fwrite(df, paste0("output/figs/tbl_round_year_", ystart, "_", yend, ".csv"))
 
 # Bar plots for dementia
-outcomes <- c("ad", "ud", "osd", "vd")
+outcomes <- c("ad", "ud", "vd", "ftd", "dlb", "advdmixed", "osdmixed")
 df <- df[disease %in% outcomes]
 df[, prop := round(numer_midpoint6/sum(numer_midpoint6)*100,1), by = year]
 g_bar <- ggplot(df, aes(
@@ -66,4 +67,4 @@ g_bar <- ggplot(df, aes(
   ) +
   theme_bw() 
 
-ggsave(g_bar, filename = paste0("output/figs/fig_round_year_bar_", yrange[1], "_", yrange[length(yrange)], ".png"))
+ggsave(g_bar, filename = paste0("output/figs/fig_round_year_bar_", ystart, "_", yend, ".png"))

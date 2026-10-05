@@ -1,5 +1,11 @@
 code,term
-F020,Dementia in Pick disease G31.0
-F021,Dementia in Creutzfeldt-Jakob disease A81.0
-F022,Dementia in Huntington disease G10
-F024,Dementia in human immunodeficiency virus [HIV] disease B22.0
+A810,Creutzfeldt-Jakob disease
+F02,Dementia in other diseases classified elsewhere
+F020,Dementia in Pick disease
+F021,Dementia in Creutzfeldt-Jakob disease
+F022,Dementia in Huntington disease
+F023,Dementia in Parkinson disease
+F024,Dementia in human immunodeficiency virus [HIV] disease
+F028,Dementia in other specified diseases classified elsewhere
+G10,Huntington disease
+G310,Circumscribed brain atrophy

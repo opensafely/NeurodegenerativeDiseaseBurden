@@ -2,11 +2,10 @@ code,term
 10349009,Multi-infarct dementia with delirium
 106021000119105,Multi-infarct dementia due to atherosclerosis
 1089531000000108,Predominantly cortical vascular dementia
-1259485008,Dementia due to cerebral vasculitis
+1186724002,HtrA serine peptidase 1-related autosomal dominant cerebral small vessel disease
 1259488005,Dementia due to cerebral amyloid angiopathy
 1259499007,Dementia due to hemorrhagic cerebral infarction due to hypertension
 1259531005,Dementia due to hypertensive encephalopathy
-1259663006,Dementia due to polyarteritis nodosa
 14070001,Multi-infarct dementia with depression
 154850006,Vascular dementia
 16276361000119109,Vascular dementia without behavioral disturbance
@@ -18,6 +17,7 @@ code,term
 191467003,Arteriosclerotic dementia NOS
 192165000,Vascular dementia
 192166004,Vascular dementia of acute onset
+192167008,[X]Dementia: [multi-infarct] or [predominantly cortical]
 192168003,Subcortical vascular dementia
 192169006,Mixed cortical and subcortical vascular dementia
 192170007,[X]Other vascular dementia
@@ -29,6 +29,7 @@ code,term
 268613002,Vascular dementia
 288631000119104,Vascular dementia with behavioral disturbance
 293671000119109,Behavioral disturbance due to multi-infarct dementia
+390000004,Binswanger's disease
 41161000000104,Multi-infarct dementia
 412631000000106,[X]Other vascular dementia
 413281000000101,"[X]Vascular dementia, unspecified"

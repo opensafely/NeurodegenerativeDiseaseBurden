@@ -110,8 +110,8 @@ fitcovid <- function(df, out_arg, metric_arg){
 }
 
 # Fit models for all outcomes and metrics
-ds <- c("osd", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
-        "pca", "dlb", "dementia")
+ds <- c("osdmixed", "advdmixed", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
+        "dlb", "dementia")
 
 metrics <- c("prevalence", "incidence", "fatality_1y", "fatality_5y")
 
@@ -173,10 +173,6 @@ make_plot <- function(data, use = "avg") {
      plot_layout(guides = "collect")
   ggsave(g_covid, filename = paste0("output/figs/fig_modelcovid_", use, "_", ystart, "_", yend, ".png"), width=12, units="in")
 }
-
-
-# p4 <- make_plot(df[df$metric == "fatality_5y" & !disease %in% c("cbd", "cjd")], TRUE, "5-year fatality(%)", FALSE)
-
 
 print('Generate plot for average results for covid periods')
 make_plot(results, "avg")

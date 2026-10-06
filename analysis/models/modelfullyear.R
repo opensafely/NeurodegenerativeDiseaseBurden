@@ -128,8 +128,8 @@ fitfullmodel <- function(df, out_arg, metric_arg){
 }
 
 # Fit models for all outcomes and metrics
-outcomes <- c("osd", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
-              "pca", "dlb", "dementia")
+outcomes <- c("osdmixed", "advdmixed", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
+              "dlb", "dementia")
 
 metrics <- c("prevalence", "incidence", "fatality_1y", "fatality_5y")
 
@@ -159,7 +159,6 @@ results[, lab := factor(term, levels = lvls,labels = sub('^(age|cms|imd|sex)', '
 
 results[metric %in% c('prevalence', 'fatality_1y', 'fatality_5y'), pred := pred * 100]
 
-# Generate plots for preds and relative estimates for age, sex, imd and cms
 # set color for each disease
 colpal <- setNames(
   viridisLite::turbo(length(outcomes)),
@@ -223,9 +222,6 @@ ggplot(data,
   ) +
   scale_y_continuous(expand = expansion(mult = c(0,0.02)))
 }
-
-
-#Generate subplots
 
 p1 <-  makesubplot(results[metric=='prevalence'],'Percentage (%)')
 p2 <-  makesubplot(results[metric=='incidence'],'Events per 100,000 person-years')
@@ -328,6 +324,7 @@ makeplot2 <- function(data) {
       labs(title = title) +
       theme_minimal() +
       theme(
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
         legend.position = "top",
         legend.box = "vertical",
         panel.grid = element_blank(),
@@ -342,7 +339,7 @@ makeplot2 <- function(data) {
   p1 <- gen_plot(data[metric=="prevalence"], "Prevalence")
   p2 <- gen_plot(data[metric == "incidence"], "Incidence")
   p3 <- gen_plot(data[metric == "fatality_1y"], "1-year fatality")
-  g_heat <- (p1 | p2 | p3) 
+  g_heat <- (p1 | p2 | p3) + plot_layout(widths = c(1, 1, 1))
   ggsave(g_heat, filename = paste0("output/figs/fig_heat_ethnicity_", ystart, "_", yend, ".png"), width=16, units="in")
 }
 

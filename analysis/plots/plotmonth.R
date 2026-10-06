@@ -57,8 +57,8 @@ fwrite(df[,.(metric, disease, date, numer_midpoint6, denom_midpoint6, result_mid
        paste0("output/figs/tbl_round_month_", ystart, "_", yend, ".csv"))
        
 # Function to generate plots
-ds <- c("osd", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
-        "pca", "dlb", "dementia")
+ds <- c("osdmixed", "advdmixed", "ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
+        "dlb", "dementia")
 colpal <- setNames(
   viridisLite::turbo(length(ds)),
   ds[order(substr(ds,1,1))]

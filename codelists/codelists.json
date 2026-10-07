@@ -1,52 +1,16 @@
 {
   "files": {
-    "nhsd-primary-care-domain-refsets-c19preg_cod.csv": {
-      "id": "nhsd-primary-care-domain-refsets/c19preg_cod/20250627",
-      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/c19preg_cod/20250627/",
-      "downloaded_at": "2025-10-21 13:38:03.045809Z",
-      "sha": "0e4a459ab70ba09b262c9efdedb851ea4e736323"
-    },
-    "user-RochelleKnight-prostate_cancer_snomed.csv": {
-      "id": "user/RochelleKnight/prostate_cancer_snomed/0437497e",
-      "url": "https://www.opencodelists.org/codelist/user/RochelleKnight/prostate_cancer_snomed/0437497e/",
-      "downloaded_at": "2025-10-21 13:41:07.192225Z",
-      "sha": "7249bb62e32d2d60600b0d1e32562f23bd92c6aa"
-    },
-    "user-RochelleKnight-prostate_cancer_icd10.csv": {
-      "id": "user/RochelleKnight/prostate_cancer_icd10/6b27d648",
-      "url": "https://www.opencodelists.org/codelist/user/RochelleKnight/prostate_cancer_icd10/6b27d648/",
-      "downloaded_at": "2025-10-21 13:41:49.450361Z",
-      "sha": "fc1791f84b1195fc21df000d3300015b1ff7d1ec"
-    },
     "opensafely-ethnicity-snomed-0removed.csv": {
       "id": "opensafely/ethnicity-snomed-0removed/22911876",
       "url": "https://www.opencodelists.org/codelist/opensafely/ethnicity-snomed-0removed/22911876/",
       "downloaded_at": "2025-10-21 13:48:30.284851Z",
       "sha": "d95a2f826299563aa57f6fa99009e6e13a65151b"
     },
-    "bristol-multimorbidity_alcoholproblems.csv": {
-      "id": "bristol/multimorbidity_alcoholproblems/625d5706",
-      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_alcoholproblems/625d5706/",
-      "downloaded_at": "2025-10-21 13:48:57.970262Z",
-      "sha": "dc142c184e1552b8e336085e8f65640441aac2de"
-    },
-    "bristol-multimorbidity_anxietydepression.csv": {
-      "id": "bristol/multimorbidity_anxietydepression/67c2d6f2",
-      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_anxietydepression/67c2d6f2/",
-      "downloaded_at": "2025-10-21 13:49:13.764299Z",
-      "sha": "9e2884fcd885b4baef14e26a05987575abb246a5"
-    },
     "bristol-multimorbidity_atrial-fibrillation.csv": {
       "id": "bristol/multimorbidity_atrial-fibrillation/0f16bd85",
       "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_atrial-fibrillation/0f16bd85/",
       "downloaded_at": "2025-10-21 13:49:33.535795Z",
       "sha": "aa15fe7ae83b7f9e711c915b1fe11185453c34a3"
-    },
-    "bristol-multimorbidity_copd.csv": {
-      "id": "bristol/multimorbidity_copd/11c97d7b",
-      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_copd/11c97d7b/",
-      "downloaded_at": "2025-10-21 13:49:55.791126Z",
-      "sha": "450b4a7b2bf1e0bbba7793887cbc24e336bc0a36"
     },
     "bristol-multimorbidity_cancer.csv": {
       "id": "bristol/multimorbidity_cancer/7e1f8a31",
@@ -95,54 +59,6 @@
       "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_psychosisbipolar-disorder/19e1bd5d/",
       "downloaded_at": "2025-10-21 13:52:54.685541Z",
       "sha": "c8f8204fe3e07dfbc48d4d21f022addca8e9ddb0"
-    },
-    "nhsd-primary-care-domain-refsets-hyp_cod.csv": {
-      "id": "nhsd-primary-care-domain-refsets/hyp_cod/20250627",
-      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/hyp_cod/20250627/",
-      "downloaded_at": "2025-10-21 13:53:10.038886Z",
-      "sha": "f94870510a3550ff79710b2d88b551812bb2fb3b"
-    },
-    "nhsd-primary-care-domain-refsets-ast_cod.csv": {
-      "id": "nhsd-primary-care-domain-refsets/ast_cod/20250627",
-      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250627/",
-      "downloaded_at": "2025-10-21 13:53:45.679225Z",
-      "sha": "40b9e08f0468a0cb15af222d626da906d029911f"
-    },
-    "bristol-multimorbidity_coronary-heart-disease.csv": {
-      "id": "bristol/multimorbidity_coronary-heart-disease/6b200f80",
-      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_coronary-heart-disease/6b200f80/",
-      "downloaded_at": "2025-10-21 13:54:08.811464Z",
-      "sha": "c3577375defc551cee91886eabd6db5b70a53a38"
-    },
-    "bristol-multimorbidity_stroketransient-ischemic-attack.csv": {
-      "id": "bristol/multimorbidity_stroketransient-ischemic-attack/39012916",
-      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_stroketransient-ischemic-attack/39012916/",
-      "downloaded_at": "2025-10-21 13:54:24.268952Z",
-      "sha": "b62119e7502058e4eb4183d21cee753811096898"
-    },
-    "bristol-multimorbidity_connective-tissue-disorder.csv": {
-      "id": "bristol/multimorbidity_connective-tissue-disorder/52109c4b",
-      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_connective-tissue-disorder/52109c4b/",
-      "downloaded_at": "2025-10-21 13:54:41.174558Z",
-      "sha": "50397d659a80020e526f8b0305a1b7f2599116d5"
-    },
-    "bristol-multimorbidity_hearing-loss.csv": {
-      "id": "bristol/multimorbidity_hearing-loss/6c165b67",
-      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_hearing-loss/6c165b67/",
-      "downloaded_at": "2025-10-21 13:54:59.122887Z",
-      "sha": "abf5149c13d36cb977d9a338e5d3da9a32275b87"
-    },
-    "nhsd-primary-care-domain-refsets-chronconstip_cod.csv": {
-      "id": "nhsd-primary-care-domain-refsets/chronconstip_cod/20250912",
-      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/chronconstip_cod/20250912/",
-      "downloaded_at": "2026-01-12 11:02:31.267343Z",
-      "sha": "e07c8a1a336921575cc4d1497c8fb4aa488c175b"
-    },
-    "opensafely-symptoms-pain.csv": {
-      "id": "opensafely/symptoms-pain/71385a33",
-      "url": "https://www.opencodelists.org/codelist/opensafely/symptoms-pain/71385a33/",
-      "downloaded_at": "2026-01-12 11:02:31.326880Z",
-      "sha": "f10644780459fc727569c6217778f122f7d4a0dc"
     },
     "bristol-burden-of-neurodegenerative-diseases-alzheimers-disease-snomed.csv": {
       "id": "bristol/burden-of-neurodegenerative-diseases-alzheimers-disease-snomed/70bfa78f",
@@ -281,6 +197,108 @@
       "url": "https://www.opencodelists.org/codelist/bristol/burden-of-neurodegenerative-diseases-vascular-dementia-snomed/627b3432/",
       "downloaded_at": "2026-09-29 12:41:07.902111+00:00Z",
       "sha": "22311b38d1e7b210c0343e88586fdd1ba17b397f"
+    },
+    "bristol-cambridge-multimorbidity-score-alcohol-problems.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-alcohol-problems/277d5a57",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-alcohol-problems/277d5a57/",
+      "downloaded_at": "2026-10-07 12:27:37.509228+00:00Z",
+      "sha": "c3d0c11d4c0a42b2f93bc9697f4ad108dcce25b0"
+    },
+    "bristol-cambridge-multimorbidity-score-copd.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-copd/45fbb675",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-copd/45fbb675/",
+      "downloaded_at": "2026-10-07 12:27:37.619476+00:00Z",
+      "sha": "450b4a7b2bf1e0bbba7793887cbc24e336bc0a36"
+    },
+    "bristol-cambridge-multimorbidity-score-chronic-liver-disease-and-viral-hepatitis.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-chronic-liver-disease-and-viral-hepatitis/72abb3f6",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-chronic-liver-disease-and-viral-hepatitis/72abb3f6/",
+      "downloaded_at": "2026-10-07 12:27:37.721611+00:00Z",
+      "sha": "1a42d9e3fda7537372165fa379150ef35aa3b0a5"
+    },
+    "bristol-cambridge-multimorbidity-score-disorder-of-prostate.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-disorder-of-prostate/6ff8f400",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-disorder-of-prostate/6ff8f400/",
+      "downloaded_at": "2026-10-07 12:27:37.844102+00:00Z",
+      "sha": "b919674f7c26e9c6e0b695ee45f1e776fc06d3c2"
+    },
+    "bristol-cambridge-multimorbidity-score-learning-disability.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-learning-disability/13dcd00b",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-learning-disability/13dcd00b/",
+      "downloaded_at": "2026-10-07 12:27:37.995082+00:00Z",
+      "sha": "8adce7045a9774c2bd52a9b17357ce2f95b11b8a"
+    },
+    "bristol-cambridge-multimorbidity-score-multiple-sclerosis.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-multiple-sclerosis/2217da6b",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-multiple-sclerosis/2217da6b/",
+      "downloaded_at": "2026-10-07 12:27:38.088444+00:00Z",
+      "sha": "b093f5848282105840cd19f7d815d818ec7ba104"
+    },
+    "bristol-cambridge-multimorbidity-score-parkinsonism.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-parkinsonism/61bde9a0",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-parkinsonism/61bde9a0/",
+      "downloaded_at": "2026-10-07 12:27:38.185811+00:00Z",
+      "sha": "bd8fa271430902e8346707fc5d142b62275c02bf"
+    },
+    "bristol-cambridge-multimorbidity-score-peripheral-vascular-disease-leg.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-peripheral-vascular-disease-leg/48ae766b",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-peripheral-vascular-disease-leg/48ae766b/",
+      "downloaded_at": "2026-10-07 12:27:38.315737+00:00Z",
+      "sha": "12ddfc6e0132b0da516a0a44b910d9ec54c01a82"
+    },
+    "bristol-cambridge-multimorbidity-score-substance-misuse.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-substance-misuse/56e980cb",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-substance-misuse/56e980cb/",
+      "downloaded_at": "2026-10-07 12:27:38.417005+00:00Z",
+      "sha": "824086a7668ed5cae716ac11ed7514cfc4a8f3b8"
+    },
+    "bristol-multimorbidity_prescription_epilepsy_bnf_dmd_converted.csv": {
+      "id": "bristol/multimorbidity_prescription_epilepsy_bnf_dmd_converted/53b27798",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_prescription_epilepsy_bnf_dmd_converted/53b27798/",
+      "downloaded_at": "2026-10-07 12:27:38.579301+00:00Z",
+      "sha": "2f56dbc907dcda3fa5b1467f64a7dbca9a394f84"
+    },
+    "bristol-multimorbidity_prescription_constipation_bnf_dmd_converted.csv": {
+      "id": "bristol/multimorbidity_prescription_constipation_bnf_dmd_converted/6cc1eacd",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_prescription_constipation_bnf_dmd_converted/6cc1eacd/",
+      "downloaded_at": "2026-10-07 12:27:38.681819+00:00Z",
+      "sha": "ba034e00a96955251955c83b98af108cf8b54e8a"
+    },
+    "bristol-cambridge-multimorbidity-score-anxiety-or-depression.csv": {
+      "id": "bristol/cambridge-multimorbidity-score-anxiety-or-depression/408ccd8c",
+      "url": "https://www.opencodelists.org/codelist/bristol/cambridge-multimorbidity-score-anxiety-or-depression/408ccd8c/",
+      "downloaded_at": "2026-10-07 12:27:38.798927+00:00Z",
+      "sha": "be608fb2f06c3b54cec9b02f5fa5756fc285c673"
+    },
+    "bristol-multimorbidity_prescription_analgesics_opiods_exc_migraine_bnf_dmd_converted.csv": {
+      "id": "bristol/multimorbidity_prescription_analgesics_opiods_exc_migraine_bnf_dmd_converted/37f0446d",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_prescription_analgesics_opiods_exc_migraine_bnf_dmd_converted/37f0446d/",
+      "downloaded_at": "2026-10-07 12:27:38.955518+00:00Z",
+      "sha": "5c0367d233a40113081e7ed235e51c67b4eebe41"
+    },
+    "bristol-multimorbidity_prescription_antiepileptics_for_pain_bnf_dmd_converted.csv": {
+      "id": "bristol/multimorbidity_prescription_antiepileptics_for_pain_bnf_dmd_converted/1ee0d138",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_prescription_antiepileptics_for_pain_bnf_dmd_converted/1ee0d138/",
+      "downloaded_at": "2026-10-07 12:27:39.087094+00:00Z",
+      "sha": "aedafd7593c300a477ac8a861e1c7dcabbdbc8b1"
+    },
+    "bristol-multimorbidity_prescription_anti_spasmodic_bnf-dmd.csv": {
+      "id": "bristol/multimorbidity_prescription_anti_spasmodic_bnf-dmd/0257ea7e",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_prescription_anti_spasmodic_bnf-dmd/0257ea7e/",
+      "downloaded_at": "2026-10-07 12:27:39.223931+00:00Z",
+      "sha": "81a9e4c8e08bb903d5476c3694e6fc17406447ba"
+    },
+    "bristol-multimorbidity_prescription_schizophrenia_bipolar_disorder_bnf-dmd.csv": {
+      "id": "bristol/multimorbidity_prescription_schizophrenia_bipolar_disorder_bnf-dmd/07bd6a6a",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_prescription_schizophrenia_bipolar_disorder_bnf-dmd/07bd6a6a/",
+      "downloaded_at": "2026-10-07 12:27:39.476970+00:00Z",
+      "sha": "491ae9d11e799a9a41ddf0494e7933ff44f9de4c"
+    },
+    "bristol-multimorbidity_prescription_anxiolytics_anti_depressants_bnf-dmd.csv": {
+      "id": "bristol/multimorbidity_prescription_anxiolytics_anti_depressants_bnf-dmd/52ebc409",
+      "url": "https://www.opencodelists.org/codelist/bristol/multimorbidity_prescription_anxiolytics_anti_depressants_bnf-dmd/52ebc409/",
+      "downloaded_at": "2026-10-07 12:27:39.669616+00:00Z",
+      "sha": "f2b64b2032410e982399897fb9ab4e8eeeff2742"
     }
   }
 }

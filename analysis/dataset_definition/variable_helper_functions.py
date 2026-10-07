@@ -57,13 +57,13 @@ def get_cms_on_date(input_date, death_date, return_components=False):
         ("dementia", dementia_codelist, 0.938001),
         ("diabetes", diabetes_codelist, 0.29467),
         ("hf", hf_codelist, 0.505245),
-        ("cld", cld_codelist, 0.68621), # codelist for chronic liver disease and viral hepatitis missing 
-        ("prostate", prostate_codelist, -0.18781), # codelist for prostate disorder missing
-        ("learning", learning_codelist, 0.637273), # codelist for learning disability missing
-        ("sclerosis", sclerosis_codelist, 0.761606), # codelist missing
-        ("parkinsonism", parkinsonism_codelist, 0.546194), #codelist missing
-        ("perivascular_leg", perivascular_codelist, 0.334558), #codelist missing
-        ("psychosub_misuse", psychosub_codelist, 0.449321) #codelist missing
+        ("cld", cld_codelist, 0.68621),  
+        ("prostate", prostate_codelist, -0.18781), 
+        ("learning", learning_codelist, 0.637273), 
+        ("sclerosis", sclerosis_codelist, 0.761606), 
+        ("parkinsonism", parkinsonism_codelist, 0.546194), 
+        ("perivascular_leg", perivascular_codelist, 0.334558),
+        ("psychosub_misuse", psychosub_codelist, 0.449321)
     ]:
         filtered = clinical_events.where(
             clinical_events.snomedct_code.is_in(codelist)
@@ -121,7 +121,7 @@ def get_cms_on_date(input_date, death_date, return_components=False):
         if return_components:
             components[name] = binary
 
-    # any diagnosis ever AND med last 12 months >=1, med list missing
+    # any diagnosis ever AND med last 12 months >=1
     for name, codelist, medlist, weight in [
         ("epilepsy", epilepsy_codelist, epilepsy_medlist, 0.477465)
     ]:
@@ -226,9 +226,9 @@ def get_cms_on_date(input_date, death_date, return_components=False):
         if return_components:
             components[name] = binary   
 
-    # last 12 months med1>=4 or med2>=4 or any diagnosis in last 12 months, anxiety med list missing
-    for name, codelist, medlist1, medlist2, weight in [
-        ("anxiety", anxiety_codelist, anxiety_medlist1, anxiety_medlist2, 0.324207)
+    # last 12 months med>=4 or any diagnosis in last 12 months, anxiety med list missing
+    for name, codelist, medlist, weight in [
+        ("anxiety", anxiety_codelist, anxiety_medlist, 0.324207)
     ]:
         d = date.fromisoformat(input_date)
         earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
@@ -242,27 +242,17 @@ def get_cms_on_date(input_date, death_date, return_components=False):
         diag = filtered.where(
             check_date_validity(filtered.date, death_date=death_date).is_not_null()
             ).exists_for_patient() 
-        medfiltered1 = medications.where(
-            medications.dmd_code.is_in(medlist1)
+        medfiltered = medications.where(
+            medications.dmd_code.is_in(medlist)
             ).where(
             medications.date.is_before(input_date)
             ).where(
             medications.date.is_on_or_after(earliest)    
             )
-        med1 = medfiltered1.where(
-            check_date_validity(medfiltered1.date, death_date=death_date).is_not_null()
+        med = medfiltered.where(
+            check_date_validity(medfiltered.date, death_date=death_date).is_not_null()
             ).date.count_distinct_for_patient()   
-        medfiltered2 = medications.where(
-            medications.dmd_code.is_in(medlist2)
-            ).where(
-            medications.date.is_before(input_date)
-            ).where(
-            medications.date.is_on_or_after(earliest)    
-            )
-        med2 = medfiltered2.where(
-            check_date_validity(medfiltered2.date, death_date=death_date).is_not_null()
-            ).date.count_distinct_for_patient() 
-        binary = (diag | (med1 >= 4) | (med2 >= 4)).as_int()
+        binary = (diag | (med >= 4)).as_int()
         cms += binary.as_float() * weight
         if return_components:
             components[name] = binary

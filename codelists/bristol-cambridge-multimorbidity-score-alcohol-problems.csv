@@ -1,4 +1,6 @@
 code,term
+10741871000119101,Alcohol dependence in pregnancy
+10755041000119100,Alcohol dependence in childbirth
 1082601000119104,Ascites due to alcoholic cirrhosis
 1082611000119101,Ascites due to alcoholic hepatitis
 1085021000119106,Hepatic ascites due to chronic alcoholic hepatitis
@@ -11,33 +13,48 @@ code,term
 135321000119107,Hypersomnia caused by alcohol
 135331000119105,Disorder of sleep-wake cycle caused by alcohol
 135761000119101,Cerebral degeneration due to alcoholism
+15167005,Harmful pattern of use of alcohol
 154211000119108,Chronic pancreatitis due to chronic alcoholism
 154916003,(Non-dependent abuse of alcohol) or (drunkenness) or (hangover)
 160578007,Very heavy drinker - greater than 9 units/day
+161466001,History of alcoholism
 18653004,Alcohol intoxication delirium
 191471000,Korsakov's alcoholic psychosis with peripheral neuritis
 191475009,Chronic alcoholic brain syndrome
 191476005,Alcohol withdrawal hallucinosis
 191477001,Pathological alcohol intoxication
-191478006,Alcoholic paranoia
+191478006,Paranoia caused by alcohol
 191480000,Alcohol withdrawal syndrome
 191802004,Acute alcoholic intoxication in alcoholism
 191804003,Continuous acute alcoholic intoxication in alcoholism
 191805002,Episodic acute alcoholic intoxication in alcoholism
 191806001,"Acute alcoholic intoxication in remission, in alcoholism"
+191811004,Continuous chronic alcoholism
+191812006,Episodic chronic alcoholism
+191813001,Chronic alcoholism in remission
 191880005,(Alcohol intoxication) or (hangover following alcohol consumption) or (nondependent alcohol abuse) or (drunkenness NOS) or (inebriety NOS)
 191881009,"Nondependent alcohol abuse, unspecified"
+191882002,Continuous nondependent harmful pattern of use of alcohol
+191883007,Episodic nondependent harmful pattern of use of alcohol
+191884001,Nondependent harmful pattern of use of alcohol in remission
 191885000,Nondependent alcohol abuse NOS
 192811002,Alcoholic encephalopathy
 19303008,Alcohol myopathy
+198421000000108,Hazardous alcohol use
 198431000000105,Harmful alcohol use
 205351000000101,[X]Alcohol withdrawal-induced seizure
+205788004,Fetal alcohol syndrome
+205791004,Fetal or neonatal effect of maternal use of alcohol
 208761000000107,[X]Alcohol withdrawal-induced seizure
 21007002,Wernicke's disease
+212807002,Grain alcohol causing toxic effect
+213441000000109,Hazardous alcohol use
+213451000000107,Hazardous alcohol use
 213461000000105,Harmful alcohol use
 213471000000103,Harmful alcohol use
 216633005,Accidental poisoning caused by alcoholic beverage
 228279004,Very heavy drinker
+228281002,Problem drinker
 230353003,Morel laminar sclerosis
 230442005,Alcohol-induced epilepsy
 230800004,Alcoholic coma
@@ -53,10 +70,12 @@ code,term
 237641009,Alcohol-induced hypoglycemia
 237738005,Alcohol-induced pseudo-Cushing's syndrome
 25702006,Alcohol intoxication
-268645007,Nondependent alcohol abuse
+268645007,Nondependent harmful pattern of use of alcohol
 268767001,(Non-dependent abuse of alcohol) or (drunkenness) or (hangover)
+268796000,Fetal or neonatal effect of placental or breast transfer of alcohol
 278363000,Alcoholic macrocytosis
 281004,Dementia associated with alcoholism
+284591009,Persistent alcohol abuse
 288021000119107,Disorder due to alcohol abuse
 288031000119105,Alcohol induced disorder co-occurrent and due to alcohol dependence
 288041000119101,Perceptual disturbance due to alcohol withdrawal
@@ -66,12 +85,17 @@ code,term
 308692003,Alcohol-induced flushing
 308742005,Alcohol withdrawal-induced convulsion
 314539001,Alcohol related optic neuropathy
+320831000000108,Alcohol misuse
+320841000000104,Alcohol misuse 
+320851000000101,Alcohol misuse 
 34938008,Anxiety disorder caused by alcohol
 361267005,Alcohol-related fit
 361268000,Alcohol-induced epilepsy
 361272001,Cerebellar ataxia due to alcoholism
 361273006,Alcoholic cerebellar degeneration
+36558000,Fetal or neonatal effect of alcohol transmitted via placenta and/or breast milk
 367041000000104,Alcohol related fit
+371434005,History of alcohol abuse
 390941000000103,[X]Mental and behavioural disorders due to use of alcohol: acute intoxication
 391961000000105,"[X]Evidence of alcohol involvement determined by level of intoxication, moderate alcohol intoxication"
 395301000000107,"[X]Evidence of alcohol involvement determined by level of intoxication, very severe alcohol intoxication"
@@ -93,18 +117,29 @@ code,term
 53936005,Mood disorder caused by ingestible alcohol
 55571001,Ketoacidosis due to acute alcohol intoxication
 589511000000102,Alcoholic liver damage unspecified
+609437000,Fetal Alcohol Spectrum Disorder
+609438005,Fetal or neonatal effect of maternal alcohol addiction
 61144001,Alcohol-induced psychotic disorder with delusions
 620161000000102,"Nondependent alcohol abuse, unspecified"
 620171000000109,Nondependent alcohol abuse NOS
 623951000000105,Alcohol amnestic syndrome NOS
+645561000000104,Unspecified chronic alcoholism
+645571000000106,Chronic alcoholism NOS
+645591000000105,Alcohol dependence syndrome NOS
+66590003,Alcohol dependence
 671521000000106,Inebriety NOS
 671531000000108,Drunkenness NOS
 69482004,Korsakoff's psychosis
+698321001,Neonatal effect of alcohol transmitted via breast milk
 699208000,Thrombocytopenia caused by alcohol
 7052005,Alcohol hallucinosis
 713181003,Chronic alcoholic liver disease
 713370005,Acute on chronic alcoholic liver disease
+713583005,Mild alcohol dependence
+713862009,Severe alcohol dependence
+714829008,Moderate alcohol dependence
 719848005,Disorder caused by alcohol
+7200002,Alcoholism
 721710005,Fibrosis of liver caused by alcohol
 723103002,Gastric ulcer caused by alcohol
 723882007,Duodenitis caused by ingestible alcohol
@@ -121,6 +156,7 @@ code,term
 787768005,Psychotic behavior caused by ingestible alcohol
 7916009,Alcoholic polyneuropathy
 79578000,Alcohol paranoia
+82047000,Diarrhea caused by alcohol intake
 832021000000101,Alcohol-induced acute pancreatitis
 838376007,Chronic alcoholic myopathy
 838386008,Acute alcoholic myopathy
@@ -128,6 +164,10 @@ code,term
 85561006,Alcohol withdrawal syndrome without complication
 86325007,Non megaloblastic anemia due to alcoholism
 8635005,Alcohol withdrawal delirium
+870297003,Myopathy due to chronic alcoholism
 87810006,Megaloblastic anemia due to alcoholism
+928111000000101,Mild alcohol dependence
+928131000000109,Moderate alcohol dependence
+928151000000102,Severe alcohol dependence
 97571000119109,Thrombocytopenia co-occurrent and due to alcoholism
 9953008,Acute alcoholic liver disease

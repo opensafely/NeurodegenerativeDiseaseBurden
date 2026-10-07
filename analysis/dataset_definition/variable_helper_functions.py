@@ -1,4 +1,4 @@
-from ehrql import case, when, maximum_of
+from ehrql import case, when, maximum_of, years
 from ehrql.tables.tpp import patients, clinical_events, ethnicity_from_sus, apcs, ons_deaths 
 from ehrql.tables.core import medications
 from datetime import date
@@ -84,8 +84,11 @@ def get_cms_on_date(input_date, death_date, return_components=False):
     for name, codelist, weight in [
         ("cancer", cancer_codelist, 1.202615)
     ]:
-        d = date.fromisoformat(input_date)
-        earliest = f"{d.year-5}-{d.month:02d}-{d.day:02d}"
+        if isinstance(input_date,str):
+            d = date.fromisoformat(input_date)
+            earliest = f"{d.year-5}-{d.month:02d}-{d.day:02d}"
+        else:
+            earliest = input_date - years(5) 
         filtered = clinical_events.where(
                 clinical_events.snomedct_code.is_in(codelist)
                 ).where(
@@ -125,8 +128,11 @@ def get_cms_on_date(input_date, death_date, return_components=False):
     for name, codelist, medlist, weight in [
         ("epilepsy", epilepsy_codelist, epilepsy_medlist, 0.477465)
     ]:
-        d = date.fromisoformat(input_date)
-        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        if isinstance(input_date,str):
+            d = date.fromisoformat(input_date)
+            earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        else:
+            earliest = input_date - years(1)
         filtered = clinical_events.where(
             clinical_events.snomedct_code.is_in(codelist)
             ).where(
@@ -154,8 +160,11 @@ def get_cms_on_date(input_date, death_date, return_components=False):
     for name, codelist, medlist, weight in [    
         ("bowel", bowel_codelist, bowel_medlist, -0.20368)
     ]:
-        d = date.fromisoformat(input_date)
-        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        if isinstance(input_date,str):
+            d = date.fromisoformat(input_date)
+            earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        else:
+            earliest = input_date - years(1)
         filtered = clinical_events.where(
             clinical_events.snomedct_code.is_in(codelist)
             ).where(
@@ -208,9 +217,11 @@ def get_cms_on_date(input_date, death_date, return_components=False):
     for name, medlist, weight in [ 
         ("constipation", constipation_medlist, 0.383006)
     ]:
-        d = date.fromisoformat(input_date)
-        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
-        
+        if isinstance(input_date,str):
+            d = date.fromisoformat(input_date)
+            earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        else:
+            earliest = input_date - years(1)
         medfiltered = medications.where(
             medications.dmd_code.is_in(medlist)
             ).where(
@@ -230,8 +241,11 @@ def get_cms_on_date(input_date, death_date, return_components=False):
     for name, codelist, medlist, weight in [
         ("anxiety", anxiety_codelist, anxiety_medlist, 0.324207)
     ]:
-        d = date.fromisoformat(input_date)
-        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        if isinstance(input_date,str):
+            d = date.fromisoformat(input_date)
+            earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        else:
+            earliest = input_date - years(1)
         filtered = clinical_events.where(
             clinical_events.snomedct_code.is_in(codelist)
             ).where(
@@ -261,8 +275,11 @@ def get_cms_on_date(input_date, death_date, return_components=False):
     for name, codelist, medlist1, medlist2, weight in [   
         ("pain", epilepsy_codelist, pain_medlist1, pain_medlist2, 0.445521)
     ]:    
-        d = date.fromisoformat(input_date)
-        earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        if isinstance(input_date,str):
+            d = date.fromisoformat(input_date)
+            earliest = f"{d.year-1}-{d.month:02d}-{d.day:02d}"
+        else:
+            earliest = input_date - years(1)
         filtered = clinical_events.where(
             clinical_events.snomedct_code.is_in(codelist)
             ).where(

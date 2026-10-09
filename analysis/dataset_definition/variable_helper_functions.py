@@ -114,10 +114,10 @@ def get_cms_on_date(input_date, death_date, return_components=False):
         filtered2 = filtered.where(
             check_date_validity(filtered.date, death_date=death_date).is_not_null()
             )
-        filtered3 = filtered2.sort_by(filtered2.date).last_for_patient()
-        value1 = filtered3.numeric_value
-        filtered4 = filtered2.where(filtered2.date < filtered3.date)
-        value2 = filtered4.sort_by(filtered4.date).last_for_patient().numeric_value
+        recent1 = filtered2.date.maximum_for_patient()
+        recent2 = filtered2.where(filtered2.date < recent1).date.maximum_for_patient()
+        value1 = filtered2.where(filtered2.date==recent1).numeric_value.minimum_for_patient()
+        value2 = filtered2.where(filtered2.date==recent2).numeric_value.minimum_for_patient()
         value = maximum_of(value1, value2)
         binary = ((value.is_not_null()) & (value < 60)).as_int()
         cms += binary.as_float() * weight

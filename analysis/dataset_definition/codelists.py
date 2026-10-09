@@ -1,20 +1,5 @@
 from ehrql import codelist_from_csv
 
-prostate_snomed = codelist_from_csv(
-    "codelists/user-RochelleKnight-prostate_cancer_snomed.csv",
-    column="code"
-)
-
-prostate_icd = codelist_from_csv(
-    "codelists/user-RochelleKnight-prostate_cancer_icd10.csv",
-    column="code"
-)
-
-pregnancy_snomed = codelist_from_csv(
-    "codelists/nhsd-primary-care-domain-refsets-c19preg_cod.csv",
-    column="code"
-)
-
 ethnicity_codelist = codelist_from_csv(
     "codelists/opensafely-ethnicity-snomed-0removed.csv",
     column="code",
@@ -24,12 +9,12 @@ ethnicity_codelist = codelist_from_csv(
 #Multimorbidity
 
 alcohol_codelist = codelist_from_csv(
-    "codelists/bristol-multimorbidity_alcoholproblems.csv",
+    "codelists/bristol-cambridge-multimorbidity-score-alcohol-problems.csv",
     column="code"
 )
 
 anxiety_codelist = codelist_from_csv(
-    "codelists/bristol-multimorbidity_anxietydepression.csv",
+    "codelists/bristol-cambridge-multimorbidity-score-anxiety-or-depression.csv",
     column="code"
 )
 
@@ -48,18 +33,8 @@ ckd_codelist = codelist_from_csv(
     column="code"
 )
 
-tissue_codelist = codelist_from_csv(
-    "codelists/bristol-multimorbidity_connective-tissue-disorder.csv",
-    column="code"
-)
-
 copd_codelist = codelist_from_csv(
-    "codelists/bristol-multimorbidity_copd.csv",
-    column="code"
-)
-
-chd_codelist = codelist_from_csv(
-    "codelists/bristol-multimorbidity_coronary-heart-disease.csv",
+    "codelists/bristol-cambridge-multimorbidity-score-copd.csv",
     column="code"
 )
 
@@ -78,11 +53,6 @@ epilepsy_codelist = codelist_from_csv(
     column="code"
 )
 
-hearloss_codelist = codelist_from_csv(
-    "codelists/bristol-multimorbidity_hearing-loss.csv",
-    column="code"
-)
-
 hf_codelist = codelist_from_csv(
     "codelists/bristol-multimorbidity_heart-failure.csv",
     column="code"
@@ -98,30 +68,76 @@ psychosis_codelist = codelist_from_csv(
     column="code"
 )
 
-stroke_codelist = codelist_from_csv(
-    "codelists/bristol-multimorbidity_stroketransient-ischemic-attack.csv",
+cld_codelist = codelist_from_csv(
+    "codelists/bristol-cambridge-multimorbidity-score-chronic-liver-disease-and-viral-hepatitis.csv",
     column="code"
 )
 
-asthma_codelist = codelist_from_csv(
-    "codelists/nhsd-primary-care-domain-refsets-ast_cod.csv",
+prostate_codelist = codelist_from_csv(
+    "codelists/bristol-cambridge-multimorbidity-score-disorder-of-prostate.csv",
     column="code"
 )
 
-hypertension_codelist = codelist_from_csv(
-    "codelists/nhsd-primary-care-domain-refsets-hyp_cod.csv",
+learning_codelist = codelist_from_csv(
+    "codelists/bristol-cambridge-multimorbidity-score-learning-disability.csv",
     column="code"
 )
 
-constipation_codelist = codelist_from_csv(
-    "codelists/nhsd-primary-care-domain-refsets-chronconstip_cod.csv", 
+sclerosis_codelist = codelist_from_csv(
+    "codelists/bristol-cambridge-multimorbidity-score-multiple-sclerosis.csv",
     column="code"
 )
 
-pain_codelist = codelist_from_csv(
-    "codelists/opensafely-symptoms-pain.csv",
+parkinsonism_codelist = codelist_from_csv(
+    "codelists/bristol-cambridge-multimorbidity-score-parkinsonism.csv",
     column="code"
 )
+
+perivascular_codelist = codelist_from_csv(
+    "codelists/bristol-cambridge-multimorbidity-score-peripheral-vascular-disease-leg.csv",
+    column="code"
+)
+
+psychosub_codelist = codelist_from_csv(
+    "codelists/bristol-cambridge-multimorbidity-score-substance-misuse.csv",
+    column="code"
+)
+
+epilepsy_medlist = codelist_from_csv(
+    "codelists/bristol-multimorbidity_prescription_epilepsy_bnf_dmd_converted.csv",
+    column="dmd_id"
+)
+
+bowel_medlist = codelist_from_csv(
+    "codelists/bristol-multimorbidity_prescription_anti_spasmodic_bnf-dmd.csv",
+    column="dmd_id"
+)
+
+psychosis_medlist = codelist_from_csv(
+    "codelists/bristol-multimorbidity_prescription_schizophrenia_bipolar_disorder_bnf-dmd.csv",
+    column="dmd_id"
+)
+
+constipation_medlist = codelist_from_csv(
+    "codelists/bristol-multimorbidity_prescription_constipation_bnf_dmd_converted.csv",
+    column="dmd_id"
+)
+
+anxiety_medlist = codelist_from_csv(
+    "codelists/bristol-multimorbidity_prescription_anxiolytics_anti_depressants_bnf-dmd.csv",
+    column="dmd_id"
+)
+
+pain_medlist1 = codelist_from_csv(
+    "codelists/bristol-multimorbidity_prescription_analgesics_opiods_exc_migraine_bnf_dmd_converted.csv",
+    column="dmd_id"
+)
+
+pain_medlist2 = codelist_from_csv(
+    "codelists/bristol-multimorbidity_prescription_antiepileptics_for_pain_bnf_dmd_converted.csv",
+    column="dmd_id"
+)
+
 
 #Outcomes
 

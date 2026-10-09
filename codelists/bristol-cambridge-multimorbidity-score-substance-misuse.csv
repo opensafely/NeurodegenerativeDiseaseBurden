@@ -1,0 +1,512 @@
+code,term
+105546006,Occasional drug abuser
+105549004,Abuses volatile solvents
+1093911000000105,Harmful use of antacids
+1094071000000103,Harmful use of antidepressant drug
+1094081000000101,Harmful use of diuretics
+1094091000000104,Harmful use of drugs to lose weight
+1094101000000107,Harmful use of herbal medicine
+1094111000000109,Harmful use of laxatives
+1094121000000103,Harmful use of analgesic
+1094131000000101,Harmful use of steroids
+1094141000000105,Harmful use of vitamins
+1094151000000108,Harmful use of alcohol
+1094161000000106,Harmful use of amphetamine
+1094171000000104,Harmful use of cannabis
+1094181000000102,Harmful use of Catha edulis
+1094191000000100,Harmful use of cocaine
+1094201000000103,Harmful use of hallucinogen
+1094211000000101,Harmful use of inhalant
+1094221000000107,Harmful use of methanol
+1094231000000109,Harmful use of opioid
+1094241000000100,Harmful use of sedative
+1094251000000102,Harmful use of barbiturate
+1094261000000104,Harmful use of stimulant
+1094271000000106,Harmful use of synthetic cannabinoid
+1094281000000108,Harmful use of synthetic cathinone
+1094291000000105,Harmful use of anxiolytic
+1094301000000109,Harmful use of hypnotic
+110281001,Chronic drug abuse
+11047881000119101,Cannabis hyperemesis syndrome due to Cannabis abuse
+1104931000000109,Nitrous oxide misuse
+122931000000106,[V]Personal history of drug abuse by injection
+125851000119106,Continuous sedative abuse
+145101000119102,Harmful pattern of use of intravenous cocaine
+145121000119106,Intravenous nondependent harmful pattern of use of opioid
+145841000119107,Episodic harmful pattern of use of phencyclidine
+1471000119103,Drug abuse in remission
+15167005,Harmful pattern of use of alcohol
+164371000000106,Injects drugs intramuscularly
+164381000000108,Sniffs drugs
+164971000000105,Sniffs drugs
+171661000000100,Injects drugs intramuscularly
+185801000000108,Injects drugs subcutaneously
+185811000000105,Smokes drugs
+185821000000104,Misuses drugs orally
+189241000000108,Injects drugs subcutaneously
+189251000000106,Smokes drugs
+189261000000109,Misuses drugs orally
+191882002,Continuous nondependent harmful pattern of use of alcohol
+191883007,Episodic nondependent harmful pattern of use of alcohol
+191884001,Nondependent harmful pattern of use of alcohol in remission
+191891003,Nondependent harmful pattern of use of cannabis
+191893000,Continuous nondependent harmful pattern of use of cannabis
+191894006,Episodic nondependent harmful pattern of use of cannabis
+191895007,Nondependent harmful pattern of use of cannabis in remission
+191899001,Continuous nondependent harmful pattern of use of hallucinogen
+191900006,Episodic nondependent harmful pattern of use of hallucinogen
+191901005,Nondependent harmful pattern of use of hallucinogen in remission
+191905001,"Nondependent hypnotic or anxiolytic abuse, continuous"
+191906000,"Nondependent hypnotic or anxiolytic abuse, episodic"
+191907009,Nondependent hypnotic or anxiolytic abuse in remission
+191909007,Nondependent harmful pattern of use of opioid
+191912005,Continuous nondependent harmful pattern of use of opioid
+191913000,Episodic nondependent harmful pattern of use of opioid
+191914006,Nondependent harmful pattern of use of opioid in remission
+191916008,Nondependent harmful pattern of use of cocaine
+191918009,Continuous nondependent harmful pattern of use of cocaine
+191919001,Episodic nondependent harmful pattern of use of cocaine
+191920007,Nondependent harmful pattern of use of cocaine in remission
+191924003,"Nondependent amphetamine or psychostimulant abuse, continuous"
+191925002,"Nondependent amphetamine or psychostimulant abuse, episodic"
+191926001,Nondependent amphetamine or psychostimulant abuse in remission
+191928000,Harmful pattern of use of antidepressant
+191930003,"Nondependent antidepressant type drug abuse, continuous"
+191931004,"Nondependent antidepressant type drug abuse, episodic"
+191932006,Nondependent antidepressant type drug abuse in remission
+191934007,Nondependent mixed drug abuse
+191936009,"Nondependent mixed drug abuse, continuous"
+191937000,"Nondependent mixed drug abuse, episodic"
+191938005,Nondependent mixed drug abuse in remission
+192287003,[X]Mental and behavioral disorders due to use of tobacco: harmful use
+197541000000101,Occasional drug user
+202561000000103,On substance misuse programme
+202961000000106,Ecstasy misuse
+202991000000100,Heroin misuse
+204641000000107,Episodic nondependent crack cocaine abuse
+226034001,Injecting drug user
+228371004,Long-term drug misuser
+228372006,Poly-drug misuser
+228373001,Drug addict
+228374007,Notified addict
+228375008,Misuses drugs orally
+228376009,Inhales drugs
+228377000,Smokes drugs
+228378005,Smokes drugs in cigarette form
+228379002,Smokes drugs through a pipe
+228380004,Chases the dragon
+228381000,Sniffs drugs
+228382007,Misuses drugs vaginally
+228383002,Misuses drugs rectally
+228384008,Misuses drugs sublingually
+228386005,Injects drugs subcutaneously
+228387001,Injects drugs intramuscularly
+228388006,Intravenous drug user
+228389003,Groin injector
+231458000,Abuse of steroids
+231459008,Harmful pattern of use of non-psychotropic analgesic medication
+231461004,Hypnotic or anxiolytic abuse
+231462006,Harmful pattern of use of barbiturate
+248119008,Abuse of drugs to lose weight
+248601000000106,Neck injector
+26416006,Drug abuse
+268645007,Nondependent harmful pattern of use of alcohol
+268646008,Nondependent harmful pattern of use of hallucinogen
+268647004,Nondependent hypnotic or anxiolytic abuse
+268648009,Nondependent amphetamine or other psychostimulant abuse
+27051000119102,Chronic harmful pattern of use of laxatives
+276981000000107,History of opiate misuse
+276991000000109,History of anti-depressant misuse
+277001000000103,History of major tranquilliser misuse
+277011000000101,History of barbiturate misuse
+277021000000107,History of solvent misuse
+277031000000109,History of cannabis misuse
+277041000000100,History of hallucinogen misuse
+277051000000102,History of crack cocaine misuse
+277061000000104,History of cocaine misuse
+277071000000106,History of amphetamine misuse
+277081000000108,History of benzodiazepine misuse
+277091000000105,History of methadone misuse
+277101000000102,History of daily benzodiazepine misuse
+277111000000100,H/O benzodiazepines misuse - daily 
+277121000000106,H/O benzodiazepines misuse - daily 
+277131000000108,History of weekly benzodiazepine misuse
+277141000000104,H/O benzodiazepines misuse - weekly 
+277151000000101,H/O benzodiazepines misuse - weekly 
+277161000000103,History of infrequent benzodiazepine misuse
+277171000000105,H/O benzodiazepines misuse - infrequent 
+277181000000107,H/O benzodiazepines misuse - infrequent 
+277191000000109,Previous history of benzodiazepine misuse
+277201000000106,H/O benzodiazepines misuse - previous 
+277211000000108,H/O benzodiazepines misuse - previous 
+277221000000102,History of daily heroin misuse
+277231000000100,H/O heroin misuse - daily 
+277241000000109,H/O heroin misuse - daily 
+277251000000107,History of weekly heroin misuse
+277261000000105,H/O heroin misuse - weekly 
+277271000000103,H/O heroin misuse - weekly 
+277281000000101,Previous history of heroin misuse
+277291000000104,H/O heroin misuse - previous 
+277301000000100,H/O heroin misuse - previous 
+277311000000103,History of infrequent heroin misuse
+277321000000109,H/O heroin misuse - infrequent 
+277331000000106,H/O heroin misuse - infrequent 
+277341000000102,History of daily methadone misuse
+277351000000104,H/O methadone misuse - daily 
+277361000000101,H/O methadone misuse - daily 
+277371000000108,History of weekly methadone misuse
+277381000000105,H/O methadone misuse - weekly 
+277391000000107,H/O methadone misuse - weekly 
+277401000000105,History of infrequent methadone misuse
+277411000000107,H/O methadone misuse - infrequent 
+277421000000101,H/O methadone misuse - infrequent 
+277431000000104,Previous history of methadone misuse
+277441000000108,H/O methadone misuse previous 
+277451000000106,H/O methadone misuse previous 
+277461000000109,History of daily ecstasy misuse
+277471000000102,H/O ecstasy misuse - daily 
+277481000000100,H/O ecstasy misuse - daily 
+277491000000103,History of weekly ecstasy misuse
+277501000000109,H/O ecstasy misuse - weekly 
+277511000000106,H/O ecstasy misuse - weekly 
+277521000000100,History of infrequent ecstasy misuse
+277531000000103,H/O ecstasy misuse - infrequent 
+277541000000107,H/O ecstasy misuse - infrequent 
+277551000000105,Previous history of ecstasy misuse
+277561000000108,H/O ecstasy misuse - previous 
+277571000000101,H/O ecstasy misuse - previous 
+277581000000104,History of daily amphetamine misuse
+277591000000102,H/O amphetamines misuse - daily 
+277601000000108,H/O amphetamines misuse - daily 
+277611000000105,History of weekly amphetamine misuse
+277621000000104,H/O amphetamines misuse - weekly 
+277631000000102,H/O amphetamines misuse - weekly 
+277641000000106,History of infrequent amphetamine misuse
+277651000000109,H/O amphetamines misuse - infrequent 
+277661000000107,H/O amphetamines misuse - infrequent 
+277671000000100,Previous history of amphetamine misuse
+277681000000103,H/O amphetamines misuse - previous 
+277691000000101,H/O amphetamines misuse - previous 
+277701000000101,History of daily major tranquilliser misuse
+277711000000104,H/O major tranquiliser misuse 
+277721000000105,H/O major tranquiliser misuse 
+277731000000107,History of weekly major tranquilliser misuse
+277741000000103,H/O major tranquiliser misuse - weekly 
+277751000000100,H/O major tranquiliser misuse - weekly 
+277761000000102,History of infrequent major tranquilliser misuse
+277771000000109,H/O major tranquiliser misuse - infrequent 
+277781000000106,H/O major tranquiliser misuse - infrequent 
+277791000000108,Previous history of major tranquilliser misuse
+277801000000107,H/O major tranquiliser misuse - previous 
+277811000000109,H/O major tranquiliser misuse - previous 
+277821000000103,History of daily anti-depressant misuse
+277831000000101,H/O anti-depressants misuse - daily 
+277841000000105,H/O anti-depressants misuse - daily 
+277851000000108,History of weekly anti-depressant misuse
+277861000000106,H/O anti-depressants misuse - weekly 
+277871000000104,H/O anti-depressants misuse - weekly 
+277881000000102,History of infrequent anti-depressant misuse
+277891000000100,H/O anti-depressants misuse - infrequent 
+277901000000104,H/O anti-depressants misuse - infrequent 
+277911000000102,Previous history of anti-depressant misuse
+277921000000108,H/O anti-depressants misuse - previous 
+277931000000105,H/O anti-depressants misuse - previous 
+277941000000101,History of daily opiate misuse
+277951000000103,H/O opiates misuse - daily 
+277961000000100,H/O opiates misuse - daily 
+277971000000107,History of weekly opiate misuse
+277981000000109,H/O opiates misuse - weekly 
+277991000000106,H/O opiates misuse - weekly 
+278001000000102,History of infrequent opiate misuse
+278011000000100,H/O opiates misuse - infrequent 
+278021000000106,H/O opiates misuse - infrequent 
+278031000000108,Previous history of opiate misuse
+278041000000104,H/O opiates misuse - previous 
+278051000000101,H/O opiates misuse - previous 
+278061000000103,History of daily cocaine misuse
+278071000000105,H/O cocaine misuse - daily 
+278081000000107,H/O cocaine misuse - daily 
+278091000000109,History of weekly cocaine misuse
+278101000000101,H/O cocaine misuse - weekly 
+278111000000104,H/O cocaine misuse - weekly 
+278121000000105,History of infrequent cocaine misuse
+278131000000107,H/O cocaine misuse - infrequent
+278141000000103,H/O cocaine misuse - infrequent 
+278151000000100,Previous history of cocaine misuse
+278161000000102,H/O cocaine misuse - previous 
+278171000000109,H/O cocaine misuse - previous 
+278181000000106,History of daily crack cocaine misuse
+278191000000108,H/O crack cocaine misuse - daily 
+278201000000105,H/O crack cocaine misuse - daily 
+278211000000107,History of weekly crack cocaine misuse
+278221000000101,H/O crack cocaine misuse - weekly 
+278231000000104,H/O crack cocaine misuse - weekly 
+278241000000108,History of infrequent crack cocaine misuse
+278251000000106,H/O crack cocaine misuse - infrequent 
+278261000000109,H/O crack cocaine misuse - infrequent 
+278271000000102,Previous history of crack cocaine misuse
+278281000000100,H/O crack cocaine misuse - previous 
+278291000000103,H/O crack cocaine misuse - previous 
+278301000000104,History of daily hallucinogen misuse
+278311000000102,H/O hallucinogen misuse - daily 
+278321000000108,H/O hallucinogen misuse - daily 
+278331000000105,History of weekly hallucinogen misuse
+278341000000101,H/O hallucinogen misuse - weekly 
+278351000000103,H/O hallucinogen misuse - weekly 
+278361000000100,History of infrequent hallucinogen misuse
+278371000000107,H/O hallucinogen misuse - infrequent 
+278381000000109,H/O hallucinogen misuse - infrequent 
+278391000000106,Previous history of hallucinogen misuse
+278401000000109,H/O hallucinogen misuse - previous 
+278411000000106,H/O hallucinogen misuse - previous 
+278421000000100,History of daily barbiturate misuse
+278431000000103,H/O barbiturates misuse - daily 
+278441000000107,H/O barbiturates misuse - daily 
+278451000000105,History of weekly barbiturate misuse
+278461000000108,H/O barbiturates misuse - weekly 
+278471000000101,H/O barbiturates misuse - weekly 
+278481000000104,History of infrequent barbiturate misuse
+278491000000102,H/O barbiturates misuse - infrequent 
+278501000000108,H/O barbiturates misuse - infrequent 
+278511000000105,Previous history of barbiturate misuse
+278521000000104,H/O barbiturates misuse - previous 
+278531000000102,H/O barbiturates misuse - previous 
+278541000000106,History of daily cannabis misuse
+278551000000109,H/O cannabis misuse - daily 
+278561000000107,H/O cannabis misuse - daily 
+278571000000100,History of weekly cannabis misuse
+278581000000103,H/O cannabis misuse - weekly 
+278591000000101,H/O cannabis misuse - weekly 
+278601000000107,History of infrequent cannabis misuse
+278611000000109,H/O cannabis misuse - infrequent 
+278621000000103,H/O cannabis misuse - infrequent 
+278631000000101,Previous history of cannabis misuse
+278641000000105,H/O cannabis misuse - previous 
+278651000000108,H/O cannabis misuse - previous 
+278661000000106,History of daily solvent misuse
+278671000000104,H/O solvents misuse - daily 
+278681000000102,H/O solvents misuse - daily 
+278691000000100,History of weekly solvent misuse
+278701000000100,H/O solvents misuse - weekly 
+278711000000103,H/O solvents misuse - weekly 
+278721000000109,History of infrequent solvent misuse
+278731000000106,H/O solvents misuse - infrequent 
+278741000000102,H/O solvents misuse - infrequent 
+278751000000104,Previous history of solvent misuse
+278761000000101,H/O solvents misuse - previous 
+278771000000108,H/O solvents misuse - previous 
+279441000000100,History of heroin misuse
+279451000000102,History of ecstasy misuse
+280982009,Harmful pattern of use of laxative
+280983004,Harmful pattern of use of vitamin
+280984005,Harmful pattern of use of herbal medicine
+280985006,Harmful pattern of use of diuretic
+280986007,Harmful pattern of use of antacid
+284591009,Persistent alcohol abuse
+285861000000109,Previous history of substance misuse
+285961000000103,History of substance misuse
+287841000000104,History of substance misuse
+287851000000101,History of heroin misuse
+287861000000103,History of methadone misuse
+287871000000105,History of ecstasy misuse
+287881000000107,History of benzodiazepine misuse
+287891000000109,History of amphetamine misuse
+287901000000105,History of cocaine misuse
+287911000000107,History of crack cocaine misuse
+287921000000101,History of hallucinogen misuse
+287931000000104,History of cannabis misuse
+287941000000108,History of solvent misuse
+287951000000106,History of barbiturate misuse
+287961000000109,History of major tranquiliser misuse
+287971000000102,History of anti-depressant misuse
+287981000000100,History of opiate misuse
+288351000000106,History of substance misuse
+288361000000109,History of heroin misuse
+288371000000102,History of methadone misuse
+288381000000100,History of ecstasy misuse
+288391000000103,History of benzodiazepine misuse
+288401000000100,History of amphetamine misuse
+288411000000103,History of cocaine misuse
+288421000000109,History of crack cocaine misuse
+288431000000106,History of hallucinogen misuse
+288441000000102,History of cannabis misuse
+288451000000104,History of solvent misuse
+288461000000101,History of barbiturate misuse
+288471000000108,History of major tranquiliser misuse
+288481000000105,History of anti-depressant misuse
+288491000000107,History of opiate misuse
+299911000000104,Substance misuse treatment not available
+299921000000105,Substance misuse treatment not available 
+299931000000107,Substance misuse treatment not available 
+304605000,Harmful pattern of use of methanol
+304651000000101,Substance misuse 
+304661000000103,Substance misuse 
+307052004,Illicit drug use
+308381000000107,Benzodiazepine misuse
+308391000000109,Methadone misuse
+308401000000107,Amphetamine misuse
+308411000000109,Anti-depressant misuse
+308431000000101,Opiate misuse
+308441000000105,Barbiturate misuse
+308451000000108,Cannabis misuse
+308461000000106,Cocaine misuse
+308471000000104,Crack cocaine misuse
+308481000000102,Solvent misuse
+315747008,[V]Personal history of alcoholism
+315748003,[V]Personal history of psychoactive substance abuse
+320831000000108,Alcohol misuse
+320841000000104,Alcohol misuse 
+320851000000101,Alcohol misuse 
+361049005,Habitual drug user
+361055000,Misuses drugs
+371422002,History of substance abuse
+371435006,History of drug abuse
+37344009,Harmful pattern of use of Cannabis
+383901000000108,Uses drug paraphernalia
+391031000000101,"[X]Mental and behavioural disorders due to use of other stimulants, including caffeine: residual and late onset psychotic disorder"
+391041000000105,"[X]Mental and behavioural disorders due to use of other stimulants, including caffeine: other mental and behavioural disorders"
+398681000000103,"[X]Mental and behavioural disorders due to use of other stimulants, including caffeine: psychotic disorder"
+400841000000101,"[X]Mental and behavioural disorders due to use of other stimulants, including caffeine"
+410711000000105,[X] Mental and behavioural disorders due to use of hallucinogens: residual and late-onset psychotic disorder (& [post hallucinogen perception disorder])
+413188004,[V]Personal history of drug abuse by injection
+414874007,Nondependent amphetamine or psychostimulant abuse in remission
+418761000000109,"[X] (Mental and behavioural disorders due to use of other stimulants, including caffeine: dependence syndrome) or (drug addiction - other stimulant)"
+418911000000109,[X] (Mental and behavioural disorders due to multiple drug use and use of other psychoactive substances: dependence syndrome) or (drug addiction NOS)
+425533007,Episodic drug abuse
+425885002,Continuous harmful pattern of use of phencyclidine
+426095000,Continuous harmful pattern of use of volatile inhalant
+426590003,"Drug abuse, continuous"
+427205009,"Amphetamine abuse, continuous"
+427229002,Episodic harmful pattern of use of volatile inhalant
+428406005,Benzodiazepine misuse
+428493006,Crack cocaine misuse
+428495004,Solvent misuse
+428623008,Barbiturate misuse
+428659002,Amphetamine misuse
+428819003,Opiate misuse
+428823006,Cannabis misuse
+429001000124103,Harmful pattern of use of Catha edulis
+429179002,Antidepressant misuse
+429512006,Methadone misuse
+429692000,"Amphetamine abuse, episodic"
+429782000,Cocaine misuse
+432111000000104,[X] (Mental and behavioural disorders due to use of alcohol: residual and late-onset psychotic disorder) or (chronic alcoholic brain syndrome [& dementia NOS])
+441527004,Harmful pattern of use of stimulant
+445273005,Harmful pattern of use of multiple substances
+463651000000105,[V]Personal history of alcoholism
+464711000000103,[X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state
+467251000000104,[X] (Mental and behavioural disorders due to use of alcohol: dependence syndrome) or (chronic alcoholism [& (addiction) or (dipsomania)])
+468561000000104,[X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state with delirium
+470041000000100,[X]Mental and behavioural disorders due to use of tobacco: harmful use
+471891000000108,"[X]Mental and behavioural disorders due to use of other stimulants, including caffeine: unspecified mental and behavioural disorder"
+479471000000105,[V]Personal history of psychoactive substance abuse
+486081000000102,Misuses drugs 
+486091000000100,Occasional drug user 
+486101000000108,Long-term drug misuser 
+486111000000105,Poly-drug misuser 
+486121000000104,Misuses drugs sublingually 
+486131000000102,Misuses drugs rectally 
+486141000000106,Misuses drugs vaginally 
+486151000000109,Uses drug paraphernalia 
+486161000000107,Notified addict 
+486171000000100,Smokes drugs in cigarette form 
+486181000000103,Smokes drugs through a pipe 
+486191000000101,Chases the dragon 
+486201000000104,Sniffs drugs 
+486211000000102,Drug addict 
+486331000000104,Injects drugs subcutaneously 
+486341000000108,Injects drugs intramuscularly 
+486351000000106,Neck injector 
+486361000000109,Groin injector 
+486731000000103,Illicit drug use 
+486741000000107,Heroin misuse 
+486751000000105,Ecstasy misuse 
+487501000000104,Misuses drugs 
+487511000000102,Occasional drug user 
+487521000000108,Long-term drug misuser 
+487531000000105,Poly-drug misuser 
+487541000000101,Misuses drugs sublingually 
+487551000000103,Misuses drugs rectally 
+487561000000100,Misuses drugs vaginally 
+487571000000107,Uses drug paraphernalia 
+487581000000109,Notified addict 
+487591000000106,Smokes drugs in cigarette form 
+487601000000100,Smokes drugs through a pipe 
+487611000000103,Chases the dragon 
+487621000000109,Sniffs drugs 
+487631000000106,Drug addict 
+487751000000108,Injects drugs subcutaneously 
+487761000000106,Injects drugs intramuscularly 
+487771000000104,Neck injector 
+487781000000102,Groin injector 
+488151000000108,Illicit drug use 
+488161000000106,Heroin misuse 
+488171000000104,Ecstasy misuse 
+49540005,Non dependent drug abuse
+523821000000101,Admitted to substance misuse detoxification centre
+523831000000104,Admitted to substance misuse detoxification centre 
+539991000000109,"Nondependent other drug abuse, continuous"
+5602001,Harmful pattern of use of opioid
+574391000000109,Nondependent other drug abuse
+607171000000100,"Nondependent amphetamine or psychostimulant abuse, unspecified"
+620161000000102,"Nondependent alcohol abuse, unspecified"
+620171000000109,Nondependent alcohol abuse NOS
+620201000000105,"Nondependent cannabis abuse, unspecified"
+620211000000107,Nondependent cannabis abuse NOS
+620231000000104,Nondependent hypnotic or anxiolytic abuse NOS
+620261000000109,"Nondependent cocaine abuse, unspecified"
+620271000000102,Nondependent cocaine abuse NOS
+628551000000107,"Nondependent hallucinogen abuse, unspecified"
+628561000000105,Nondependent hallucinogen abuse NOS
+628571000000103,"Nondependent hypnotic or anxiolytic abuse, unspecified"
+628601000000105,"Nondependent opioid abuse, unspecified"
+64386003,Harmful pattern of use of sedative
+651701000000107,Nondependent opioid abuse NOS
+651711000000109,Nondependent amphetamine or psychostimulant abuse NOS
+651721000000103,"Nondependent antidepressant type drug abuse, unspecified"
+6525002,Dependent drug abuse
+66214007,Substance abuse
+694241000000109,Nondependent antidepressant type drug abuse NOS
+694251000000107,"Nondependent mixed drug abuse, unspecified"
+694261000000105,Nondependent mixed drug abuse NOS
+694271000000103,"Nondependent other drug abuse, unspecified"
+694281000000101,"Nondependent other drug abuse, episodic"
+694291000000104,Nondependent other drug abuse in remission
+694301000000100,Nondependent other drug abuse NOS
+699124006,Admission to substance misuse detoxification center
+699449003,Harmful pattern of use of metamfetamine
+702771005,Illicit drug use unknown
+70340006,Harmful pattern of use of volatile inhalant
+703885002,Misuse of analgesic
+705132005,Admitted to substance misuse detoxification center
+70545002,Narcotic drug user
+7071007,Harmful pattern of use of phencyclidine
+713775002,Harmful pattern of use of novel psychoactive substance
+715200006,History of novel psychoactive substance misuse
+724694006,Harmful pattern of use of caffeine
+724697004,Harmful pattern of use of nicotine
+724703003,Harmful pattern of use of substituted amphetamine
+724712001,Harmful use of dissociative drug
+724713006,Harmful use of ketamine
+737336003,Harmful pattern of use of synthetic cannabinoid
+741063003,Illicit drug injection in last 12 months
+74851005,Harmful pattern of use of hallucinogen
+762504005,Harmful pattern of use of synthetic cathinone
+762901000000104,History of buprenorphine misuse
+764651000000101,Nondependent antidepressant type drug abuse
+772999000,Harmful use of hypnotic
+773000004,Harmful use of anxiolytic
+78267003,Harmful pattern of use of cocaine
+785277001,Harmful pattern of use of amfetamine and/or amfetamine derivative
+802411000000109,Analgesic misuse
+824001000000103,Misuses anabolic steroids
+824011000000101,History of anabolic steroid misuse
+84758004,Amphetamine abuse
+890112007,Nondependent harmful pattern of use of tobacco
+91388009,Harmful pattern of use of psychoactive substance
+924501000000100,Novel psychoactive substance misuse
+924511000000103,Novel psychoactive substance misuse 
+943051000000108,History of novel psychoactive substance misuse
+963901000000102,History of novel psychoactive substance misuse
+965551000000107,On substance misuse programme
+9769006,Drug habituation

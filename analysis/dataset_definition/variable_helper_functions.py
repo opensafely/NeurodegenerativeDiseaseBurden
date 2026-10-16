@@ -1,5 +1,6 @@
 from ehrql import case, when, maximum_of, years
-from ehrql.tables.tpp import patients, clinical_events, ethnicity_from_sus, apcs, ons_deaths 
+from ehrql.tables.tpp import patients, clinical_events, ethnicity_from_sus, apcs
+from ehrql.tables.raw.tpp import ons_deaths as ons_deaths_raw
 from ehrql.tables.core import medications
 from datetime import date
 from codelists import *
@@ -507,15 +508,28 @@ def prevalent_apc(codelist, date, death_date):
 # Function to obtain valid date of clinical event in death registry during time period
 
 def first_matching_death_between(codelist, start_date, end_date, death_date):
-    raw_date = case(
+    # This replicates the functionality of the `cause_of_death_is_in()` method which is
+    # available on `ons_deaths` but not `ons_deaths_raw`
+    columns = [
+        "underlying_cause_of_death",
+        *[f"cause_of_death_{i:02d}" for i in range(1, 16)],
+    ]
+    conditions = [getattr(ons_deaths_raw, column).is_in(codelist) for column in columns]
+    cause_of_death_matches = conditions[0]
+    for condition in conditions[1:]:
+        cause_of_death_matches = cause_of_death_matches | condition
+
+    # We use `ons_deaths_raw` here rather than `ons_deaths` as, due to a quirk of the
+    # way ehrQL currently works, this performs significantly better. The raw table
+    # contains a tiny handful of duplicate records, but this makes no difference to our
+    # query here.
+    has_matching_death = ons_deaths_raw.where(cause_of_death_matches).exists_for_patient()
+
+    matching_valid_date = case(
         when(
-            ons_deaths.cause_of_death_is_in(codelist)
+            has_matching_death
             & death_date.is_on_or_between(start_date, end_date)
+            & (death_date >= patients.date_of_birth)
         ).then(death_date)
     )
-
-    valid_date = check_date_validity(raw_date, death_date=death_date)
-
-    return case(
-        when(valid_date.is_not_null()).then(valid_date)
-    )
+    return matching_valid_date

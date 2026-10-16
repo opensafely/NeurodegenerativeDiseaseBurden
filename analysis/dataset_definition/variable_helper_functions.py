@@ -437,7 +437,7 @@ def first_matching_tpp_between(codelist, end_date, death_date, start_date=None):
     return (
         query
         .where(valid_date.is_not_null())
-        .sort_by(valid_date)
+        .sort_by(clinical_events.date)
         .first_for_patient()
         .date
     )
@@ -482,7 +482,7 @@ def first_matching_apc_between(codelist, end_date, death_date, start_date=None, 
     return (
         query
         .where(valid_date.is_not_null())
-        .sort_by(valid_date)
+        .sort_by(apcs.admission_date)
         .first_for_patient()
         .admission_date
     )

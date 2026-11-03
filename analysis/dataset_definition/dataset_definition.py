@@ -400,64 +400,6 @@ for name, codes in olists.items():
             )
         )
 
-        # Add data source for first incidence
-        if len(incident) == 1:
-            setattr(
-                    dataset,
-                    f"inci_primary_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(list(incident.keys())[0] == "primary").then(1),
-                        otherwise = 0                
-                    )
-            )
-            setattr(
-                    dataset,
-                    f"inci_secondary_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(list(incident.keys())[0] == "secondary").then(1),
-                        otherwise = 0                
-                    )
-            )
-            setattr(
-                    dataset,
-                    f"inci_death_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(list(incident.keys())[0] == "death").then(1),
-                        otherwise = 0                
-                    )
-            )
-        else:
-            setattr(
-                    dataset,
-                    f"inci_primary_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(tmp_incident_date == incident["primary"]).then(1),
-                        otherwise = 0              
-                    )
-            )
-            setattr(
-                    dataset,
-                    f"inci_secondary_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(tmp_incident_date == incident["secondary"]).then(1),
-                        otherwise = 0              
-                    )
-            )
-            setattr(
-                    dataset,
-                    f"inci_death_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(tmp_incident_date == incident["death"]).then(1),
-                        otherwise = 0              
-                    )
-            )
-
         # Case fatality numerator
         setattr(
             dataset,
@@ -514,65 +456,6 @@ for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'advdmixed', 'osdmixed']:
             otherwise = maximum_of(0,(tmp_idenom_num - start_date).days)
         )
     )
-
-    #Add data source for first incidence
-    if name not in ['advdmixed', 'osdmixed']:
-        if len(inci_dementia_source[name]) == 1:
-            setattr(
-                    dataset,
-                    f"inci_primary_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(list(inci_dementia_source[name].keys())[0] == "primary").then(1),
-                        otherwise = 0                
-                    )
-            )
-            setattr(
-                    dataset,
-                    f"inci_secondary_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(list(inci_dementia_source[name].keys())[0] == "secondary").then(1),
-                        otherwise = 0                
-                    )
-            )
-            setattr(
-                    dataset,
-                    f"inci_death_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(list(inci_dementia_source[name].keys())[0] == "death").then(1),
-                        otherwise = 0                
-                    )
-            )
-        else:    
-            setattr(
-                    dataset,
-                    f"inci_primary_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(inci_dementia_1 == inci_dementia_source[name]["primary"]).then(1),
-                        otherwise = 0              
-                    )
-            )
-            setattr(
-                    dataset,
-                    f"inci_secondary_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(inci_dementia_1 == inci_dementia_source[name]["secondary"]).then(1),
-                        otherwise = 0              
-                    )
-            )
-            setattr(
-                    dataset,
-                    f"inci_death_bin_{name}",
-                    case(
-                        when(getattr(dataset, f"inumer_bin_{name}")==0).then(0),
-                        when(inci_dementia_1 == inci_dementia_source[name]["death"]).then(1),
-                        otherwise = 0              
-                    )
-            )
     
     # Case fatality numerator
     setattr(

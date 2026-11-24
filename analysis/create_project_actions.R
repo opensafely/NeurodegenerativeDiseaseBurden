@@ -174,17 +174,8 @@ calculate_liferisk <- function(start_year = ystart, end_year = yend, sage) {
         g_life_eth = glue(
           "output/figs/fig_liferisk_ethnicity_{start_year}0101_{end_year}1231_age{sage}.png"
       ),
-        dem_censor = glue(
-          "output/models/tbl_liferisk_all_demcensor_{start_year}0101_{end_year}1231_age{sage}.csv"
-        ),
         dem_comp = glue(
           "output/models/tbl_liferisk_all_demcomp_{start_year}0101_{end_year}1231_age{sage}.csv"
-        ),
-        # g_life_all_dem = glue(
-        #   "output/figs/fig_liferisk_all_dem_{start_year}0101_{end_year}1231_age{sage}.png"
-        # ),
-        g_life_all_demcensor = glue(
-            "output/figs/fig_liferisk_all_demcensor_{start_year}0101_{end_year}1231_age{sage}.png"
         ),
         g_life_all_demcomp = glue(
             "output/figs/fig_liferisk_all_demcomp_{start_year}0101_{end_year}1231_age{sage}.png"

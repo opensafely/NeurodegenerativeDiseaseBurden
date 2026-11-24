@@ -294,31 +294,33 @@ results3[, "lab" := factor(lab ,levels = lvls)]
 
 print("Function to gen heatmap for ethnicity")
 makeplot2 <- function(data) {
-  gen_plot <- function(data, title){
-    brks <- exp(seq(min(data$estimate, na.rm = TRUE), max(data$estimate, na.rm = TRUE), length.out = 5))
-    brks2 <- seq(min(data$p_value, na.rm = TRUE), max(data$p_value, na.rm = TRUE), length.out =3)
-    brks2 <- sort(unique(c(
-      brks2,
-      0.05
-    )))
+  data <- copy(data)
+  data[, p_capped := pmin(p_value, 0.05)]
+  data[, p_capped := pmax(p_capped, 0.001)]
+  data[, irr_capped := pmin(irr, 10)]
+  data[, irr_capped := pmax(irr_capped, 0.01)]
+  data[, log_irr_capped := log10(irr_capped)]
+  gen_plot <- function(data, title='None'){
     ggplot(data, aes(disease, lab)) +
-      geom_tile(aes(fill = estimate), colour = "white") +
-      geom_point(aes(size = p_value), shape = 21, fill = "black") +
+      geom_tile(aes(fill=log_irr_capped), colour = "white") +
       scale_fill_gradient2(
         low = "#2166AC",
-        mid = "white",
+        mid = "#FFFFFF",
         high = "#B2182B",
-        midpoint = 0,
-        breaks = log(brks),
-        labels = signif(brks, 2),
+        midpoint = 0,              # log10(1) = 0
+        limits = c(-2, 1),         # ratio range: 0.01 to 10
+        breaks = c(-2, -1, 0, 1),
+        labels = c("<=0.01", "0.1", "1", ">=10"),
         name = "Ratio relative to\nWhite British"
-      ) +
+) + 
+      geom_point(aes(size = p_capped), shape = 21, fill = "black") +
       scale_size_continuous(
-        range = c(1, 7), 
-        name = "P value", 
+        limits = c(0.001, 0.05),
+        breaks = c(0.001, 0.01, 0.025, 0.05),
+        labels = c("<=0.001", "0.01", "0.025", ">=0.05"),
+        range = c(1, 6),
         trans = "reverse",
-        breaks = brks2,
-        labels = signif(brks2, 2)
+        name = "P value"
       ) +
       coord_equal() +
       labs(title = title) +
@@ -335,7 +337,7 @@ makeplot2 <- function(data) {
         size = guide_legend(order = 2)
     ) 
   }
-  data <- copy(data)
+  
   p1 <- gen_plot(data[metric=="prevalence"], "Prevalence")
   p2 <- gen_plot(data[metric == "incidence"], "Incidence")
   p3 <- gen_plot(data[metric == "fatality_1y"], "1-year fatality")

@@ -135,7 +135,7 @@ inci_status = case(
                 ((inci_dementia_1 != inci_dementia_min['osd'])|
                  (inci_dementia_min['osd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ad'])|
-                 (inci_dementia_min['ud'].is_null()))&
+                 (inci_dementia_min['ad'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ftd'])|
                  (inci_dementia_min['ftd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['dlb'])|
@@ -148,7 +148,7 @@ inci_status = case(
                 ((inci_dementia_1 != inci_dementia_min['osd'])|
                  (inci_dementia_min['osd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ad'])|
-                 (inci_dementia_min['ftd'].is_null()))&
+                 (inci_dementia_min['ad'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['dlb'])|
                  (inci_dementia_min['dlb'].is_null()))
                 ).then('ftd'), 
@@ -161,7 +161,7 @@ inci_status = case(
                 ((inci_dementia_1 != inci_dementia_min['ftd'])|
                  (inci_dementia_min['ftd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ad'])|
-                 (inci_dementia_min['dlb'].is_null()))
+                 (inci_dementia_min['ad'].is_null()))
                 ).then('dlb'), 
             when(
                 (inci_dementia_1 == inci_dementia_min['ad'])&
@@ -423,6 +423,31 @@ for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'osd']:
                 f"event_{name}_source_death",
                 case(
                     when(True).then(0),           
+                )
+                )
+    elif name == 'ud':
+        setattr(
+                dataset,
+                f"event_{name}_source_primary",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_not_in(['death', 'censored'])) & (inci_dementia_1 == inci_dementia_source[name]["primary"])).then(1),
+                    otherwise = 0                
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_secondary",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_not_in(['death', 'censored'])) & (inci_dementia_1 == inci_dementia_source[name]["secondary"])).then(1),
+                    otherwise = 0              
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_death",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_not_in(['death', 'censored'])) & (inci_dementia_1 == inci_dementia_source[name]["death"])).then(1),
+                    otherwise = 0              
                 )
                 )
     else:

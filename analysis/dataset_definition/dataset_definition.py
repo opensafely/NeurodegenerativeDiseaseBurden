@@ -178,7 +178,7 @@ inci_dementia_status = case(
                 ((inci_dementia_1 != inci_dementia_min['osd'])|
                  (inci_dementia_min['osd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ad'])|
-                 (inci_dementia_min['ud'].is_null()))&
+                 (inci_dementia_min['ad'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ftd'])|
                  (inci_dementia_min['ftd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['dlb'])|
@@ -191,7 +191,7 @@ inci_dementia_status = case(
                 ((inci_dementia_1 != inci_dementia_min['osd'])|
                  (inci_dementia_min['osd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ad'])|
-                 (inci_dementia_min['ftd'].is_null()))&
+                 (inci_dementia_min['ad'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['dlb'])|
                  (inci_dementia_min['dlb'].is_null()))
                 ).then('ftd'), 
@@ -204,7 +204,7 @@ inci_dementia_status = case(
                 ((inci_dementia_1 != inci_dementia_min['ftd'])|
                  (inci_dementia_min['ftd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ad'])|
-                 (inci_dementia_min['dlb'].is_null()))
+                 (inci_dementia_min['ad'].is_null()))
                 ).then('dlb'), 
             when(
                 (inci_dementia_1 == inci_dementia_min['ad'])&
@@ -268,7 +268,7 @@ prevalent_dementia_mid = case(
                 ((inci_dementia_mid_1 != inci_dementia_mid['osd'])|
                     (inci_dementia_mid['osd'].is_null()))&
                 ((inci_dementia_mid_1 != inci_dementia_mid['ad'])|
-                    (inci_dementia_mid['ud'].is_null()))&
+                    (inci_dementia_mid['ad'].is_null()))&
                 ((inci_dementia_mid_1 != inci_dementia_mid['ftd'])|
                     (inci_dementia_mid['ftd'].is_null()))&
                 ((inci_dementia_mid_1 != inci_dementia_mid['dlb'])|
@@ -281,7 +281,7 @@ prevalent_dementia_mid = case(
                 ((inci_dementia_mid_1 != inci_dementia_mid['osd'])|
                     (inci_dementia_mid['osd'].is_null()))&
                 ((inci_dementia_mid_1 != inci_dementia_mid['ad'])|
-                    (inci_dementia_mid['ftd'].is_null()))&
+                    (inci_dementia_mid['ad'].is_null()))&
                 ((inci_dementia_mid_1 != inci_dementia_mid['dlb'])|
                     (inci_dementia_mid['dlb'].is_null()))
                 ).then('ftd'), 
@@ -294,7 +294,7 @@ prevalent_dementia_mid = case(
                 ((inci_dementia_mid_1 != inci_dementia_mid['ftd'])|
                     (inci_dementia_mid['ftd'].is_null()))&
                 ((inci_dementia_mid_1 != inci_dementia_mid['ad'])|
-                    (inci_dementia_mid['dlb'].is_null()))
+                    (inci_dementia_mid['ad'].is_null()))
                 ).then('dlb'), 
             when(
                 (inci_dementia_mid_1 == inci_dementia_mid['ad'])&

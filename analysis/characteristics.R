@@ -44,7 +44,7 @@ df[,
   )
 ]
 
-df[, "cov_cat_sex" := factor(cov_cat_sex, levels = c("female", "male", "intersex", "unknown"))]
+df[, "cov_cat_sex" := factor(cov_cat_sex, levels = c("female", "male", "intersex", "unknown"),labels = c("Female", "Male", "Intersex", "Unknown"))]
 
 df[,
   "cov_cat_cms" := cut(
@@ -59,7 +59,6 @@ df[,
     cov_cat_imd,
     levels = c(
       "1 (most deprived)",
-      "10 (least deprived)",
       "2",
       "3",
       "4",
@@ -68,11 +67,11 @@ df[,
       "7",
       "8",
       "9",
+      "10 (least deprived)",
       "unknown"
     ),
     labels = c(
       "1-2 (most deprived)",
-      "9-10 (least deprived)",
       "1-2 (most deprived)",
       "3-4",
       "3-4",
@@ -81,13 +80,59 @@ df[,
       "7-8",
       "7-8",
       "9-10 (least deprived)",
-      "unknown"
+      "9-10 (least deprived)",
+      "Unknown"
     )
   )
 ]
 
+df[, cov_cat_ethnicity := factor(cov_cat_ethnicity,
+  levels = c(sort(c(
+        "White British", 
+        "White Irish",
+        "Other White",
+        "White and Caribbean",
+        "White and African",
+        "White and Asian",
+        "Other Mixed",
+        "Indian",
+        "Pakistani",
+        "Bangladeshi",
+        "Other Asian",
+        "Caribbean",
+        "African",
+        "Other Black",
+        "Chinese",
+        "All other ethnic groups"
+        )), "Missing"),
+  labels = c(sort(c(
+        "White British", 
+        "White Irish",
+        "Other White",
+        "White and Caribbean",
+        "White and African",
+        "White and Asian",
+        "Other Mixed",
+        "Indian",
+        "Pakistani",
+        "Bangladeshi",
+        "Other Asian",
+        "Caribbean",
+        "African",
+        "Other Black",
+        "Chinese",
+        "All other ethnic groups"
+        )), "Unknown")
+
+  )]
+
+df[,cov_cat_region := factor(cov_cat_region,
+  levels = c(sort(c("North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands", "East", "London", "South East", "South West")), ""),
+  labels = c(sort(c("North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands", "East", "London", "South East", "South West")), "Unknown")
+  )]
+
 for (i in c("age", "sex", "ethnicity", "imd", "region", "cms")) {
-  df[get(paste0("cov_cat_", i)) == "", paste0("cov_cat_", i):= "unknown"]
+  df[get(paste0("cov_cat_", i)) == ""|is.na(get(paste0("cov_cat_", i))), paste0("cov_cat_", i):= "Unknown"]
 }
 
 #function to get summary stats for diff outcomes
@@ -100,15 +145,19 @@ get_summary <- function(df, outcome = NA){
   if (is.na(outcome)){
     dat <- copy(df)
   } else {
-    dat <- df[get(paste0("prev_bin_",outcome))==0 & get(paste0("event_",outcome))=="neuro"]
+    if (outcome %in% c("cjd", "pd", "mnd", "psp", "hd", "msa", "cbd", "dementia", "anyneuro"))
+      {dat <- df[get(paste0("prev_bin_",outcome))==0 & get(paste0("event_",outcome))=="neuro"]} else {
+        dat <- df[prev_bin_dementia==0 & event_dementia_compete == outcome]
+      }
   }
   coh <- dat[, .(category = "total", group = "total", n = .N, percent=100)]
   coh[, "n" := roundmid_any(n)]
   for (i in c("age", "sex", "ethnicity", "imd", "region", "cms")) {
-    tmp <- dat[,.(category = i, n=.N), by=.(group = get(paste0("cov_cat_",i)))]
+    tmp <- dat[,.(category = i, n=.N), keyby=.(group = get(paste0("cov_cat_",i)))]
     tmp[, "n" := roundmid_any(n)]
     totn <- tmp[, sum(n)]
     tmp[, "percent" := round(n/totn*100,1)]
+    tmp[]
     coh <- rbind(coh, tmp)
     if (i == "cms") {
       tmp2<- data.table(category=i, 
@@ -138,10 +187,17 @@ print("function to calculate diag source")
 
 get_source <- function(df, outcome, bygroup = NA){
   if (bygroup %in% c("age", "sex", "ethnicity", "imd", "region", "cms")){
-    totn <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .N, by=.(group=get(paste0("cov_cat_", bygroup)))]
-    n_prim <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_primary"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
-    n_second <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_secondary"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
-    n_death <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_death"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+    if (outcome %in% c("cjd", "pd", "mnd", "psp", "hd", "msa", "cbd", "dementia", "anyneuro")) {
+        totn <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .N, by=.(group=get(paste0("cov_cat_", bygroup)))]
+        n_prim <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_",outcome, "_source_primary"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+        n_second <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_",outcome, "_source_secondary"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+        n_death <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_",outcome, "_source_death"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+      } else {
+        n_prim <- df[prev_bin_dementia==0 & get(paste0("event_",outcome, "_source_primary"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+        n_second <- df[prev_bin_dementia==0 & get(paste0("event_",outcome, "_source_secondary"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+        n_death <- df[prev_bin_dementia==0 & get(paste0("event_",outcome, "_source_death"))==1, .(n=.N), by=.(group=get(paste0("cov_cat_", bygroup)))]
+        totn <- df[prev_bin_dementia==0 & (get(paste0("event_",outcome, "_source_primary"))==1|get(paste0("event_",outcome, "_source_secondary"))==1|get(paste0("event_",outcome, "_source_death"))==1), .N, by=.(group=get(paste0("cov_cat_", bygroup)))]
+      }
     totn[, "N" := roundmid_any(N)]
     n_prim[, "n" := roundmid_any(n)]
     n_second[, "n" := roundmid_any(n)]
@@ -151,10 +207,17 @@ get_source <- function(df, outcome, bygroup = NA){
     tmp3 <- n_death[totn, .(disease=outcome, category=bygroup, group, source="death", percent=round(n/N*100,1)),on="group"]
     tmp <- rbind(tmp1, tmp2, tmp3)
     } else{
-      totn <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .N]
-      n_prim <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_primary"))==1, .N]
-      n_second <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_secondary"))==1, .N]
-      n_death <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro" & get(paste0("event_",outcome, "_source_death"))==1, .N]
+      if (outcome %in% c("cjd", "pd", "mnd", "psp", "hd", "msa", "cbd", "dementia", "anyneuro")) {
+        totn <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .N]
+        n_prim <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_",outcome, "_source_primary"))==1, .N]
+        n_second <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_",outcome, "_source_secondary"))==1, .N]
+        n_death <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_",outcome, "_source_death"))==1, .N]
+      } else {
+        n_prim <- df[prev_bin_dementia==0 & get(paste0("event_",outcome, "_source_primary"))==1, .N]
+        n_second <- df[prev_bin_dementia==0 & get(paste0("event_",outcome, "_source_secondary"))==1, .N]
+        n_death <- df[prev_bin_dementia==0 & get(paste0("event_",outcome, "_source_death"))==1, .N]
+        totn <- df[prev_bin_dementia==0 & (get(paste0("event_",outcome, "_source_primary"))==1|get(paste0("event_",outcome, "_source_secondary"))==1|get(paste0("event_",outcome, "_source_death"))==1), .N]
+      }
       totn <- roundmid_any(totn)
       n_prim <- roundmid_any(n_prim)
       n_second <- roundmid_any(n_second)
@@ -165,7 +228,7 @@ get_source <- function(df, outcome, bygroup = NA){
 
 print("calculate diag source percentage for all outcome and subgroups")
 ds <- c("ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
-        "dlb", "dementia")
+        "dlb", "dementia", "osd")
 
 cats <- c(NA, "age", "sex", "ethnicity", "imd", "cms")
 diag_source<- rbindlist(lapply(ds, function(x) rbindlist(lapply(cats, get_source, df=df, outcome=x), use.names = TRUE)),use.names = TRUE)
@@ -290,18 +353,26 @@ ggsave(g_source_imd, filename = paste0("output/figs/fig_bar_diagsource_imd_", da
 print("generate boxplot for median and iqr of diag age")
 get_diagage <- function(df, outcome, bygroup = NA){
   if (bygroup %in% c("age", "sex", "ethnicity", "imd", "region", "cms")){
-    tmp <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .(age=get(paste0("survage_", outcome))
-              ),
+    if (outcome %in% c("cjd", "pd", "mnd", "psp", "hd", "msa", "cbd", "dementia", "anyneuro")) {
+        tmp <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .(age=get(paste0("survage_", outcome))),
               by=.(group=get(paste0("cov_cat_", bygroup)))]
+        } else {tmp <- df[prev_bin_dementia==0 & event_dementia_compete == outcome, .(age=survage_dementia_compete),
+              by=.(group=get(paste0("cov_cat_", bygroup)))]
+                }
     tmp[, c("disease", "category") := .(outcome, bygroup)]
     } else{
-      tmp <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .(age=get(paste0("survage_", outcome))
-                )
-                ]
+      if (outcome %in% c("cjd", "pd", "mnd", "psp", "hd", "msa", "cbd", "dementia", "anyneuro")) {
+        tmp <- df[get(paste0("prev_bin_", outcome))==0 & get(paste0("event_", outcome))=="neuro", .(age=get(paste0("survage_", outcome)))]
+        } else {tmp <- df[prev_bin_dementia==0 & event_dementia_compete == outcome, .(age=survage_dementia_compete)]
+                }
       tmp[, c("disease", "category", "group") := .(outcome, "all", "all")]
     }
 }
-diag_age<- rbindlist(lapply(ds, function(x) rbindlist(lapply(cats, get_diagage, df=df, outcome=x), use.names = TRUE)),use.names = TRUE)
+
+#calculate diag age for outcomes
+ds2 <- c("ud",  "ad",  "cjd", "pd",  "ftd", "mnd", "psp", "vd",  "hd",  "msa", "cbd",
+        "dlb", "dementia", "osdmixed", "advdmixed")
+diag_age<- rbindlist(lapply(ds2, function(x) rbindlist(lapply(cats, get_diagage, df=df, outcome=x), use.names = TRUE)),use.names = TRUE)
 
 print("function to plot diag age")
 makeplot2 <- function(data, bygroup=NA){

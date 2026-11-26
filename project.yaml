@@ -1305,9 +1305,7 @@ actions:
         g_life_imd: output/figs/fig_liferisk_imd_20200101_20231231_age18.png
         liferisketh: output/models/tbl_liferisk_ethnicity_20200101_20231231_age18.csv
         g_life_eth: output/figs/fig_liferisk_ethnicity_20200101_20231231_age18.png
-        dem_censor: output/models/tbl_liferisk_all_demcensor_20200101_20231231_age18.csv
         dem_comp: output/models/tbl_liferisk_all_demcomp_20200101_20231231_age18.csv
-        g_life_all_demcensor: output/figs/fig_liferisk_all_demcensor_20200101_20231231_age18.png
         g_life_all_demcomp: output/figs/fig_liferisk_all_demcomp_20200101_20231231_age18.png
 
   ## Calculate lifetime risk from age 50 
@@ -1326,9 +1324,7 @@ actions:
         g_life_imd: output/figs/fig_liferisk_imd_20200101_20231231_age50.png
         liferisketh: output/models/tbl_liferisk_ethnicity_20200101_20231231_age50.csv
         g_life_eth: output/figs/fig_liferisk_ethnicity_20200101_20231231_age50.png
-        dem_censor: output/models/tbl_liferisk_all_demcensor_20200101_20231231_age50.csv
         dem_comp: output/models/tbl_liferisk_all_demcomp_20200101_20231231_age50.csv
-        g_life_all_demcensor: output/figs/fig_liferisk_all_demcensor_20200101_20231231_age50.png
         g_life_all_demcomp: output/figs/fig_liferisk_all_demcomp_20200101_20231231_age50.png
 
   ## Calculate lifetime risk from age 65 
@@ -1347,9 +1343,7 @@ actions:
         g_life_imd: output/figs/fig_liferisk_imd_20200101_20231231_age65.png
         liferisketh: output/models/tbl_liferisk_ethnicity_20200101_20231231_age65.csv
         g_life_eth: output/figs/fig_liferisk_ethnicity_20200101_20231231_age65.png
-        dem_censor: output/models/tbl_liferisk_all_demcensor_20200101_20231231_age65.csv
         dem_comp: output/models/tbl_liferisk_all_demcomp_20200101_20231231_age65.csv
-        g_life_all_demcensor: output/figs/fig_liferisk_all_demcensor_20200101_20231231_age65.png
         g_life_all_demcomp: output/figs/fig_liferisk_all_demcomp_20200101_20231231_age65.png
 
   ## Calculate lifetime risk from age 80 
@@ -1368,9 +1362,7 @@ actions:
         g_life_imd: output/figs/fig_liferisk_imd_20200101_20231231_age80.png
         liferisketh: output/models/tbl_liferisk_ethnicity_20200101_20231231_age80.csv
         g_life_eth: output/figs/fig_liferisk_ethnicity_20200101_20231231_age80.png
-        dem_censor: output/models/tbl_liferisk_all_demcensor_20200101_20231231_age80.csv
         dem_comp: output/models/tbl_liferisk_all_demcomp_20200101_20231231_age80.csv
-        g_life_all_demcensor: output/figs/fig_liferisk_all_demcensor_20200101_20231231_age80.png
         g_life_all_demcomp: output/figs/fig_liferisk_all_demcomp_20200101_20231231_age80.png
 
   ## Generate cohort summary table 

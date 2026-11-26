@@ -135,7 +135,7 @@ inci_status = case(
                 ((inci_dementia_1 != inci_dementia_min['osd'])|
                  (inci_dementia_min['osd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ad'])|
-                 (inci_dementia_min['ud'].is_null()))&
+                 (inci_dementia_min['ad'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ftd'])|
                  (inci_dementia_min['ftd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['dlb'])|
@@ -148,7 +148,7 @@ inci_status = case(
                 ((inci_dementia_1 != inci_dementia_min['osd'])|
                  (inci_dementia_min['osd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ad'])|
-                 (inci_dementia_min['ftd'].is_null()))&
+                 (inci_dementia_min['ad'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['dlb'])|
                  (inci_dementia_min['dlb'].is_null()))
                 ).then('ftd'), 
@@ -161,7 +161,7 @@ inci_status = case(
                 ((inci_dementia_1 != inci_dementia_min['ftd'])|
                  (inci_dementia_min['ftd'].is_null()))&
                 ((inci_dementia_1 != inci_dementia_min['ad'])|
-                 (inci_dementia_min['dlb'].is_null()))
+                 (inci_dementia_min['ad'].is_null()))
                 ).then('dlb'), 
             when(
                 (inci_dementia_1 == inci_dementia_min['ad'])&
@@ -198,10 +198,15 @@ prev_dementia.append(
                 prevalent_apc(olists["dementia"]["icd"], index_date, death_date)
             )
 prevalent_dementia = maximum_of(*prev_dementia)
+setattr(
+        dataset,
+        f"prev_bin_dementia",
+        prevalent_dementia
+    )
 
 for name, codes in olists.items():  
     # For other neuro disease
-    if name not in ["osd", "ud", "ad", "vd", "ftd", "dlb"]:
+    if name in ["cjd", "pd", "mnd", "psp", "hd", "msa", "cbd", "anyneuro"]:
         incident = {}
         prevalent_start = []
 
@@ -256,13 +261,12 @@ for name, codes in olists.items():
         )
 
         # Add data source for other neuro disease
-        if len(incident) == 1:
+        if name == 'cbd':
             setattr(
                     dataset,
                     f"event_{name}_source_primary",
                     case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(list(incident.keys())[0] == "primary").then(1),
+                        when(getattr(dataset, f"event_{name}").is_in(["neuro"])).then(1),
                         otherwise = 0                
                     )
                     )
@@ -270,18 +274,14 @@ for name, codes in olists.items():
                     dataset,
                     f"event_{name}_source_secondary",
                     case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(list(incident.keys())[0] == "secondary").then(1),
-                        otherwise = 0                
+                        when(True).then(0),                
                     )
                     )
             setattr(
                     dataset,
                     f"event_{name}_source_death",
                     case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(list(incident.keys())[0] == "death").then(1),
-                        otherwise = 0                
+                        when(True).then(0),           
                     )
                     )
         else:
@@ -289,8 +289,7 @@ for name, codes in olists.items():
                     dataset,
                     f"event_{name}_source_primary",
                     case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(tmp_incident_date == incident["primary"]).then(1),
+                        when((getattr(dataset, f"event_{name}").is_in(["neuro"])) & (tmp_incident_date == incident["primary"])).then(1),
                         otherwise = 0              
                     )
                     )
@@ -298,8 +297,7 @@ for name, codes in olists.items():
                     dataset,
                     f"event_{name}_source_secondary",
                     case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(tmp_incident_date == incident["secondary"]).then(1),
+                        when((getattr(dataset, f"event_{name}").is_in(["neuro"])) & (tmp_incident_date == incident["secondary"])).then(1),
                         otherwise = 0              
                     )
                     )
@@ -307,11 +305,11 @@ for name, codes in olists.items():
                     dataset,
                     f"event_{name}_source_death",
                     case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(tmp_incident_date == incident["death"]).then(1),
+                        when((getattr(dataset, f"event_{name}").is_in(["neuro"])) & (tmp_incident_date == incident["death"])).then(1),
                         otherwise = 0              
                     )
                     )
+            
         # Survage for other neuro disease
         tmp_fu = minimum_of(pat_end_date, tmp_incident_date)
         setattr(
@@ -320,92 +318,163 @@ for name, codes in olists.items():
             patients.age_on(tmp_fu)
         )
 
-# For dementia subtypes
-for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'advdmixed', 'osdmixed']:
-    #Prevalent status for dementia subtypes using any dementia
-    setattr(
-        dataset,
-        f"prev_bin_{name}",
-        prevalent_dementia
-    )
+    if name == "dementia":
+        incident = {}
+        
+        ## Primary care incidence
+        incident["primary"] = first_matching_tpp_between(codes["snomed"], pat_end_date, death_date, start_date=index_date)
+    
+        ## Secondary care incidence
+        incident["secondary"] = first_matching_apc_between(codes["icd"], pat_end_date, death_date, start_date=index_date, only_prim_diagnoses=False)
 
-    #Censor at dementia subtypes
-    setattr(
-        dataset,
-        f"event_{name}",
-        case(
-            when(inci_status == "death").then("death"),
-            when(inci_status == name).then("neuro"),
-            otherwise="censored",
+        ## Death incidence
+        incident["death"] = first_matching_death_between(codes["icd"], index_date, pat_end_date, death_date)
+
+        tmp_incident_date  = minimum_of(*incident.values())
+                
+        # Event: censored, neuro, death
+        setattr(
+            dataset,
+            f"event_{name}",
+            case(
+                when(tmp_incident_date.is_not_null()).then("neuro"),
+                when((death_date >= index_date) & (death_date <= pat_end_date)).then("death"),
+                otherwise="censored",
+            )
         )
-    )
 
-    # Survage for dementia subtypes
-    tmp_fu = minimum_of(pat_end_date, inci_dementia_1)
-    setattr(
-        dataset,
-        f"survage_{name}",
-        patients.age_on(tmp_fu)
-    )
+        setattr(
+                dataset,
+                f"event_{name}_source_primary",
+                case(
+                    when((getattr(dataset, f"event_{name}").is_in(["neuro"])) & (tmp_incident_date == incident["primary"])).then(1),
+                    otherwise = 0              
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_secondary",
+                case(
+                    when((getattr(dataset, f"event_{name}").is_in(["neuro"])) & (tmp_incident_date == incident["secondary"])).then(1),
+                    otherwise = 0              
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_death",
+                case(
+                    when((getattr(dataset, f"event_{name}").is_in(["neuro"])) & (tmp_incident_date == incident["death"])).then(1),
+                    otherwise = 0              
+                )
+                )
+            
+        tmp_fu = minimum_of(pat_end_date, tmp_incident_date)
+        setattr(
+            dataset,
+            f"survage_{name}",
+            patients.age_on(tmp_fu)
+        )
 
-    #Add data source for dementia subtypes
-    if name not in ['advdmixed', 'osdmixed']:
-        if len(inci_dementia_source[name]) == 1:
-            setattr(
-                    dataset,
-                    f"event_{name}_source_primary",
-                    case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(list(inci_dementia_source[name].keys())[0] == "primary").then(1),
-                        otherwise = 0                
-                    )
-                    )
-            setattr(
-                    dataset,
-                    f"event_{name}_source_secondary",
-                    case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(list(inci_dementia_source[name].keys())[0] == "secondary").then(1),
-                        otherwise = 0                
-                    )
-                    )
-            setattr(
-                    dataset,
-                    f"event_{name}_source_death",
-                    case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(list(inci_dementia_source[name].keys())[0] == "death").then(1),
-                        otherwise = 0                
-                    )
-                    )
-        else:    
-            setattr(
-                    dataset,
-                    f"event_{name}_source_primary",
-                    case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(inci_dementia_1 == inci_dementia_source[name]["primary"]).then(1),
-                        otherwise = 0              
-                    )
-                    )
-            setattr(
-                    dataset,
-                    f"event_{name}_source_secondary",
-                    case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(inci_dementia_1 == inci_dementia_source[name]["secondary"]).then(1),
-                        otherwise = 0              
-                    )
-                    )
-            setattr(
-                    dataset,
-                    f"event_{name}_source_death",
-                    case(
-                        when(getattr(dataset, f"event_{name}").is_in(["death", "censored"])).then(0),
-                        when(inci_dementia_1 == inci_dementia_source[name]["death"]).then(1),
-                        otherwise = 0              
-                    )
-                    )
+#Add data source for dementia subtypes
+for name in ['ad', 'vd', 'ud', 'ftd', 'dlb', 'osd']:
+    if name in ['ad', 'vd']:
+        setattr(
+                dataset,
+                f"event_{name}_source_primary",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_in([name, 'advdmixed', 'osdmixed'])) & (inci_dementia_1 == inci_dementia_source[name]["primary"])).then(1),
+                    otherwise = 0              
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_secondary",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_in([name, 'advdmixed', 'osdmixed'])) & (inci_dementia_1 == inci_dementia_source[name]["secondary"])).then(1),
+                    otherwise = 0              
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_death",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_in([name, 'advdmixed', 'osdmixed'])) & (inci_dementia_1 == inci_dementia_source[name]["death"])).then(1),
+                    otherwise = 0              
+                )
+                )
+    elif name == 'dlb':
+        setattr(
+                dataset,
+                f"event_{name}_source_primary",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_in([name, 'osdmixed'])) & (inci_dementia_1 == inci_dementia_source[name]["primary"])).then(1),
+                    otherwise = 0                
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_secondary",
+                case(
+                    when(True).then(0),           
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_death",
+                case(
+                    when(True).then(0),           
+                )
+                )
+    elif name == 'ud':
+        setattr(
+                dataset,
+                f"event_{name}_source_primary",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_not_in(['death', 'censored'])) & (inci_dementia_1 == inci_dementia_source[name]["primary"])).then(1),
+                    otherwise = 0                
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_secondary",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_not_in(['death', 'censored'])) & (inci_dementia_1 == inci_dementia_source[name]["secondary"])).then(1),
+                    otherwise = 0              
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_death",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_not_in(['death', 'censored'])) & (inci_dementia_1 == inci_dementia_source[name]["death"])).then(1),
+                    otherwise = 0              
+                )
+                )
+    else:
+        setattr(
+                dataset,
+                f"event_{name}_source_primary",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_in([name, 'osdmixed'])) & (inci_dementia_1 == inci_dementia_source[name]["primary"])).then(1),
+                    otherwise = 0              
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_secondary",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_in([name, 'osdmixed'])) & (inci_dementia_1 == inci_dementia_source[name]["secondary"])).then(1),
+                    otherwise = 0              
+                )
+                )
+        setattr(
+                dataset,
+                f"event_{name}_source_death",
+                case(
+                    when((getattr(dataset, "event_dementia_compete").is_in([name, 'osdmixed'])) & (inci_dementia_1 == inci_dementia_source[name]["death"])).then(1),
+                    otherwise = 0              
+                )
+                )  
         
 # Define population
 population = (
